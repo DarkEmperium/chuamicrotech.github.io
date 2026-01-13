@@ -1,55 +1,70 @@
-# 🛠️ CHUA MICRO TECH 🛸
-> **Precision Hardware Solutions for High-Performance Computing and Aerial Technology.**
+# <i>Chua Micro Tech Official Professional Website</i>
 
-[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fchuamicrotech.com&style=flat-square&logo=google-chrome&logoColor=white)](https://chuamicrotech.com)
-[![Hardware Expert](https://img.shields.io/badge/Expertise-Micro--Soldering-blue?style=flat-square&logo=pcpp)](https://github.com/your-username)
-[![Service-Area](https://img.shields.io/badge/Location-Kulim%2C%20Kedah-orange?style=flat-square&logo=google-maps)](https://maps.google.com)
+<br>
 
-Welcome to the official repository for **Chua Micro Tech**. We bridge the gap between standard maintenance and advanced component-level repair, specializing in DJI drone hardware and high-end liquid-cooled workstations.
+![Website Banner](assets/images/banner1.png)
 
----
-
-## 💎 Core Capabilities
-
-| Service | Description | Tech Stack |
-| :--- | :--- | :--- |
-| **🚁 Drone Maintenance** | Gimbal calibration, motor replacement, and shell restoration. | DJI, FPV, Betaflight |
-| **💻 Custom PC Builds** | High-end liquid-cooled gaming rigs and AI workstations. | Intel Core Ultra, NVIDIA RTX |
-| **🔬 Micro-Repair** | Component-level diagnostics and precision micro-soldering. | Oscilloscopes, Thermal Imaging |
+<i>A precision-engineered platform showcasing high-performance computing solutions and drone hardware expertise.</i>
 
 ---
 
-## 🛠️ Tech Stack & Service Partners
-We collaborate with world-class technology brands to deliver expert repair solutions.
+## 🛠️ <i>Languages & Tools Used</i>
 
-- **Computing:** `Intel` `NVIDIA` `MSI` `ASUS ROG` `ACER` `LENOVO`
-- **Aerial:** `DJI` `Logitech`
-- **Web Tech:** `HTML5` `CSS3` `JavaScript (GSAP)` `Swiper.js`
-
----
-
-## 📈 Project Status: Landing Page v2.0
-Our latest landing page is optimized for performance and high-conversion.
-- [x] **Preloader Architecture:** Custom progress-fill loading status.
-- [x] **Animation Engine:** High-performance GSAP & ScrollTrigger integration.
-- [x] **Responsive Design:** Mobile-first approach for local hub discovery.
-- [x] **Performance Optimization:** GPU-accelerated technical-slide and pop animations.
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+- ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+- ![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ---
 
-## 📬 Connect With Us
+## 🎯 <i>About This Website</i>
 
-We are available for technical support and hardware inquiries **Monday — Saturday**.
+*This website serves as the professional digital hub for Chua Micro Tech, focusing on:*
+- <i>A comprehensive display of specialized hardware repair services</i>
+- <i>Showcasing expert DJI drone maintenance and gimbal calibration</i>
+- <i>Highlighting high-end custom liquid-cooled PC workstations</i>
+- <i>Connecting local clients with advanced component-level micro-soldering expertise</i>
 
-- **📍 Address:** 859, Lorong Kota Kenari 4/5, Taman Kota Kenari, 09000, Kulim, Kedah.
-- **💬 WhatsApp:** [+60 12-594 9451](https://wa.me/60125949451)
-- **📧 Email:** [chuamicrotech@gmail.com](mailto:chuamicrotech@gmail.com)
-- **📸 Instagram:** [@chuamicrotech](https://instagram.com/chuamicrotech)
+---
+
+## 🌟 <i>Features</i>
+
+- *Snappy "Pop" Staggered Animations for services and contact details*
+- *Technical Skew-Reveal transitions for high-performance hardware panels*
+- *Fully Responsive design for seamless browsing across mobile and desktop devices*
+- *Integrated Verified Client Logs via interactive Google Review UI*
+- *GPU-Accelerated cinematic video backgrounds for premium product showcases*
 
 ---
 
-### 🛡️ Warranty & Trust
-Every repair and build comes with a **90-Day Warranty** to ensure hardware integrity and client satisfaction.
+## 📚 <i>Recent Updates</i>
+
+- <i>🔭 Completed transition to high-performance GSAP ScrollTrigger architecture</i>  
+- <i>🤔 Resolved "Double-Step" animation glitches using explicit clearProps logic</i>  
+- <i>✅ Refined brand messaging to focus on "Trusted by Locals" community trust</i>  
 
 ---
-*System Architecture by Dark Emperium*
+
+## 💻 <i>How To Access The Website</i>
+
+- *Visit the hosted professional hub [here](https://darkemperium.github.io/chuamicrotech)*
+- *Navigate through the Core Capabilities to explore specialized repair solutions*
+
+---
+
+## 👤 <i>About Us</i>
+
+<i>Based in Kulim, Kedah, Chua Micro Tech is a specialist center dedicated to precision engineering. We bridge the gap between standard maintenance and advanced component-level hardware repair for drones and computers.</i>
+
+---
+
+## 🔧 <i>Future Enhancements</i>
+
+- *Implement a **Live Project Gallery** for custom PC build transformations*
+- *Integrate an **Online Service Booking** system for repair appointments*
+- *Optimize asset preloading to ensure ultra-fast load times for mobile users*
+
+---
+
+<i>© 2026 Coded with Visual Studio Code - Website owned by Chua Micro Tech. System Architecture by Dark Emperium. All rights reserved.</i>
