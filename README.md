@@ -34,7 +34,6 @@
 - *Technical Skew-Reveal transitions for high-performance hardware panels*
 - *Fully Responsive design for seamless browsing across mobile and desktop devices*
 - *Integrated Verified Client Logs via interactive Google Review UI*
-- *GPU-Accelerated cinematic video backgrounds for premium product showcases*
 
 ---
 
