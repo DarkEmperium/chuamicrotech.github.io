@@ -41,8 +41,6 @@
 ## 📚 <i>Recent Updates</i>
 
 - <i>🔭 Completed transition to high-performance GSAP ScrollTrigger architecture</i>  
-- <i>🤔 Resolved "Double-Step" animation glitches using explicit clearProps logic</i>  
-- <i>✅ Refined brand messaging to focus on "Trusted by Locals" community trust</i>  
 
 ---
 
