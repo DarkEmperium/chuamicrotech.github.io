@@ -61,12 +61,8 @@
     width: 0;
     background: #007aff; 
     box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
-    animation: simpleLoad 2.5s ease-out forwards;
-}
-
-@keyframes simpleLoad {
-    0% { width: 0%; }
-    100% { width: 100%; }
+    transition: width 0.1s linear; 
+    will-change: width;
 }
 
 @keyframes simpleFade {

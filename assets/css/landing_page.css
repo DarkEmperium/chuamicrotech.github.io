@@ -943,9 +943,16 @@ body {
 }
 
 @media (max-width: 768px) {
+  
   .header {
     padding: 10px 0;
   }
+
+  .logo {
+    margin-left: 10px;
+    max-width: 70%; /* Limit logo area to prevent pushing the toggle button */
+  }
+
   .logo img {
     width: 50px;
     margin: 5px;

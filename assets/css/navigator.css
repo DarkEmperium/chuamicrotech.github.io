@@ -179,7 +179,6 @@ a {
     justify-content: space-between;
     align-items: flex-start;
     transition: left .5s cubic-bezier(.86, 0, .07, 1);
-    box-shadow: 10px 0 40px rgba(0,0,0,0.6);
     z-index: var(--z-fixed);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     margin-right: 0;
@@ -303,10 +302,14 @@ a {
     --header-height: 3rem;
   }
 
+  .nav__toggle {   
+    margin-right: 25px;
+  }
+
   .hamburger {
-    top: 20px; 
+    top: 23px; 
     width: 25px;
-    height: 18px;
+    height: 15px;
   }
   
   .hamburger span {
