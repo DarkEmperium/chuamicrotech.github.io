@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@700;800&family=Intel+One+Mono&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/navigator.css">
+    <link rel="stylesheet" href="assets/css/preloader.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+</head>
+
+<body>
+
+    <!--Website Preloader-->
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="assets/images/logo.png" alt="Chua Micro Tech">
+            <div class="loading-status">
+                <h3>Loading Page</h3>
+                <div class="progress-container">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="header">
+
+        <!-- Website Logo -->
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Technovation House Rental System">
+            <h3>CHUA MICRO TECH</h3>
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+
+            <div class="nav__close" id="nav-close">
+                <i class='bx bx-x'></i>
+            </div>
+
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__link">
+                        <i class="ri-arrow-right-up-line"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="about.html" class="nav__link">
+                        <i class="ri-arrow-right-up-line"></i>
+                        <span>About Us</span>
+                    </a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="services.html" class="nav__link">
+                        <i class="ri-arrow-right-up-line"></i>
+                        <span>Services</span>
+                    </a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="contact.html" class="nav__link">
+                        <i class="ri-arrow-right-up-line"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+
+
+
+            <div class="nav__social">
+                <a href="https://www.instagram.com/chuamicrotech/" target="_blank" class="nav__social-link">
+                    <i class="ri-instagram-line"></i>
+                </a>
+
+                <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                    class="nav__social-link">
+                    <i class="ri-facebook-box-line"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="services-viewport">
+
+        <aside class="services-sidebar">
+            <div class="sidebar-top">
+                <span class="tech-tag">// SYSTEM SOLUTIONS</span>
+                <h2>SERVICES OFFERED</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" onclick="showTab(event, 'drone')">
+                    <i class='bx bxs-navigation'></i>
+                    <div class="nav-text">
+                        <strong>Drone Repair</strong>
+                        <span>UAV Restoration & Tuning</span>
+                    </div>
+                </div>
+
+                <div class="nav-item" onclick="showTab(event, 'computer')">
+                    <i class='bx bx-pulse'></i>
+                    <div class="nav-text">
+                        <strong>System Troubleshooting</strong>
+                        <span>PC Diagnostics & Repair</span>
+                    </div>
+                </div>
+
+                <div class="nav-item" onclick="showTab(event, 'setup')">
+                    <i class='bx bxs-microchip'></i>
+                    <div class="nav-text">
+                        <strong>New System Setup</strong>
+                        <span>Custom PC Assembly</span>
+                    </div>
+                </div>
+
+                <div class="nav-item" onclick="showTab(event, 'trade')">
+                    <i class='bx bx-transfer-alt'></i>
+                    <div class="nav-text">
+                        <strong>Trade-in Services</strong>
+                        <span>Upgrade Your Tech</span>
+                    </div>
+                </div>
+
+                <div class="nav-item" onclick="showTab(event, 'recycle')">
+                    <i class='bx bxs-trash-alt'></i>
+                    <div class="nav-text">
+                        <strong>Recycle Services</strong>
+                        <span>Eco-Friendly Disposal</span>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="services-content-area">
+
+            <div id="drone" class="service-panel active">
+                <div class="panel-header">
+                    <span class="tech-tag">// AEROSPACE DIVISION</span>
+                    <h1>Drone Repair & Engineering</h1>
+                    <div class="title-accent"></div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">Precision restoration and component-level repair for industrial, commercial, and
+                        FPV aerial platforms</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class='bx bxs-wrench'></i>
+                            <h5>Structural & ESC Repair</h5>
+                            <p>Replacement of broken drone arms and frame components. Diagnostics and micro-soldering
+                                for persistent ESC Status errors</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class='bx bx-target-lock'></i>
+                            <h5>Gimbal & Sensor Calibration</h5>
+                            <p>Resolving Gimbal Stuck alerts through mechanical overhaul and IMU or Compass sensor error
+                                correction</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class='bx bx-broadcast'></i>
+                            <h5>Signal & Transmission Loss</h5>
+                            <p>Troubleshooting bad signal range, video interference, and telemetry disconnection issues
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20schedule%20a%20Drone%20Repair%20service" target="_blank" class="btn-tech">SCHEDULE REPAIR</a>
+                </div>
+            </div>
+
+            <div id="computer" class="service-panel">
+                <div class="panel-header">
+                    <span class="tech-tag">// DIAGNOSTICS & STABILITY</span>
+                    <h1>System Troubleshooting & Repair</h1>
+                    <div class="title-accent"></div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">Professional hardware failure analysis and system recovery for workstations and
+                        gaming PC</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class='bx bx-chip'></i>
+                            <h5>Component Failure Analysis</h5>
+                            <p>Isolation and testing of GPU instability, CPU thermal throttling, and PSU power delivery
+                                failures to identify malfunctioning hardware</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class='bx bx-tachometer'></i>
+                            <h5>Stability & Stress Testing</h5>
+                            <p>Comprehensive benchmarking and hardware validation to ensure all components maintain
+                                integrity under heavy professional or gaming workloads</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class='bx bx-shield-quarter'></i>
+                            <h5>OS Recovery & Security</h5>
+                            <p>Resolving system crashes and driver conflicts while performing deep virus sanitization to
+                                eliminate malware and security threats</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20need%20help%20with%20Computer%20Troubleshooting%20and%20Diagnostics" target="_blank" class="blank btn-tech">REQUEST ANALYSIS</a>
+                </div>
+            </div>
+
+            <div id="setup" class="service-panel">
+                <div class="panel-header">
+                    <span class="tech-tag">// DEPLOYMENT & ASSEMBLY</span>
+                    <h1>New System Setup</h1>
+                    <div class="title-accent"></div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">Professional assembly and configuration services for custom-built workstations and gaming PC</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class='bx bxs-component'></i>
+                            <h5>Precision Assembly</h5>
+                            <p>Expert installation of all hardware components including clean cable management and optimal fan positioning for maximum airflow</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bx-desktop'></i>
+                            <h5>OS & Driver Deployment</h5>
+                            <p>Full installation of Windows or Linux environments with the latest stable drivers and essential security updates configured</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bx-list-check'></i>
+                            <h5>Initial System Validation</h5>
+                            <p>Verification of BIOS settings, memory speeds, and hardware temperatures to ensure the system is ready for immediate use</p>
+                        </div>
+                    </div>
+            
+                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20am%20interested%20in%20a%20New%20System%20Setup%20/%20Custom%20PC%20Build" target="_blank" class="btn-tech">BUILD MY SYSTEM</a>
+                </div>
+            </div>
+
+            <div id="trade" class="service-panel">
+                <div class="panel-header">
+                    <span class="tech-tag">// ASSET RECOVERY</span>
+                    <h1>Hardware Trade-In</h1>
+                    <div class="title-accent"></div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">Offset the cost of your next upgrade by trading in your malfunctioning or decommissioned hardware</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class='bx bx- some-re-check'></i> <i class='bx bx-analyse'></i>
+                            <h5>Defective Unit Valuation</h5>
+                            <p>We provide competitive trade-in value for broken drones and non-functional PCs based on the salvageable components and circuit integrity</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bx-trending-up'></i>
+                            <h5>Direct Upgrade Credit</h5>
+                            <p>Apply the value of your damaged hardware immediately toward the purchase of new systems, replacement parts, or professional repair services</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bx-receipt'></i>
+                            <h5>Transparent Assessment</h5>
+                            <p>Every unit undergoes a technical teardown to ensure you receive a fair market offer for all functional internal modules and parts</p>
+                        </div>
+                    </div>
+            
+                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20have%20malfunctioning%20hardware%20I%20would%20like%20to%20Trade-In" target="_blank" class="btn-tech">GET A VALUATION</a>
+                </div>
+            </div>
+
+            <div id="recycle" class="service-panel">
+                <div class="panel-header">
+                    <span class="tech-tag">// E-WASTE MANAGEMENT</span>
+                    <h1>Recycle Services</h1>
+                    <div class="title-accent"></div>
+                </div>
+                <div class="panel-body">
+                    <p class="summary">Responsible decommissioning of obsolete hardware with a focus on data privacy and environmental safety</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class='bx bx-shield-x'></i>
+                            <h5>Secure Sanitization</h5>
+                            <p>Permanent software-level wiping or physical destruction of storage media to ensure all sensitive data is completely unrecoverable</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bxs-bolt-circle'></i>
+                            <h5>Hazardous Material Management</h5>
+                            <p>Specialized disposal of degraded Li-Po batteries and power cells to prevent chemical combustion and environmental contamination</p>
+                        </div>
+            
+                        <div class="feature-card">
+                            <i class='bx bx-recycle'></i>
+                            <h5>Electronic Waste Recovery</h5>
+                            <p>Systematic breakdown of non-functional PCs and drones to recover raw materials and divert toxic heavy metals from landfills</p>
+                        </div>
+                    </div>
+            
+                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20drop%20off%20electronics%20for%20Recycling" target="_blank" class="btn-tech">DROP OFF TECH</a>
+                </div>
+            </div>
+
+            <section class="footer contact-footer">
+                <div class="footer-divider contact-footer-divider"></div>
+                <div class="footer-info">
+                    <h6>© <span id="currentYear"></span> CHUA MICRO TECH. ALL RIGHTS RESERVED.</h6>
+                    <h6>PRECISION ENGINEERING // COMPONENT LEVEL REPAIR SPECIALIST</h6>
+                    <h6 class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</h6>
+                </div>
+            </section>
+
+        </main>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/preloader.js"></script>
+    <script src="assets/js/disableRightClick.js"></script>
+</body>
+
+</html>

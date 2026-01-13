@@ -1,0 +1,80 @@
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+#preloader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.preloader-content {
+    position: relative; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+}
+
+#preloader img {
+    width: 100px;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
+    animation: simpleFade 2s infinite ease-in-out;
+}
+
+.loading-status h3 {
+    font-family: 'Intel One Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.progress-container {
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    height: 100%;
+    width: 0;
+    background: #007aff; 
+    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+    animation: simpleLoad 2.5s ease-out forwards;
+}
+
+@keyframes simpleLoad {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes simpleFade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.preloader-hidden {
+    opacity: 0;
+    pointer-events: none;
+}

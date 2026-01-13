@@ -1,0 +1,257 @@
+.about-hero {
+  height: 60vh;
+  background: #3c4451;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech-tag {
+  font-family: "Intel One Mono", monospace;
+  color: #007aff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.title-underline {
+  width: 60px;
+  height: 4px;
+  background: #007aff;
+  margin-top: 30px;
+}
+
+.mission-vision {
+  padding: 100px 10%;
+  display: flex;
+  gap: 50px;
+  background: #ffffff;
+  flex-wrap: wrap;
+}
+
+.mission-box {
+  flex: 1;
+  min-width: 300px;
+  padding: 40px;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #007aff;
+  transition: 0.3s;
+}
+
+.mission-box:hover {
+  box-shadow: 0 10px 30px rgba(0, 122, 255, 0.1);
+}
+
+.stats-bar {
+  background-color: #0f172a;
+  padding: 80px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 122, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+.stats-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.stat-item {
+  text-align: center;
+  position: relative;
+  min-width: 200px;
+}
+
+.stat-item h2 {
+  display: inline-block;
+  font-family: "Outfit", sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.stat-item .plus {
+  font-size: 32px;
+  color: #007aff;
+  /* Cyber Blue */
+  font-weight: 800;
+  margin-left: 5px;
+  vertical-align: top;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.stat-item p {
+  font-family: "Intel One Mono", monospace;
+  font-size: 13px;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.stat-line {
+  width: 40px;
+  height: 2px;
+  background: #007aff;
+  margin: 15px auto 0;
+  opacity: 0.5;
+}
+
+.workflow-section {
+  padding: 80px 0;
+  background: #ffffff;
+  text-align: center;
+}
+
+.workflow-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 0 10%;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.step {
+  flex: 1;
+  min-width: 240px;
+  background: #f8fafc;
+  padding: 35px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step:hover {
+  border-color: #007aff;
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 122, 255, 0.05);
+}
+
+.step-num {
+  font-family: "Intel One Mono", monospace;
+  color: #007aff;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.step h4 {
+  font-family: "Outfit", sans-serif;
+  color: #0f172a;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.step p {
+  font-size: 14px;
+  font-style: italic;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 10%;
+  background-color: #ffffff;
+  gap: 20px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+}
+
+.divider-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+}
+
+.status-text {
+  font-family: "Intel One Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 2px;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  background-color: #007aff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(0, 122, 255, 0.4);
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 122, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 122, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 122, 255, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .about-hero {
+    height: 50vh;
+  }
+  .stat-item h2 {
+    font-size: 48px;
+  }
+  .stats-bar {
+    padding: 50px 20px;
+  }
+}
