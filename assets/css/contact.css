@@ -127,6 +127,10 @@
     background: #fff;
 }
 
+textarea {
+    resize: none;
+}
+
 .submit-area {
     margin-top: 40px;
     display: flex;
