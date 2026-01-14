@@ -132,7 +132,7 @@
         </aside>
 
         <main class="contact-main">
-            
+
             <span class="tech-tag support-ticket-tag">// SUPPORT TICKET</span>
             <h1 class="main-contact-title">Request Technical Assistance</h1>
             <p class="main-contact-desc">Provide device details for an initial diagnostic brief</p>
@@ -156,21 +156,24 @@
                     <label>Device Category</label>
                     <select name="device_category" required>
                         <option value="">Select Hardware Type</option>
-                        <option value="drone">Drone Engineering / UAV</option>
+                        <option value="drone">Camera Drone / UAV</option>
                         <option value="pc">High-Performance PC / Workstation</option>
                         <option value="laptop">Premium Laptop / Mobile Computing</option>
-                        <option value="other">Other Micro-Electronics</option>
+                        <option value="other">Other Electronics</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Service Type</label>
-                    <select name="service_type" required>
+                    <select name="service_type" id="service_selection" required>
                         <option value="">Select Service</option>
-                        <option value="repair">Component-Level Repair</option>
-                        <option value="maintenance">Preventative Maintenance</option>
-                        <option value="custom">Custom System Build</option>
-                        <option value="data">Forensic Data Recovery</option>
+
+                        <option value="drone">Drone Repair (UAV Restoration)</option>
+                        <option value="computer">System Troubleshooting (PC Diagnostics)</option>
+                        <option value="setup">New System Setup (Custom PC Assembly)</option>
+                        <option value="trade">Trade-in Services (Upgrade Your Tech)</option>
+                        <option value="recycle">Recycle Services (Eco-Friendly Disposal)</option>
+
                     </select>
                 </div>
 

@@ -950,7 +950,7 @@ body {
 
   .logo {
     margin-left: 10px;
-    max-width: 70%; /* Limit logo area to prevent pushing the toggle button */
+    max-width: 70%;
   }
 
   .logo img {
@@ -976,18 +976,22 @@ body {
     height: 30px;
     margin: 0 15px;
   }
+
   .logos-slide {
     padding: 20px 0;
   }
+
   .logos-slide:before,
   .logos-slide:after {
     background: none !important;
     display: none !important;
   }
+
   .logos-slide h2 {
     font-size: 18px;
     margin-bottom: 8px;
   }
+
   .logos-slide p {
     white-space: normal;
   }
@@ -1010,7 +1014,7 @@ body {
   }
 
   .widget-iframe-holder iframe {
-    height: 750px;
+    height: 450px;
   }
 
   .review-title h2 {
@@ -1126,10 +1130,8 @@ body {
     line-height: 1.5;
   }
 
-  .btn-tech,
-  .btn-intel {
-    width: 80%;
-    padding: 15px;
+  .logos-slide {
+    padding: 20px 10px;
   }
 
   .footer h6 {
