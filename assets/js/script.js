@@ -72,3 +72,96 @@ function showTab(evt, tabId) {
   document.getElementById(tabId).classList.add("active");
   evt.currentTarget.classList.add("active");
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    const deviceSelect = document.querySelector('select[name="device_category"]');
+    const serviceSelect = document.querySelector('#service_selection');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const toast = document.getElementById('custom-toast');
+    const toastMsg = document.getElementById('toast-message');
+    const toastIcon = document.getElementById('toast-icon');
+
+    function showNotification(message, type = 'success') {
+        toastMsg.textContent = message;
+        toast.className = 'custom-toast show'; 
+        
+        if (type === 'success') {
+            toast.classList.add('toast-success');
+            toastIcon.className = 'bx bx-check-circle';
+        } else {
+            toast.classList.add('toast-error');
+            toastIcon.className = 'bx bx-error-circle';
+        }
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 4000);
+    }
+
+    const allServiceOptions = Array.from(serviceSelect.options);
+    const mapping = {
+        'drone': ['drone', 'sales', 'trade', 'recycle'],
+        'pc': ['computer', 'setup', 'sales', 'trade', 'recycle'],
+        'laptop': ['computer', 'setup', 'sales', 'trade', 'recycle'],
+        'other': ['sales', 'trade', 'recycle']
+    };
+
+    function updateServiceOptions() {
+        const selectedCategory = deviceSelect.value;
+        const allowedValues = mapping[selectedCategory] || [];
+        serviceSelect.innerHTML = '';
+
+        if (selectedCategory === "") {
+            const placeholder = document.createElement('option');
+            placeholder.value = "";
+            placeholder.textContent = "Please Choose Device Category";
+            serviceSelect.appendChild(placeholder);
+            serviceSelect.disabled = true;
+        } else {
+            serviceSelect.disabled = false;
+            serviceSelect.appendChild(allServiceOptions[0]); 
+            allServiceOptions.forEach(option => {
+                if (allowedValues.includes(option.value)) {
+                    serviceSelect.appendChild(option.cloneNode(true));
+                }
+            });
+        }
+        serviceSelect.selectedIndex = 0;
+    }
+
+    deviceSelect.addEventListener('change', updateServiceOptions);
+    updateServiceOptions();
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            if (response.status == 200) {
+                showNotification("Ticket Submitted Successfully", "success");
+                contactForm.reset(); 
+                updateServiceOptions(); 
+            } else {
+                showNotification("Submission Failed", "error");
+            }
+        })
+        .catch(() => {
+            showNotification("Connection Error Detected", "error");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+        });
+    });
+});
