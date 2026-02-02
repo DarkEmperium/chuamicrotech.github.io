@@ -2,7 +2,7 @@
 
 <br>
 
-![Website Banner](assets/images/banner1.png)
+![Website Banner](assets/images/banner1.jpg)
 
 <i>A precision-engineered platform showcasing high-performance computing solutions and drone hardware expertise.</i>
 
