@@ -847,6 +847,16 @@ body {
   gap: 8px;
 }
 
+.footer-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-link:hover {
+    color: #007aff;
+}
+
 .footer h6 {
   font-family: "Inter", sans-serif;
   font-size: 11px;

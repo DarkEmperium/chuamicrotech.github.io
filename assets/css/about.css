@@ -229,6 +229,16 @@
   animation: pulse-animation 2s infinite;
 }
 
+.footer-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-link:hover {
+    color: #007aff;
+}
+
 @keyframes pulse-animation {
   0% {
     box-shadow: 0 0 0 0px rgba(0, 122, 255, 0.7);
