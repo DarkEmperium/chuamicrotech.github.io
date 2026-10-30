@@ -5,395 +5,816 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chua Micro Tech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Permanent+Marker&display=swap"
+    <meta name="description"
+        content="Chua Micro Tech — precision PC, laptop and drone repair in Kulim, Kedah, and in-house software development. Component-level micro-soldering, custom PC builds, DJI maintenance, desktop apps and websites.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script>
+        // Repeat page loads in a session play the short version of the loader
+        try { if (sessionStorage.getItem("cmt-loaded")) document.documentElement.classList.add("is-return"); } catch (e) { }
+    </script>
     <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/scenes.css">
+    <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/preloader.css">
     <link rel="stylesheet" href="assets/css/navigator.css">
 </head>
 
 <body>
 
-    <!--Website Preloader-->
+    <!--Website Preloader: honeycomb cells slide in to build the brand mark, then the view zooms into it (assets/js/preloader.js)-->
     <div id="preloader">
-        <div class="preloader-content">
-            <img src="assets/images/logo.png" alt="Chua Micro Tech">
-            <div class="loading-status">
-                <h3>Loading Page</h3>
-                <div class="progress-container">
-                    <div class="progress-fill"></div>
-                </div>
-            </div>
+        <canvas class="ld-canvas" aria-hidden="true"></canvas>
+        <div class="ld-ui" role="status">
+            <span class="ld-num">000</span>
+            <span class="ld-msg">Powering up the bench</span>
+            <span class="ld-line"><i></i></span>
         </div>
     </div>
+    <noscript>
+        <style>#preloader { display: none; }</style>
+    </noscript>
 
-    <section class="header">
+    <header class="header">
+        <nav class="nav" aria-label="Main">
 
-        <!-- Website Logo -->
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Technovation House Rental System">
-            <h3>CHUA MICRO TECH</h3>
-        </div>
+            <!-- Website Logo -->
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-mark.png" alt="" width="38" height="38">
+                <span class="logo__text">CHUA <span>MICRO TECH</span></span>
+            </a>
 
-        <div class="nav__menu" id="nav-menu">
+            <div class="nav__menu" id="nav-menu">
 
-            <div class="nav__close" id="nav-close">
-                <i class='bx bx-x'></i>
+                <button class="nav__close" id="nav-close" aria-label="Close menu">
+                    <i class='bx bx-x'></i>
+                </button>
+
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About Us</a></li>
+                    <li class="nav__item"><a href="services.html" class="nav__link">Services</a></li>
+                    <li class="nav__item nav__item--drop">
+                        <button type="button" class="nav__link nav__drop-btn" aria-expanded="false"
+                            aria-controls="nav-software">Software <i class="ri-arrow-down-s-line"
+                                aria-hidden="true"></i></button>
+                        <!-- one row per published app; add new apps here -->
+                        <div class="nav__drop" id="nav-software">
+                            <span class="nav__drop-label">Our apps</span>
+                            <a href="cmt-drone-service-utility.html" class="nav__app">
+                                <span class="nav__app-ico"><img src="assets/images/logo-mark-white.png" alt=""></span>
+                                <span><strong>CMT Drone Service Utility</strong><small>Drone diagnostics, calibration and
+                                        firmware tools for Windows</small></span>
+                            </a>
+                            <span class="nav__app nav__app--soon">
+                                <span class="nav__app-ico"><i class="ri-add-line" aria-hidden="true"></i></span>
+                                <span><strong>More apps on the way</strong><small>New releases will be listed
+                                        here</small></span>
+                            </span>
+                            <a href="services.html#software" class="nav__drop-foot">Custom software development <i
+                                    class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+
+                <div class="nav__social">
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        class="nav__social-link" aria-label="Instagram">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" class="nav__social-link" aria-label="Facebook">
+                        <i class="ri-facebook-box-line"></i>
+                    </a>
+                </div>
             </div>
 
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="index.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+                <span class="hamburger">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
 
-                <li class="nav__item">
-                    <a href="about.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>About Us</span>
-                    </a>
-                </li>
+        </nav>
+    </header>
 
-                <li class="nav__item">
-                    <a href="services.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Services</span>
-                    </a>
-                </li>
+    <main>
 
-                <li class="nav__item">
-                    <a href="contact.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Contact</span>
+        <!-- Hero: the headline beside the hexorbit of what we do, with loose hexagons drifting behind -->
+        <section class="hero" id="home">
+            <canvas class="hexfield" data-hexfield aria-hidden="true"></canvas>
+            <div class="wrap hero__grid">
+                <div class="hero__copy">
+                    <h1 class="display" data-split style="--d: .1s">Precision micro engineering you can <span
+                            class="accent">trust.</span></h1>
+                    <p class="lede reveal" style="--d: .35s">
+                        We repair devices down to the component and build the software that keeps them working.
+                        From high-end PC builds and intricate drone hardware to desktop apps and websites, one
+                        bench handles the hardware and the code.
+                    </p>
+
+                    <div class="chips experience-highlights reveal" style="--d: .45s">
+                        <span class="chip"><i class='bx bxs-check-shield'></i> 90-Day Warranty</span>
+                        <span class="chip"><i class='bx bxs-zap'></i> Fast Diagnostics</span>
+                        <span class="chip"><i class='bx bxs-chip'></i> Micro-Soldering</span>
+                        <span class="chip"><i class='bx bx-code-alt'></i> In-House Software</span>
+                    </div>
+                </div>
+
+                <!-- what we do, circling the mark; pointing at the ring stops it and names the badge (hero.js starts it) -->
+                <div class="hexorbit-stage">
+                    <nav class="hexorbit" aria-label="What we do">
+                        <span class="hexorbit__ring hexorbit__ring--outer"></span>
+                        <span class="hexorbit__ring"></span>
+                        <span class="hexorbit__ring hexorbit__ring--inner"></span>
+                        <span class="hexorbit__spark"></span>
+                        <span class="hexorbit__core" aria-hidden="true">
+                            <span class="hexorbit__halo"></span>
+                            <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                            <img src="assets/images/logo-mark-white.png" alt="">
+                        </span>
+                        <div class="hexorbit__track">
+                            <span class="hexorbit__sat" style="--a: 0deg"><a href="services.html#computer" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="bx bx-laptop" aria-hidden="true"></i><b>PC &amp; Laptop Repair</b></a></span>
+                            <span class="hexorbit__sat" style="--a: 60deg"><a href="services.html#drone" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="bx bxs-navigation" aria-hidden="true"></i><b>Drone Maintenance</b></a></span>
+                            <span class="hexorbit__sat" style="--a: 120deg"><a href="services.html#setup" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="bx bxs-microchip" aria-hidden="true"></i><b>Custom PC Builds</b></a></span>
+                            <span class="hexorbit__sat" style="--a: 180deg"><a href="services.html#software" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="bx bx-code-alt" aria-hidden="true"></i><b>Software Development</b></a></span>
+                            <span class="hexorbit__sat" style="--a: 240deg"><a href="cmt-drone-service-utility.html" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="ri-apps-2-line" aria-hidden="true"></i><b>CMT Drone Service Utility</b></a></span>
+                            <span class="hexorbit__sat" style="--a: 300deg"><a href="services.html#trade" class="hexorbit__badge">
+                                <svg class="hex-shape" viewBox="0 0 100 116" aria-hidden="true"><polygon points="50,5.8 95,31.8 95,84 50,110 5,84 5,31.8" /><polygon class="rim" points="50,1.5 98.6,29.5 98.6,86.3 50,114.3 1.4,86.3 1.4,29.5" /></svg>
+                                <i class="bx bx-transfer-alt" aria-hidden="true"></i><b>Trade-In &amp; Recycle</b></a></span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- turning badge: the ring of text rotates, the arrow dips -->
+            <a href="#experiences-section" class="scroll-cue" aria-label="Scroll to the next section">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <defs>
+                        <path id="cue-ring" d="M50 50m-39 0a39 39 0 1 1 78 0a39 39 0 1 1-78 0" />
+                    </defs>
+                    <text><textPath href="#cue-ring" textLength="240">SCROLL DOWN · EXPLORE MORE · </textPath></text>
+                </svg>
+                <i class="ri-arrow-down-line"></i>
+            </a>
+        </section>
+
+        <!-- Who we are -->
+        <section class="section who experiences" id="experiences-section">
+            <svg class="orb orb--who" viewBox="0 0 512 512" aria-hidden="true"><defs><filter id="orb-line-who" x="-4%" y="-4%" width="108%" height="108%"><feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="grown" /><feComposite in="grown" in2="SourceAlpha" operator="out" result="ring" /><feFlood flood-color="#011937" flood-opacity="0.16" /><feComposite in2="ring" operator="in" /></filter></defs><image href="assets/images/logo-mark.png" width="512" height="512" filter="url(#orb-line-who)" /></svg>
+            <div class="wrap">
+                <span class="eyebrow reveal">Who we are</span>
+                <p class="statement" data-scrub>
+                    We restore devices to <em>factory excellence</em> and build the <em>software</em> behind
+                    the work, from the component up to the code.
+                </p>
+                <div class="who__more reveal">
+                    <a href="about.html" class="link-line">More about Chua Micro Tech <i
+                            class="ri-arrow-right-line"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services: four cards that turn in 3D; the detail lives on the services page -->
+        <section class="section services-offered" id="services">
+            <div class="wrap">
+                <div class="sec-head services-title">
+                    <span class="eyebrow reveal">Core capabilities</span>
+                    <h2 class="h-section" data-split>Our specialized <span class="accent">services.</span></h2>
+                    <p class="lede reveal" style="--d: .16s">Precision hardware solutions for high-performance
+                        computing and aerial technology, and the software that runs alongside them.</p>
+                </div>
+
+                <div class="svc3d services-card-wrapper">
+                    <div class="reveal">
+                        <a href="services.html#computer" class="card tilt svc3d__card services-card" data-tilt>
+                            <span class="tilt__glare"></span>
+                            <span class="svc3d__top">
+                                <span class="well tilt__lift" style="--lift: 64"><i class='bx bx-laptop'></i></span>
+                                <span class="svc3d__num tilt__lift" style="--lift: 26">01</span>
+                            </span>
+                            <h3 class="tilt__lift" style="--lift: 44">PC &amp; Laptop Repair</h3>
+                            <p class="tilt__lift" style="--lift: 22">Comprehensive hardware diagnostics and
+                                component-level repairs to restore system peak performance.</p>
+                            <span class="svc3d__link tilt__lift" style="--lift: 32">Explore <i
+                                    class="ri-arrow-right-up-line"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="reveal" style="--d: .1s">
+                        <a href="services.html#drone" class="card tilt svc3d__card services-card" data-tilt>
+                            <span class="tilt__glare"></span>
+                            <span class="svc3d__top">
+                                <span class="well tilt__lift" style="--lift: 64"><i
+                                        class='bx bxs-navigation'></i></span>
+                                <span class="svc3d__num tilt__lift" style="--lift: 26">02</span>
+                            </span>
+                            <h3 class="tilt__lift" style="--lift: 44">Drone Maintenance</h3>
+                            <p class="tilt__lift" style="--lift: 22">Expert gimbal calibration, motor replacement,
+                                and shell restoration for DJI and custom FPV drones.</p>
+                            <span class="svc3d__link tilt__lift" style="--lift: 32">Explore <i
+                                    class="ri-arrow-right-up-line"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="reveal" style="--d: .2s">
+                        <a href="services.html#setup" class="card tilt svc3d__card services-card" data-tilt>
+                            <span class="tilt__glare"></span>
+                            <span class="svc3d__top">
+                                <span class="well tilt__lift" style="--lift: 64"><i
+                                        class='bx bxs-microchip'></i></span>
+                                <span class="svc3d__num tilt__lift" style="--lift: 26">03</span>
+                            </span>
+                            <h3 class="tilt__lift" style="--lift: 44">Custom PC Builds</h3>
+                            <p class="tilt__lift" style="--lift: 22">High-end liquid cooled workstations and gaming
+                                rigs tailored to your specific performance requirements.</p>
+                            <span class="svc3d__link tilt__lift" style="--lift: 32">Explore <i
+                                    class="ri-arrow-right-up-line"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="reveal" style="--d: .3s">
+                        <a href="services.html#software" class="card tilt svc3d__card services-card" data-tilt>
+                            <span class="tilt__glare"></span>
+                            <span class="svc3d__top">
+                                <span class="well tilt__lift" style="--lift: 64"><i class='bx bx-code-alt'></i></span>
+                                <span class="svc3d__num tilt__lift" style="--lift: 26">04</span>
+                            </span>
+                            <h3 class="tilt__lift" style="--lift: 44">Software Development</h3>
+                            <p class="tilt__lift" style="--lift: 22">Desktop applications and website deployment,
+                                including our own CMT Drone Service Utility.</p>
+                            <span class="svc3d__link tilt__lift" style="--lift: 32">Explore <i
+                                    class="ri-arrow-right-up-line"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="btn-container reveal">
+                    <a href="services.html" class="btn btn--dark">
+                        Discover more
+                        <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
                     </a>
-                </li>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee -->
+        <div class="mq" aria-hidden="true">
+            <div class="mq__track">
+                <span>Precision Diagnostics</span>
+                <span>Component-Level Repairs</span>
+                <span>Quality Assurance</span>
+                <span>In-House Software</span>
+                <span>Customer Satisfaction</span>
+            </div>
+        </div>
+
+        <!-- Programs: the promotional banners, redrawn as expanding cards -->
+        <section class="section promo">
+            <!-- field of dots behind the cards: it warms up around the pointer (dotart.js) -->
+            <canvas class="promo__field" data-dotfield aria-hidden="true"></canvas>
+            <div class="wrap">
+                <div class="sec-head">
+                    <span class="eyebrow reveal">Programs &amp; offers</span>
+                    <h2 class="h-section" data-split>Current programs and <span class="accent">offers.</span></h2>
+                    <p class="lede reveal" style="--d: .16s">From a quick diagnosis to a full custom build. Pick one from the
+                        list to see what it covers.</p>
+                </div>
+
+                <div class="xp reveal" data-accordion>
+
+                    <article class="xp__item is-open">
+                        <button type="button" class="xp__tab" aria-expanded="true">
+                            <span class="xp__num">01</span>
+                            <span class="xp__title">Computer Repair</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">01 / 06</span>
+                                <h3>Professional computer repair and upgrades.</h3>
+                                <p>High precision technical solutions.</p>
+                                <ul class="ticks">
+                                    <li>We prioritize hardware longevity and system responsiveness</li>
+                                    <li>Diagnosed at component level, not just part-swapped</li>
+                                    <li>90-day warranty on replaced general components</li>
+                                </ul>
+                                <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20need%20help%20with%20Computer%20Troubleshooting%20and%20Diagnostics" target="_blank" rel="noopener" class="btn btn--blue">
+                                    Request analysis
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="scene scene--inspect">
+                                    <span class="scene__halo"></span>
+                                    <div class="m3d m3d--laptop">
+                                        <span class="m3d__shadow"></span>
+                                        <span class="stack lp-base"><i></i><i></i><i></i><i><b class="lp-keys"></b><b class="lp-pad"></b></i></span>
+                                        <span class="stack lp-screen"><i></i><i></i><i><b class="lp-icon ri-tools-fill"></b><em></em></i></span>
+                                    </div>
+                                    <span class="lbl lbl--ok" style="left: 5%; top: 9%; --n: 0"><i class="bx bx-chip"></i> GPU stability</span>
+                                    <span class="lbl lbl--ok" style="right: 4%; top: 9%; --n: 1"><i class="bx bx-tachometer"></i> CPU thermals</span>
+                                    <span class="lbl lbl--ok" style="left: 50%; bottom: 7%; translate: -50% 0; --n: 2"><i class="bx bx-wind"></i> Airflow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="xp__item">
+                        <button type="button" class="xp__tab" aria-expanded="false">
+                            <span class="xp__num">02</span>
+                            <span class="xp__title">Intel® Core™ Ultra Builds</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">02 / 06</span>
+                                <h3>Unleash next-gen power with Intel® Core™ Ultra series builds.</h3>
+                                <p>For gaming &amp; productivity. Build your dream rig today.</p>
+                                <ul class="ticks">
+                                    <li>Clean cable management and optimal airflow</li>
+                                    <li>Windows or Linux with the latest stable drivers</li>
+                                    <li>BIOS, memory speeds and temperatures verified</li>
+                                </ul>
+                                <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20am%20interested%20in%20a%20New%20System%20Setup%20/%20Custom%20PC%20Build" target="_blank" rel="noopener" class="btn btn--blue">
+                                    Build my system
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="scene scene--build">
+                                    <span class="scene__halo"></span>
+                                    <div class="m3d m3d--pc">
+                                        <span class="m3d__shadow"></span>
+                                        <div class="box3d pc">
+                                            <span class="f-top"></span>
+                                            <span class="f-south"><i class="fan"></i><i class="fan"></i><b></b></span>
+                                            <span class="f-west"><i class="fan"></i><i class="fan"></i><b class="pc-gpu"></b><b class="pc-ram"></b></span>
+                                        </div>
+                                    </div>
+                                    <span class="lbl lbl--ok" style="left: 5%; top: 14%; --n: 0"><i class="ri-tools-line"></i> Assembled</span>
+                                    <span class="lbl lbl--ok" style="right: 4%; top: 44%; --n: 1"><i class="ri-windows-line"></i> OS &amp; drivers</span>
+                                    <span class="lbl lbl--ok" style="left: 6%; bottom: 12%; --n: 2"><i class="ri-shield-check-line"></i> Validated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="xp__item">
+                        <button type="button" class="xp__tab" aria-expanded="false">
+                            <span class="xp__num">03</span>
+                            <span class="xp__title">Drone Repair</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">03 / 06</span>
+                                <h3>Fly with confidence. Expert drone repair services.</h3>
+                                <p>High precision technical solutions to get you back in the air fast.</p>
+                                <ul class="ticks">
+                                    <li>We prioritize structural integrity and flight safety</li>
+                                    <li>Motor &amp; ESC replacement, shell &amp; frame restoration</li>
+                                    <li>Gimbal calibration, crash damage assessment, logic board repair</li>
+                                </ul>
+                                <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20schedule%20a%20Drone%20Repair%20service" target="_blank" rel="noopener" class="btn btn--blue">
+                                    Schedule repair
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="scene scene--drone">
+                                    <span class="scene__halo"></span>
+                                    <div class="m3d m3d--drone">
+                                        <span class="m3d__shadow"></span>
+                                        <div class="dr">
+                                            <span class="stack dr-arm dr-arm--a"><i></i><i></i></span><span class="stack dr-arm dr-arm--b"><i></i><i></i></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: -6.7em"></span><span class="dr-prop" style="--x: -8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: -6.7em"></span><span class="dr-prop" style="--x: 8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: 6.7em"></span><span class="dr-prop" style="--x: -8em; --y: 6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: 6.7em"></span><span class="dr-prop" style="--x: 8em; --y: 6.7em"></span>
+                                            <span class="stack dr-body"><i></i><i></i><i></i><i></i><i></i><i><b></b></i></span>
+                                            <span class="stack dr-cam"><i></i><i></i><i></i><i></i></span>
+                                        </div>
+                                    </div>
+                                    <span class="lbl lbl--ok" style="left: 5%; top: 9%; --n: 0"><i class="bx bx-cog"></i> Motors &amp; ESC</span>
+                                    <span class="lbl lbl--ok" style="right: 4%; top: 9%; --n: 1"><i class="bx bx-broadcast"></i> Signal link</span>
+                                    <span class="lbl lbl--ok" style="left: 50%; bottom: 7%; translate: -50% 0; --n: 2"><i class="bx bx-target-lock"></i> Gimbal &amp; sensors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="xp__item">
+                        <button type="button" class="xp__tab" aria-expanded="false">
+                            <span class="xp__num">04</span>
+                            <span class="xp__title">Software Development</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">04 / 06</span>
+                                <h3>Software built around the way you work.</h3>
+                                <p>Desktop applications and website deployment, made in-house.</p>
+                                <ul class="ticks">
+                                    <li>Purpose-built Windows desktop tools</li>
+                                    <li>Business websites designed, built and put live</li>
+                                    <li>CMT Drone Service Utility, our own drone service workspace</li>
+                                </ul>
+                                <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20discuss%20a%20Software%20Development%20project" target="_blank" rel="noopener" class="btn btn--blue">
+                                    Start a project
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="scene scene--dark scene--app">
+                                    <div class="appshot">
+                                            <img src="assets/images/cmt-service-utility.jpg" alt="" loading="lazy">
+                                    </div>
+                                    <span class="lbl" style="left: 6%; bottom: 8%"><i class="ri-window-line"></i> Desktop apps</span>
+                                    <span class="lbl" style="right: 6%; bottom: 8%"><i class="ri-global-line"></i> Websites</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="xp__item">
+                        <button type="button" class="xp__tab" aria-expanded="false">
+                            <span class="xp__num">05</span>
+                            <span class="xp__title">Trade-In Program</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">05 / 06</span>
+                                <h3>Trade in for instant cash.</h3>
+                                <p>Don't let your old or crashed drone gather dust. Turn your pre-loved drones into cash today.</p>
+                                <ul class="ticks">
+                                    <li>Fast quotes and a fair valuation</li>
+                                    <li>All conditions accepted</li>
+                                    <li>Top prices paid, hassle-free process</li>
+                                </ul>
+                                <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20have%20malfunctioning%20hardware%20I%20would%20like%20to%20Trade-In" target="_blank" rel="noopener" class="btn btn--blue">
+                                    Get a valuation
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="scene scene--trade">
+                                    <figure class="tcard tcard--old"><span class="tcard__art"><div class="m3d m3d--drone">
+                                            <span class="m3d__shadow"></span>
+                                            <div class="dr">
+                                                <span class="stack dr-arm dr-arm--a"><i></i><i></i></span><span class="stack dr-arm dr-arm--b"><i></i><i></i></span>
+                                                <span class="stack dr-motor" style="--x: -8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: -6.7em"></span><span class="dr-prop" style="--x: -8em; --y: -6.7em"></span>
+                                                <span class="stack dr-motor" style="--x: 8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: -6.7em"></span><span class="dr-prop" style="--x: 8em; --y: -6.7em"></span>
+                                                <span class="stack dr-motor" style="--x: -8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: 6.7em"></span><span class="dr-prop" style="--x: -8em; --y: 6.7em"></span>
+                                                <span class="stack dr-motor" style="--x: 8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: 6.7em"></span><span class="dr-prop" style="--x: 8em; --y: 6.7em"></span>
+                                                <span class="stack dr-body"><i></i><i></i><i></i><i></i><i></i><i><b></b></i></span>
+                                                <span class="stack dr-cam"><i></i><i></i><i></i><i></i></span>
+                                            </div>
+                                        </div></span>
+                                        <figcaption>Old unit</figcaption>
+                                    </figure>
+                                    <span class="swap"><i class="ri-arrow-left-right-line"></i></span>
+                                    <figure class="tcard tcard--new"><span class="tcard__art"><div class="m3d m3d--pc">
+                                            <span class="m3d__shadow"></span>
+                                            <div class="box3d pc">
+                                                <span class="f-top"></span>
+                                                <span class="f-south"><i class="fan"></i><i class="fan"></i><b></b></span>
+                                                <span class="f-west"><i class="fan"></i><i class="fan"></i><b class="pc-gpu"></b><b class="pc-ram"></b></span>
+                                            </div>
+                                        </div></span>
+                                        <figcaption>Next upgrade</figcaption>
+                                    </figure>
+                                    <div class="meter"><span>Trade-in value</span><i></i><b><i class="ri-coupon-3-line"></i> Upgrade credit</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="xp__item">
+                        <button type="button" class="xp__tab" aria-expanded="false">
+                            <span class="xp__num">06</span>
+                            <span class="xp__title">Technical Support</span>
+                        </button>
+                        <div class="xp__body">
+                            <div class="xp__copy">
+                                <span class="xp__num">06 / 06</span>
+                                <h3>Lightning fast technical support.</h3>
+                                <p>Always available, always reliable. On-site assistance whenever you need it!</p>
+                                <ul class="ticks">
+                                    <li>Mon – Sat, 9:00 AM – 10:00 PM</li>
+                                    <li>WhatsApp, email or a support ticket</li>
+                                    <li>Typical first response in under 4 hours</li>
+                                </ul>
+                                <a href="contact.html" class="btn btn--blue">
+                                    Open a ticket
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                            <div class="xp__visual" aria-hidden="true">
+                                <div class="mock">
+                                    <div class="mock__head">Support ticket <span class="mock__live">ONLINE</span>
+                                    </div>
+                                    <div class="mock__chat">
+                                        <div class="bubble" style="--n: 0">My PC keeps crashing under load. Can you take a look?</div>
+                                        <div class="bubble bubble--out" style="--n: 2">Yes. Send the device details and we'll start with a
+                                            diagnostic brief.</div>
+                                        <div class="bubble" style="--n: 4">Submitting the ticket now.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why us -->
+        <section class="band-dark section service-bar">
+            <div class="wrap">
+                <div class="sec-head">
+                    <span class="eyebrow reveal">Why us</span>
+                    <h2 class="h-section" data-split>Bench-tested before it leaves. Backed after it does.</h2>
+                    <p class="lede reveal" style="--d: .16s">Four things every job comes with, whether it is a
+                        drone, a laptop or a full custom build.</p>
+                </div>
+
+                <div class="why-grid" data-inview>
+                    <div class="service-item reveal">
+                        <div class="icon-box" style="--n: 0">01</div>
+                        <div class="service-info">
+                            <strong>Express Shipping</strong>
+                            <span>Secure Delivery Across Malaysia</span>
+                        </div>
+                    </div>
+
+                    <div class="service-item reveal" style="--d: .1s">
+                        <div class="icon-box" style="--n: 1">02</div>
+                        <div class="service-info">
+                            <strong>90-Day Warranty</strong>
+                            <span>Guaranteed Hardware Integrity</span>
+                        </div>
+                    </div>
+
+                    <div class="service-item reveal" style="--d: .2s">
+                        <div class="icon-box" style="--n: 2">03</div>
+                        <div class="service-info">
+                            <strong>Free Quotation</strong>
+                            <span>Expert PC &amp; Drone Inspection</span>
+                        </div>
+                    </div>
+
+                    <div class="service-item reveal" style="--d: .3s">
+                        <div class="icon-box" style="--n: 3">04</div>
+                        <div class="service-info">
+                            <strong>Expert Support</strong>
+                            <span>Professional Technical Assistance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section class="logos-slide">
+            <h2>STRATEGIC SERVICE PARTNERS</h2>
+            <p>Proudly collaborating with world-class technology brands to deliver expert repair solutions and premium
+                retail products.</p>
+            <div class="logos-viewport">
+                <div class="logos-track">
+                    <img src="assets/images/logitech-logo.png" alt="Logitech">
+                    <img src="assets/images/intel-logo.png" alt="Intel">
+                    <img src="assets/images/nvidia-logo.png" alt="NVIDIA">
+                    <img src="assets/images/msi-logo.png" alt="MSI">
+                    <img src="assets/images/rog-logo.png" alt="ROG">
+                    <img src="assets/images/acer-logo.png" alt="Acer">
+                    <img src="assets/images/lenovo-logo.png" alt="Lenovo">
+                    <img src="assets/images/dji-logo.png" alt="DJI">
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="section customer-review" id="review">
+            <div class="wrap">
+                <div class="sec-head review-title">
+                    <span class="eyebrow reveal">Verified client logs</span>
+                    <h2 class="h-section" data-split>Client <span class="accent">testimonials.</span></h2>
+                    <p class="lede reveal" style="--d: .16s">Reliable feedback from locals who trust us for
+                        specialized PC builds and professional drone maintenance.</p>
+                </div>
+
+                <div class="review-container reveal">
+                    <div class="review-ui-frame">
+                        <div class="ui-header">
+                            <div class="ui-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="ui-status">GOOGLE REVIEWS</div>
+                        </div>
+
+                        <div class="widget-iframe-holder">
+                            <iframe src="https://widgets.sociablekit.com/google-reviews/iframe/25642950"
+                                title="Google reviews for Chua Micro Tech" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured hardware -->
+        <section class="section--tight featured">
+            <div class="wrap feat-grid">
+
+                <article class="latest-product-hero dji-panel reveal">
+                    <!-- product trailer: loads and plays only once the card is on screen (motion.js) -->
+                    <video class="hero-video" muted loop playsinline preload="none" data-play-in-view
+                        aria-label="DJI Mini 5 Pro trailer">
+                        <source src="assets/images/mini5pro trailer.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="hero-overlay dji-style">
+                        <div class="hero-content">
+                            <h4 class="feat-kicker">Mini to the Max</h4>
+                            <h3 class="hero-title">DJI MINI 5 PRO</h3>
+                            <p class="hero-desc">A foldable drone with a 1/1.3-inch sensor that films 4K at 60fps in HDR and senses obstacles in every direction so you can fly with confidence.</p>
+                            <div class="hero-btns">
+                                <a href="https://www.dji.com/global/mini-5-pro" target="_blank" rel="noopener"
+                                    class="btn btn--light">
+                                    Learn more
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="latest-product-hero intel-panel reveal" style="--d: .12s">
+                    <!-- product trailer: loads and plays only once the card is on screen (motion.js) -->
+                    <video class="hero-video" muted loop playsinline preload="none" data-play-in-view
+                        aria-label="Intel Core Ultra trailer">
+                        <source src="assets/images/Intel trailer.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="hero-overlay intel-theme">
+                        <div class="hero-content">
+                            <h4 class="feat-kicker">The AI PC era</h4>
+                            <h3 class="hero-title">INTEL® CORE™ ULTRA <span class="series-tag">SERIES 3</span></h3>
+                            <p class="hero-desc">Built on Intel 18A with up to 180 TOPS of AI and the efficiency to keep thin laptops and handhelds running cool and smooth through a full day of work and play.</p>
+                            <div class="hero-btns">
+                                <a href="https://www.intel.com/content/www/us/en/products/details/processors/core-ultra.html"
+                                    target="_blank" rel="noopener" class="btn btn--blue">
+                                    Learn more
+                                    <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section--tight cta contact-container" id="contact">
+            <div class="wrap">
+                <div class="cta__panel reveal">
+                    <div>
+                        <span class="eyebrow">Get in touch</span>
+                        <h2 class="h-section">A device to fix, or something to build?</h2>
+                        <p class="lede">Repairs, custom builds and software projects. We answer Monday to Saturday.</p>
+                        <div class="cta__actions">
+                            <a href="contact.html" class="btn btn--blue">
+                                Open a ticket
+                                <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                            </a>
+                            <a href="https://wa.me/60125949451" target="_blank" rel="noopener"
+                                class="btn btn--light">
+                                WhatsApp now
+                                <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cta__meta">
+                        <a href="https://wa.me/60125949451" target="_blank" rel="noopener"><i
+                                class="ri-whatsapp-line"></i> +60 12-594 9451</a>
+                        <a href="mailto:chuamicrotech@gmail.com"><i class="ri-mail-send-line"></i>
+                            chuamicrotech@gmail.com</a>
+                        <a href="contact.html"><i class="ri-map-pin-2-fill"></i> 859, Lorong Kota Kenari 4/5, Kulim,
+                            Kedah</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <!-- name and socials on one line, the four values as one ruled row, then four columns under them -->
+            <div class="footer__top">
+                <a href="index.html" class="footer__brand">
+                    <img src="assets/images/logo-mark-white.png" alt="" width="46" height="46">
+                    CHUA MICRO TECH
+                </a>
+                <div class="icons">
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                    <a href="mailto:chuamicrotech@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+                </div>
+            </div>
+
+            <ul class="footer__values">
+                <li>Precision Diagnostics</li>
+                <li>Component-Level Repairs</li>
+                <li>In-House Software</li>
+                <li>Customer Satisfaction</li>
             </ul>
 
-
-
-            <div class="nav__social">
-                <a href="https://www.instagram.com/chuamicrotech/" target="_blank" class="nav__social-link">
-                    <i class="ri-instagram-line"></i>
-                </a>
-
-                <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
-                    class="nav__social-link">
-                    <i class="ri-facebook-box-line"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="nav__toggle" id="nav-toggle">
-            <div class="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="mobile-about-hero">
-        <div class="mobile-hero-image">
-            <img src="assets/images/banner1.png" alt="Drone Repair Specialist">
-        </div>
-    </section>
-
-    <!-- Website Banner -->
-    <section class="home" id="home">
-        <div class="swiper home-slider">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide" data-slider="1"><!-- Banner 1 -->
-                    <div class="box " style="background: url(assets/images/banner1.jpg) no-repeat;"></div>
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <h6>Pages</h6>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html" class="footer-link">Terms &amp; Conditions</a></li>
+                    </ul>
                 </div>
 
-                <div class="swiper-slide" data-slider="2"><!-- Banner 2 -->
-                    <div class="box " style="background: url(assets/images/banner2.jpg) no-repeat;"></div>
+                <div class="footer__col">
+                    <h6>Services</h6>
+                    <ul>
+                        <li><a href="services.html#drone">Drone Repair</a></li>
+                        <li><a href="services.html#computer">System Troubleshooting</a></li>
+                        <li><a href="services.html#setup">New System Setup</a></li>
+                        <li><a href="services.html#software">Software Development</a></li>
+                        <li><a href="cmt-drone-service-utility.html">CMT Drone Service Utility</a></li>
+                        <li><a href="services.html#trade">Trade-in Services</a></li>
+                        <li><a href="services.html#recycle">Recycle Services</a></li>
+                    </ul>
                 </div>
 
-                <div class="swiper-slide" data-slider="3"><!-- Banner 3 -->
-                    <div class="box " style="background: url(assets/images/banner3.jpg) no-repeat;"></div>
+                <div class="footer__col">
+                    <h6>Reach us</h6>
+                    <ul>
+                        <li><a href="https://wa.me/60125949451" target="_blank" rel="noopener">+60 12-594 9451</a></li>
+                        <li><a href="mailto:chuamicrotech@gmail.com">chuamicrotech@gmail.com</a></li>
+                        <li><a href="contact.html">Open a support ticket</a></li>
+                    </ul>
                 </div>
 
-                <div class="swiper-slide" data-slider="4"><!-- Banner 4 -->
-                    <div class="box " style="background: url(assets/images/banner4.jpg) no-repeat;"></div>
-                </div>
-
-                <div class="swiper-slide" data-slider="5"><!-- Banner 5 -->
-                    <div class="box " style="background: url(assets/images/banner5.jpg) no-repeat;"></div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="mouse-button">
-            <a href="#experiences-section"><i class='bx bx-mouse'></i></a>
-            <p>Scroll Down To View More Info</p>
-        </div>
-
-    </section>
-
-    <section class="experiences reveal-type" id="experiences-section">
-
-        <div class="experiences-info-container reveal-left">
-            <h1><span id="experience-title">PRECISION MICRO ENGINEERING</span><br>EXPERTISE YOU CAN TRUST</h1>
-            <p>
-                We fix devices and restore them to factory excellence.
-                Specializing in high-end PC builds and intricate drone hardware, we bridge the gap between
-                standard maintenance and advanced component-level repair.
-            </p>
-
-            <div class="experience-highlights">
-                <div><i class='bx bxs-check-shield'></i> 90-Day Warranty</div>
-                <div><i class='bx bxs-zap'></i> Fast Diagnostics</div>
-                <div><i class='bx bxs-chip'></i> Micro-Soldering</div>
-            </div>
-
-            <p>
-                From DJI gimbal calibrations to liquid-cooled system optimization, Chua Micro Tech utilizes
-                high-precision diagnostic equipment to restore hardware integrity. Our bench-tested solutions ensure
-                your equipment remains flight-ready and performance-stable for the long term.
-            </p>
-        </div>
-
-        <div class="about-image reveal-right">
-            <div class="image-container">
-                <div class="image-main">
-                    <img src="assets/images/computer-support.jpg" alt="Precision Micro-Soldering">
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="services-offered reveal-type" id="services">
-        <div class="services-wrapper">
-            <div class="services-title reveal-up">
-                <span class="tech-tag">// CORE CAPABILITIES</span>
-                <h2>Our Specialized Services</h2>
-                <div class="title-accent"></div>
-                <p>Precision hardware solutions for high-performance computing and aerial technology</p>
-            </div>
-
-            <div class="services-card-wrapper">
-                <div class="services-card reveal-item">
-                    <span class="service-num">01</span>
-                    <h3>PC & Laptop Repair</h3>
-                    <div class="card-line"></div>
-                    <p>Comprehensive hardware diagnostics and component-level repairs to restore system peak
-                        performance.</p>
-                </div>
-
-                <div class="services-card reveal-item">
-                    <span class="service-num">02</span>
-                    <h3>Drone Maintenance</h3>
-                    <div class="card-line"></div>
-                    <p>Expert gimbal calibration, motor replacement, and shell restoration for DJI and custom FPV
-                        drones.</p>
-                </div>
-
-                <div class="services-card reveal-item">
-                    <span class="service-num">03</span>
-                    <h3>Custom PC Builds</h3>
-                    <div class="card-line"></div>
-                    <p>High-end liquid cooled workstations and gaming rigs tailored to your specific performance
-                        requirements.</p>
+                <div class="footer__col">
+                    <h6>Visit us</h6>
+                    <ul>
+                        <li><small>859, Lorong Kota Kenari 4/5, Taman Kota Kenari, 09000, Kulim, Kedah.</small></li>
+                        <li><small>Mon - Sat: 9:00 AM - 10:00 PM</small></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="btn-container">
-                <a href="services.html" class="btn-tech">DISCOVER MORE</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="logos-slide">
-        <h2>STRATEGIC SERVICE PARTNERS</h2>
-        <p>Proudly collaborating with world-class technology brands to deliver expert repair solutions and premium
-            retail products.</p>
-        <div class="logos-container">
-            <img src="assets/images/logitech-logo.png" alt="Company 1 Logo">
-            <img src="assets/images/intel-logo.png" alt="Company 2 Logo">
-            <img src="assets/images/nvidia-logo.png" alt="Company 3 Logo">
-            <img src="assets/images/msi-logo.png" alt="Company 4 Logo">
-            <img src="assets/images/rog-logo.png" alt="Company 5 Logo">
-            <img src="assets/images/acer-logo.png" alt="Company 6 Logo">
-            <img src="assets/images/lenovo-logo.png" alt="Company 7 Logo">
-            <img src="assets/images/dji-logo.png" alt="Company 8 Logo">
-        </div>
-    </section>
-
-    <section class="customer-review reveal-type" id="review">
-        <div class="review-title reveal-up">
-            <span class="tech-tag">// VERIFIED CLIENT LOGS</span>
-            <h2>Client Testimonials</h2>
-            <div class="title-accent"></div>
-            <p>Reliable feedback from locals who trust us for specialized PC builds and professional drone maintenance</p>
-        </div>
-
-        <div class="review-container reveal-zoom">
-            <div class="review-ui-frame">
-                <div class="ui-header">
-                    <div class="ui-dots">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <div class="ui-status">GOOGLE API</div>
-                </div>
-
-                <div class="widget-iframe-holder">
-                    <iframe src="https://widgets.sociablekit.com/google-reviews/iframe/25642950" frameborder="0"
-                        width="100%" height="600px">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="latest-product-hero dji-panel">
-        
-        <video autoplay muted loop playsinline preload="none" class="hero-video">
-            <source src="assets/images/mini5pro trailer.mp4" type="video/mp4">
-        </video>
-
-        <div class="hero-overlay dji-style">
-            <div class="hero-content">
-                <h4 class="script-font">Mini to the Max</h4>
-                <h1 class="hero-title">DJI MINI 5 PRO</h1>
-                <p class="hero-desc">
-                    Imaging Excellence, Foldable Power. Featuring a 1/1.3-inch CMOS sensor, 4K/60fps HDR video,
-                    and Omnidirectional Obstacle Sensing.
+            <div class="footer-info">
+                <p>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.
                 </p>
-                <div class="hero-btns">
-                    <a href="https://www.dji.com/global/mini-5-pro" class="btn-outline">LEARN MORE</a>
-                </div>
+                <p class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</p>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <section class="latest-product-hero intel-panel">
+    <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+        <svg class="to-top__ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="19" />
+        </svg>
+        <i class="ri-arrow-up-line"></i>
+    </button>
 
-        <div class="hero-overlay intel-theme">
-            <div class="hero-content">
-                <h4 class="tech-font">The AI PC Era. Redefined.</h4>
-                <h1 class="hero-title">INTEL® CORE™ ULTRA <span class="series-tag">SERIES 3</span></h1>
-                <p class="hero-desc">
-                    Experience the 18A Revolution. Built with <strong>RibbonFET</strong> architecture and
-                    <strong>NPU 5.0</strong>, Panther Lake delivers up to 180 TOPS of total platform AI throughput.
-                    Arrow Lake-class performance meets Lunar Lake-level efficiency for the ultimate
-                    handheld and mobile experience.
-                </p>
-                <div class="hero-btns">
-                    <a href="https://www.intel.com/content/www/us/en/products/details/processors/core-ultra.html" class="btn-intel">LEARN MORE</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="contact-container reveal-type" id="contact">
-        <div class="contact-title reveal-up">
-            <span class="tech-tag">// HUB LOCATOR</span>
-            <h2>Get In Touch</h2>
-            <div class="title-accent"></div>
-            <p>Technical support and hardware inquiries available Monday — Saturday</p>
-        </div>
+    <div class="curtain" id="curtain" aria-hidden="true"></div>
 
-        <div class="contact-content">
-            <div class="content reveal-stagger-container">
-                <div class="detail reveal-item">
-                    <i class="ri-map-pin-2-fill"></i>
-                    <div class="topic">Address</div>
-                    <div class="text-group">
-                        <div class="first-text">859, Lorong Kota Kenari 4/5</div>
-                        <div class="second-text">Taman Kota Kenari, 09000, Kulim, Kedah.</div>
-                    </div>
-                </div>
-
-                <div class="detail reveal-item">
-                    <i class="ri-whatsapp-line"></i>
-                    <div class="topic">WhatsApp Support</div>
-                    <div class="text-group">
-                        <div class="first-text">+60 12-594 9451</div>
-                        <div class="second-text">Chat with Technical Support</div>
-                    </div>
-                </div>
-
-                <div class="detail reveal-item">
-                    <i class="ri-mail-send-line"></i>
-                    <div class="topic">Official Email</div>
-                    <div class="text-group">
-                        <div class="first-text">chuamicrotech@gmail.com</div>
-                        <div class="second-text">Drop an Email</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="service-bar">
-        <div class="service-item">
-            <div class="icon-box"><i class='bx bxs-truck'></i></div>
-            <div class="service-info">
-                <strong>Express Shipping</strong>
-                <span>Secure Delivery Across Malaysia</span>
-            </div>
-        </div>
-
-        <div class="service-item">
-            <div class="icon-box"><i class='bx bx-shield-alt-2'></i></div>
-            <div class="service-info">
-                <strong>90-Day Warranty</strong>
-                <span>Guaranteed Hardware Integrity</span>
-            </div>
-        </div>
-
-        <div class="service-item">
-            <div class="icon-box"><i class='bx bx-wrench'></i></div>
-            <div class="service-info">
-                <strong>Free Quotation</strong>
-                <span>Expert PC & Drone Inspection</span>
-            </div>
-        </div>
-
-        <div class="service-item">
-            <div class="icon-box"><i class='bx bx-support'></i></div>
-            <div class="service-info">
-                <strong>Expert Support</strong>
-                <span>Professional Technical Assistance</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="footer">
-        <div class="footer-divider"></div>
-        <div class="icons">
-            <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"><i
-                    class="fa fa-facebook-official"></i></a>
-            <a href="https://www.instagram.com/chuamicrotech/" target="_blank"><i class="fa fa-instagram"></i></a>
-            <a href="mailto:chuamicrotech@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <div class="footer-info">
-            <h6 style="margin-bottom: 8px;">
-                <a href="terms.html" class="footer-link">TERMS & CONDITIONS</a>
-            </h6>
-            <h6>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.</h6>
-            <h6>Precision Diagnostics • Component-Level Repairs • Quality Assurance • Customer Satisfaction</h6>
-            <h6 class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</h6>
-        </div>
-    </section>
-
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/mark.js"></script>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/motion.js"></script>
+    <script src="assets/js/perf.js"></script>
+    <script src="assets/js/hero.js"></script>
+    <script src="assets/js/dotart.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/disableRightClick.js"></script>
 </body>

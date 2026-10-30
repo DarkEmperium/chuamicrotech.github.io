@@ -1,0 +1,1120 @@
+/* =====================================================================
+   Landing page sections
+   ===================================================================== */
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 150px 96px;
+  isolation: isolate;
+}
+
+.hero__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 0.86fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.hero__copy .display {
+  margin: 22px 0 26px;
+}
+
+.hero__copy .chips {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  margin-top: 34px;
+}
+
+.hero__copy .chips .chip:nth-child(4) {
+  grid-column: 2;
+  justify-self: center;
+}
+
+/* floating hexagons behind the hero: sized and painted by hero.js */
+.hexfield {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* The hexorbit: the mark in the middle, what we do circling it on a ring as hexagon badges.
+   The ring turns slowly; pointing at it stops the turn and names the badge. Flat, no 3D. */
+.hexorbit-stage {
+  display: grid;
+  place-items: center;
+}
+
+.hexorbit {
+  --r: 15em; /* radius of the ring the badges travel on */
+  position: relative;
+  width: calc(var(--r) * 2 + 7.5em);
+  aspect-ratio: 1;
+  font-size: clamp(8.5px, 1.04vw, 16px);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.9s var(--ease), transform 1.1s var(--ease);
+}
+
+.hexorbit.is-live {
+  opacity: 1;
+  transform: none;
+}
+
+.hexorbit__ring {
+  position: absolute;
+  inset: 3.75em;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(1, 25, 55, 0.16);
+  pointer-events: none;
+}
+
+.hexorbit__ring--outer {
+  inset: 0.4em;
+  border: 1px solid rgba(1, 25, 55, 0.06);
+}
+
+.hexorbit__ring--inner {
+  inset: 9.5em;
+  border: 1px solid rgba(21, 104, 255, 0.14);
+}
+
+/* the turning part: badges ride on it, and a spark runs round the ring */
+.hexorbit__track {
+  position: absolute;
+  inset: 0;
+  animation: orbit-spin 56s linear infinite;
+}
+
+.hexorbit__spark {
+  position: absolute;
+  inset: 3.75em;
+  border-radius: 50%;
+  animation: orbit-spin 14s linear infinite;
+  pointer-events: none;
+}
+
+.hexorbit__spark::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(21, 104, 255, 0.16);
+}
+
+.hexorbit__sat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6.4em;
+  height: 7.4em;
+  margin: -3.7em 0 0 -3.2em;
+  transform: rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+}
+
+/* turns back as fast as the track turns forward, so every badge stays upright */
+.hexorbit__badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--blue);
+  animation: orbit-spin 56s linear infinite reverse;
+}
+
+.hexorbit:hover .hexorbit__track,
+.hexorbit:hover .hexorbit__badge,
+.hexorbit:focus-within .hexorbit__track,
+.hexorbit:focus-within .hexorbit__badge {
+  animation-play-state: paused;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* a hexagon with soft corners like the mark's; the rim keeps light tiles visible on paper */
+.hex-shape {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  fill: var(--card);
+  stroke: var(--card);
+  stroke-width: 9;
+  stroke-linejoin: round;
+  transition: fill 0.35s ease, stroke 0.35s ease;
+}
+
+.hex-shape .rim {
+  fill: none;
+  stroke: rgba(1, 25, 55, 0.1);
+  stroke-width: 1.2;
+}
+
+.hexorbit__badge i {
+  font-size: 2.2em;
+  line-height: 1;
+  transition: color 0.3s ease, transform 0.45s var(--ease);
+}
+
+/* the name shows under a badge while it is pointed at */
+.hexorbit__badge b {
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 50%;
+  padding: 0.45em 0.95em;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--f-display);
+  font-size: 0.92em;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -4px);
+  transition: opacity 0.25s ease, transform 0.35s var(--ease);
+  pointer-events: none;
+}
+
+.hexorbit__badge:hover,
+.hexorbit__badge:focus-visible {
+  color: var(--white);
+}
+
+.hexorbit__badge:hover .hex-shape,
+.hexorbit__badge:focus-visible .hex-shape {
+  fill: var(--blue);
+  stroke: var(--blue);
+}
+
+.hexorbit__badge:hover .rim,
+.hexorbit__badge:focus-visible .rim {
+  stroke: transparent;
+}
+
+.hexorbit__badge:hover i,
+.hexorbit__badge:focus-visible i {
+  transform: scale(1.08);
+}
+
+.hexorbit__badge:hover b,
+.hexorbit__badge:focus-visible b {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* the mark in the middle, on navy, with a soft hexagon of blue breathing behind it */
+.hexorbit__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 12em;
+  height: 13.85em;
+  margin: -6.925em 0 0 -6em;
+}
+
+.hexorbit__core .hex-shape {
+  fill: var(--navy);
+  stroke: var(--navy);
+}
+
+.hexorbit__core .hex-shape .rim {
+  stroke: none;
+}
+
+.hexorbit__core img {
+  width: 6.4em;
+  height: 6.4em;
+}
+
+.hexorbit__halo {
+  position: absolute;
+  inset: -1.6em;
+  z-index: -2;
+  background: var(--blue-soft);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  opacity: 0.7;
+  animation: orbit-breathe 6s ease-in-out infinite;
+}
+
+@keyframes orbit-breathe {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.8;
+  }
+}
+
+/* turning badge at the foot of the hero */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin-left: -52px;
+  color: var(--ink-2);
+}
+
+.scroll-cue svg {
+  position: absolute;
+  inset: 0;
+  animation: cue-turn 16s linear infinite;
+}
+
+.scroll-cue text {
+  fill: currentColor;
+  font-family: var(--f-mono);
+  font-size: 9.6px;
+  font-weight: 500;
+}
+
+.scroll-cue i {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  color: var(--blue);
+  font-size: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.scroll-cue i::before {
+  animation: cue-dip 1.8s var(--ease) infinite;
+}
+
+.scroll-cue:hover i {
+  background: var(--navy);
+  color: var(--white);
+}
+
+@keyframes cue-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cue-dip {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ---------- WHO WE ARE ---------- */
+.who {
+  position: relative;
+  isolation: isolate;
+}
+
+/* brand mark in outline, peeking in from the left edge */
+.orb--who {
+  left: max(-90px, -5vw);
+  top: -40px;
+  width: clamp(360px, 40vw, 600px);
+}
+
+.who .wrap {
+  position: relative;
+}
+
+.statement {
+  max-width: 21ch;
+  margin: 26px 0 40px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.6vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.statement em {
+  font-style: normal;
+}
+
+/* words start as embossed ghosts and ink in with the scroll (see motion.js) */
+.statement .w {
+  color: #cfcdc8;
+  transition: color 0.45s ease;
+}
+
+.statement .w.on {
+  color: var(--ink);
+}
+
+.statement em .w.on {
+  color: var(--blue);
+}
+
+/* ---------- SERVICES: 3D cards ---------- */
+.svc3d {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 26px);
+  perspective: 1400px;
+}
+
+@media (max-width: 1240px) {
+  .svc3d {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.svc3d__card {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  padding: 28px 24px 24px;
+  border-radius: 30px;
+}
+
+/* a second plate sits behind the card and shows when it turns */
+.svc3d__card::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 24px;
+  background: var(--blue-soft);
+  transform: translateZ(-46px);
+  box-shadow: 0 30px 50px rgba(1, 25, 55, 0.14);
+}
+
+.svc3d__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+}
+
+.svc3d__top .well {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--navy);
+  box-shadow: 0 16px 28px rgba(1, 25, 55, 0.3);
+  color: var(--white);
+  font-size: 30px;
+}
+
+.svc3d__num {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--blue-ink);
+}
+
+.svc3d__card h3 {
+  margin: 44px 0 12px;
+  font-family: var(--f-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.svc3d__card p {
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+.svc3d__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  /* headings start level under the icon row; the link line sits on the bottom edge of every card */
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.svc3d__link i {
+  color: var(--blue);
+  transition: transform 0.35s var(--ease);
+}
+
+.svc3d__card:hover .svc3d__link i {
+  transform: translate(3px, -3px);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+
+/* ---------- PROGRAMS: expanding banner cards ---------- */
+.promo {
+  position: relative;
+  isolation: isolate;
+}
+
+/* dot field behind the cards (dotart.js); it fades out toward the neighbouring sections */
+.promo__field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+}
+
+.xp {
+  display: flex;
+  gap: 12px;
+  height: 540px;
+}
+
+.xp__item {
+  position: relative;
+  flex: 0 0 76px;
+  min-width: 0;
+  border-radius: 30px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-raise);
+  overflow: hidden;
+  transition: flex-grow 0.8s var(--ease);
+}
+
+.xp__item.is-open {
+  flex-grow: 1;
+}
+
+.xp__tab {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  padding: 28px 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.xp__tab:hover {
+  background: rgba(21, 104, 255, 0.05);
+}
+
+.xp__num {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--blue-ink);
+}
+
+.xp__title {
+  writing-mode: vertical-rl;
+  font-family: var(--f-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.xp__item.is-open .xp__tab {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Every card is laid out the same way: number and heading start at the top,
+   the button sits on the bottom edge, the artwork is centred beside them. */
+.xp__body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(22px, 2.6vw, 40px);
+  align-items: stretch;
+  padding: clamp(26px, 3vw, 44px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s 0.25s;
+}
+
+.xp__item.is-open .xp__body {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease 0.4s, visibility 0s;
+}
+
+.xp__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.xp__copy .xp__num {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.xp__copy h3 {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.xp__copy > p {
+  margin: 14px 0 16px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.xp__copy .ticks {
+  gap: 9px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.xp__copy .btn {
+  margin-top: auto;
+}
+
+.xp__visual {
+  align-self: center;
+  min-width: 0;
+}
+
+/* artwork replays each time its card opens */
+.xp__item.is-open .mock__row,
+.xp__item.is-open .bubble,
+.xp__item.is-open .mock__flow {
+  animation: pop-in 0.6s var(--ease) both;
+  animation-delay: calc(0.55s + var(--n, 0) * 0.14s);
+}
+
+.xp__item.is-open .mock__bars i {
+  animation: bar-up 0.9s var(--ease) both;
+  animation-delay: calc(0.6s + var(--n, 0) * 0.07s);
+}
+
+@keyframes bar-up {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.xp__item.is-open .mock {
+  animation: mock-float 7s ease-in-out 1.6s infinite;
+}
+
+@keyframes mock-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ---------- GIANT MARQUEE ---------- */
+.mq {
+  overflow: hidden;
+  padding-block: clamp(36px, 6vw, 84px);
+}
+
+.mq__track,
+.logos-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 44s linear infinite;
+}
+
+.mq__track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding-right: 0.45em;
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 9.4vw, 8.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.mq__track span::after {
+  content: "";
+  width: 0.13em;
+  height: 0.13em;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.mq__track span:nth-child(even) {
+  color: rgba(1, 25, 55, 0.16);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- PARTNERS ---------- */
+.logos-slide {
+  /* sits above the testimonials, with room above it */
+  padding-block: clamp(64px, 8vw, 112px) clamp(8px, 2vw, 24px);
+  text-align: center;
+}
+
+.logos-slide h2 {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--blue-ink);
+  margin-bottom: 10px;
+}
+
+.logos-slide p {
+  max-width: 560px;
+  margin: 0 auto 44px;
+  padding-inline: var(--gutter);
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+/* the white behind each logo is blended away here, once for the whole strip: blending every logo
+   on the long moving track made some graphics cards stop drawing it part-way along */
+.logos-viewport {
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+
+.logos-track {
+  align-items: center;
+  animation-duration: 36s;
+}
+
+.logos-track img {
+  height: 44px;
+  width: auto;
+  max-width: none;
+  margin: 0 44px;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.62;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.logos-track img:hover {
+  filter: none;
+  opacity: 1;
+}
+
+/* ---------- REVIEWS ---------- */
+.review-ui-frame {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-raise);
+}
+
+.ui-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 26px;
+  background: var(--navy);
+}
+
+.ui-header .ui-dots span:not(:first-child) {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+}
+
+.ui-header .ui-status {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ui-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.ui-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  box-shadow: var(--shadow-press);
+}
+
+.ui-dots span:first-child {
+  background: var(--blue);
+  box-shadow: none;
+}
+
+.ui-status {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.widget-iframe-holder {
+  background: var(--white);
+  padding: 20px clamp(12px, 3vw, 40px);
+}
+
+.widget-iframe-holder iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+}
+
+/* ---------- FEATURED HARDWARE ---------- */
+.feat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 2.4vw, 30px);
+}
+
+.latest-product-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 540px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: var(--white);
+  isolation: isolate;
+  box-shadow: 14px 18px 36px rgba(1, 25, 55, 0.22);
+}
+
+.dji-panel {
+  background: radial-gradient(circle at 72% 24%, #313b4a 0%, transparent 52%), #0b0d10;
+}
+
+/* each product trailer fills its card; a gradient keeps the copy readable over it */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dji-panel .hero-overlay,
+.intel-panel .hero-overlay {
+  padding-top: 180px;
+  /* a shorter fade, so most of the footage stays clear above the copy */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.3) 45%, transparent 75%);
+}
+
+/* the Intel trailer carries black bands at its top and bottom; a slight zoom crops them out */
+.intel-panel .hero-video {
+  transform: scale(1.14);
+}
+
+.intel-panel {
+  background: radial-gradient(circle at 76% 18%, #0a4fa8 0%, transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(0, 199, 255, 0.2) 0%, transparent 42%), #000b1d;
+}
+
+.hero-overlay {
+  width: 100%;
+  padding: clamp(26px, 3vw, 40px);
+}
+
+@keyframes hover-drift {
+  50% {
+    transform: translate(-10px, 16px) rotate(-4deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.feat-kicker {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9fd4ff;
+  margin-bottom: 12px;
+}
+
+.latest-product-hero .hero-title {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.series-tag {
+  color: #00c7ff;
+  font-weight: 400;
+}
+
+.latest-product-hero .hero-desc {
+  max-width: 46ch;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 24px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 0;
+    padding-block: 120px 56px;
+  }
+
+
+  .hexorbit {
+    font-size: clamp(7px, 2.35vw, 13px);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scroll-cue {
+    display: none;
+  }
+
+  .feat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .svc3d {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .svc3d__card {
+    min-height: 0;
+  }
+
+  /* programs stack: every card keeps a header row, the open one unfolds */
+  .xp {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .xp__item,
+  .xp__item.is-open {
+    flex: none;
+  }
+
+  .xp__tab {
+    position: static;
+    flex-direction: row;
+    padding: 20px 22px;
+  }
+
+  .xp__title {
+    writing-mode: horizontal-tb;
+    font-size: 1.15rem;
+  }
+
+  .xp__item.is-open .xp__tab {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .xp__body {
+    position: static;
+    display: none;
+    grid-template-columns: 1fr;
+    padding: 4px 22px 26px;
+  }
+
+  .xp__item.is-open .xp__body {
+    display: grid;
+  }
+
+  .xp__copy .xp__num {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__copy .chips {
+    display: flex;
+  }
+
+  .logos-track img {
+    height: 30px;
+    margin: 0 22px;
+  }
+
+  .latest-product-hero {
+    min-height: 460px;
+  }
+
+  .widget-iframe-holder iframe {
+    height: 460px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mq__track,
+  .logos-track,
+  .scroll-cue svg,
+  .scroll-cue i::before,
+  .mock,
+  .mock__flow > i,
+  .mock__live::before {
+    animation: none !important;
+  }
+
+  .xp__item.is-open .mock__row,
+  .xp__item.is-open .bubble,
+  .xp__item.is-open .mock__flow {
+    opacity: 1;
+    animation: none;
+  }
+
+  .statement .w {
+    transition: none;
+  }
+}
+
+/* ---------- WIDE SCREENS: layout ---------- */
+@media (min-width: 1025px) {
+  /* drawing on the left, the words on the right */
+  .hero__grid {
+    grid-template-columns: 0.86fr 1fr;
+  }
+
+  .hexorbit-stage {
+    order: -1;
+  }
+
+  /* who we are: the outline mark keeps the left; label, statement and link stack on the right,
+     the link closing the block at its right edge */
+  .who .wrap {
+    display: grid;
+    grid-template-columns: minmax(200px, 0.32fr) 1fr;
+    column-gap: clamp(32px, 5vw, 80px);
+  }
+
+  .who .wrap > * {
+    grid-column: 2;
+  }
+
+  .who .statement {
+    max-width: 24ch;
+  }
+
+  .who__more {
+    justify-self: end;
+  }
+
+  /* programmes: a list down the left, the chosen one opens in a panel on the right */
+  .xp {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.34fr) 1fr;
+    grid-template-rows: repeat(6, auto) 1fr;
+    gap: 10px 22px;
+    height: auto;
+  }
+
+  .xp__item {
+    display: contents;
+  }
+
+  .xp__tab {
+    position: relative;
+    inset: auto;
+    grid-column: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+    padding: 17px 20px;
+    border-radius: 20px;
+    background: var(--card);
+    box-shadow: var(--shadow-soft);
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.35s var(--ease);
+  }
+
+  .xp__tab:hover {
+    background: var(--white);
+    transform: translateX(4px);
+  }
+
+  .xp__title {
+    writing-mode: horizontal-tb;
+    font-size: 1.05rem;
+    white-space: normal;
+  }
+
+  .xp__item.is-open .xp__tab {
+    opacity: 1;
+    pointer-events: auto;
+    background: var(--navy);
+    color: var(--white);
+    transform: none;
+  }
+
+  .xp__item.is-open .xp__tab .xp__num {
+    color: var(--blue-on-dark);
+  }
+
+  .xp__body {
+    position: relative;
+    inset: auto;
+    grid-column: 2;
+    grid-row: 1 / -1;
+    min-height: 520px;
+    border-radius: 30px;
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: var(--shadow-raise);
+  }
+}

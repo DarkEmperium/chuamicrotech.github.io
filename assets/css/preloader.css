@@ -1,76 +1,108 @@
+/* Loader shell. The honeycomb, the dots, the navy field and the zoom are painted on the
+   canvas by preloader.js; this file places the canvas and the read-out under the mark. */
 #preloader {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
     z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease-in-out;
+    background: #011937;
     overflow: hidden;
 }
 
-#preloader::before {
-    content: "";
+/* once the canvas is painting the field itself, the element must be see-through
+   so the zoom can open a window onto the page */
+#preloader.is-canvas {
+    background: transparent;
+}
+
+.ld-canvas {
     position: absolute;
     inset: 0;
-    background-image: 
-        linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
 }
 
-.preloader-content {
-    position: relative; 
+/* read-out centred under the mark: counter, current step, progress line */
+.ld-ui {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(40px, 9vh, 96px);
+    transform: translateX(-50%);
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    width: min(320px, 78vw);
+    color: #eaf0fa;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    z-index: 10;
+    transition: opacity 0.3s ease, transform 0.45s ease;
 }
 
-#preloader img {
-    width: 100px;
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
-    animation: simpleFade 2s infinite ease-in-out;
+.is-leaving .ld-ui {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
 }
 
-.loading-status h3 {
-    font-family: 'Intel One Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 5px;
-    color: #ffffff;
-    margin-bottom: 12px;
+.ld-num {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+
+.ld-num::after {
+    content: "%";
+    margin-left: 4px;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: #4d8dff;
+    vertical-align: super;
+}
+
+.ld-msg {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
+    color: #9fb0c9;
+    opacity: 0;
 }
 
-.progress-container {
-    width: 200px;
+.ld-msg.is-in {
+    animation: ld-msg 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ld-msg {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+.ld-line {
+    width: 100%;
     height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    position: relative;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.14);
     overflow: hidden;
 }
 
-.progress-fill {
-    position: absolute;
+.ld-line i {
+    display: block;
     height: 100%;
-    width: 0;
-    background: #007aff; 
-    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
-    transition: width 0.1s linear; 
-    will-change: width;
+    background: #4d8dff;
+    box-shadow: 0 0 10px rgba(77, 141, 255, 0.8);
+    transform: scaleX(0);
+    transform-origin: left;
 }
 
-@keyframes simpleFade {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+/* The page waits slightly enlarged behind the loader and eases to its own size as the
+   hexagon window opens (classes set by preloader.js, removed once the loader is gone). */
+html.ld-zooming main,
+html.ld-zooming .header {
+    transform-origin: 50% 50vh;
+    transition: transform 1.1s cubic-bezier(0.3, 0.6, 0.2, 1);
 }
 
-.preloader-hidden {
-    opacity: 0;
-    pointer-events: none;
+html.ld-zoom-in main,
+html.ld-zoom-in .header {
+    transform: scale(1.18);
 }

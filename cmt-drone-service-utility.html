@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMT Drone Service Utility | Chua Micro Tech</title>
+    <meta name="description"
+        content="CMT Drone Service Utility by Chua Micro Tech: a Windows workspace for drone technicians with device overview, live telemetry, parameters, diagnostics, flight log analysis, guided calibration and firmware tools, in 9 languages.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script>
+        // Repeat page loads in a session play the short version of the loader
+        try { if (sessionStorage.getItem("cmt-loaded")) document.documentElement.classList.add("is-return"); } catch (e) { }
+    </script>
+    <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/scenes.css">
+    <link rel="stylesheet" href="assets/css/navigator.css">
+    <link rel="stylesheet" href="assets/css/preloader.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body class="app-page">
+
+    <!--Website Preloader: honeycomb cells slide in to build the brand mark, then the view zooms into it (assets/js/preloader.js)-->
+    <div id="preloader">
+        <canvas class="ld-canvas" aria-hidden="true"></canvas>
+        <div class="ld-ui" role="status">
+            <span class="ld-num">000</span>
+            <span class="ld-msg">Powering up the bench</span>
+            <span class="ld-line"><i></i></span>
+        </div>
+    </div>
+    <noscript>
+        <style>#preloader { display: none; }</style>
+    </noscript>
+
+    <header class="header">
+        <nav class="nav" aria-label="Main">
+
+            <!-- Website Logo -->
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-mark.png" alt="" width="38" height="38">
+                <span class="logo__text">CHUA <span>MICRO TECH</span></span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+
+                <button class="nav__close" id="nav-close" aria-label="Close menu">
+                    <i class='bx bx-x'></i>
+                </button>
+
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About Us</a></li>
+                    <li class="nav__item"><a href="services.html" class="nav__link">Services</a></li>
+                    <li class="nav__item nav__item--drop">
+                        <button type="button" class="nav__link nav__drop-btn active" aria-expanded="false"
+                            aria-controls="nav-software">Software <i class="ri-arrow-down-s-line"
+                                aria-hidden="true"></i></button>
+                        <!-- one row per published app; add new apps here -->
+                        <div class="nav__drop" id="nav-software">
+                            <span class="nav__drop-label">Our apps</span>
+                            <a href="cmt-drone-service-utility.html" class="nav__app active" aria-current="page">
+                                <span class="nav__app-ico"><img src="assets/images/logo-mark-white.png" alt=""></span>
+                                <span><strong>CMT Drone Service Utility</strong><small>Drone diagnostics, calibration and
+                                        firmware tools for Windows</small></span>
+                            </a>
+                            <span class="nav__app nav__app--soon">
+                                <span class="nav__app-ico"><i class="ri-add-line" aria-hidden="true"></i></span>
+                                <span><strong>More apps on the way</strong><small>New releases will be listed
+                                        here</small></span>
+                            </span>
+                            <a href="services.html#software" class="nav__drop-foot">Custom software development <i
+                                    class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+
+                <div class="nav__social">
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        class="nav__social-link" aria-label="Instagram">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" class="nav__social-link" aria-label="Facebook">
+                        <i class="ri-facebook-box-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+                <span class="hamburger">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+
+        </nav>
+    </header>
+
+    <main class="dsu">
+
+        <!-- Hero: the name and promise, a note on who builds it, then the app itself -->
+        <section class="dsu-hero" id="top">
+            <div class="wrap">
+                <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><a
+                        href="services.html#software">Software</a><span>CMT Drone Service Utility</span></nav>
+
+                <div class="dsu-hero__grid">
+                    <div>
+                        <p class="dsu-label reveal"><i></i> Drone service software for Windows</p>
+                        <h1 class="dsu-title reveal" style="--d: .08s">CMT Drone Service Utility <span
+                                class="dsu-title__sub">One workspace. Built for service.</span></h1>
+                        <div class="dsu-actions reveal" style="--d: .35s">
+                            <a href="#get" class="dsu-btn dsu-btn--primary"><i class="ri-download-2-line"
+                                    aria-hidden="true"></i> Get the app</a>
+                            <a href="#inside" class="dsu-btn">Explore the workspace <i class="ri-arrow-down-line"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <aside class="dsu-about reveal" style="--d: .3s">
+                        <p class="dsu-label">Built in-house</p>
+                        <h2>About the app</h2>
+                        <p>CMT Drone Service Utility grew out of the work on our own repair bench in Kulim. It brings the
+                            checks, readings and procedures a drone technician uses every day into one Windows app.</p>
+                        <p class="dsu-about__fine">Developed independently by Chua Micro Tech. Not affiliated with,
+                            authorised or endorsed by DJI or any other aircraft manufacturer.</p>
+                    </aside>
+                </div>
+
+                <figure class="dsu-frame dsu-frame--hero reveal" style="--d: .2s">
+                    <div class="dsu-frame__bar">
+                        <b>CMT</b><span>Device service workspace</span><em>Actual application</em>
+                    </div>
+                    <img src="assets/images/cmt-service-utility.jpg" alt="CMT Drone Service Utility showing the device overview"
+                        width="1440" height="900">
+                    <figcaption class="dsu-frame__foot">
+                        <span>Identify <i class="ri-arrow-right-line"></i> Diagnose <i class="ri-arrow-right-line"></i>
+                            Service</span>
+                        <a href="#inside">See all ten views <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+
+                <ul class="dsu-strip">
+                    <li>Overview</li><li>Telemetry</li><li>Parameters</li><li>Diagnostics</li>
+                    <li>Calibration</li><li>Firmware</li><li>Flight logs</li><li>9 languages</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 01: every screen of the app in one viewer -->
+        <section class="dsu-sec" id="inside">
+            <div class="wrap">
+                <div class="dsu-head">
+                    <div>
+                        <p class="dsu-num">01 / Inside the workspace</p>
+                        <h2 class="dsu-h2">Your bench. <span>Every screen, one app.</span></h2>
+                    </div>
+                    <p>Walk through the real interface one view at a time. Pick a screen below, or open it full size to
+                        read the detail.</p>
+                </div>
+
+                <div class="gallery reveal" data-gallery>
+                    <div class="gallery__top">
+                        <span><b>CMT</b> Drone Service Utility</span>
+                        <em>10 views · actual app screens</em>
+                    </div>
+                    <div class="gallery__thumbs" role="tablist" aria-label="App screens">
+                        <button type="button" role="tab" aria-selected="true" class="is-on"
+                            data-shot="assets/images/cmt-service-utility.jpg" data-tag="Identify"
+                            data-title="Know the aircraft the moment it connects."
+                            data-text="Plug in a supported drone or controller by USB and the overview fills itself in: identity, firmware, flight controller, security counter, parameters and service state."
+                            data-points="Model and serial number|Firmware package and FC version|Anti-rollback counter|Vision sensor serials by position|Shortcuts to parameters, flight logs and the software log">
+                            <img src="assets/images/cmt-service-utility.jpg" alt="" loading="lazy"><span>Overview</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-flight.jpg" data-tag="Observe"
+                            data-title="Watch sensors and motors live."
+                            data-text="Turn on live view and the flight controller streams its telemetry, so a drifting sensor or a weak motor shows up on the bench."
+                            data-points="Gyroscope X, Y, Z|Accelerometer X, Y, Z and total|Magnetometer X, Y, Z and total|Motor speed M1 to M4|Controller temperature gauge">
+                            <img src="assets/images/app-flight.jpg" alt="" loading="lazy"><span>Flight control</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-params.jpg" data-tag="Adjust"
+                            data-title="Stage changes, then write them on purpose."
+                            data-text="Read the parameter tables, search by name and edit with limits in view. Edits stay staged until you choose Write modified."
+                            data-points="Table-by-table scan with progress|Search by parameter name|Current value and limits|Precise slider editing|Count of parameters written">
+                            <img src="assets/images/app-params.jpg" alt="" loading="lazy"><span>Parameters</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-diagnostics.jpg" data-tag="Diagnose"
+                            data-title="Find the silent module in one link test."
+                            data-text="The link test talks to each module and board and reports its status and response time. Reboot and shut down sit behind a confirmation."
+                            data-points="Flight controller, gimbal, two cameras|ESC, battery, vision, GPS|IMU, LED, central board, PMU|Response time per module|Power control with a safety check">
+                            <img src="assets/images/app-diagnostics.jpg" alt="" loading="lazy"><span>Diagnostics</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-data.jpg" data-tag="Review"
+                            data-title="Read what happened in the air."
+                            data-text="Open a flight record and the app sets out the aircraft, the flight and the recording, ready for a crash or fault report."
+                            data-points="Aircraft, camera and battery serials|Flight time and distance|Maximum altitude and speed|Photos taken|Log version, platform, frames, encryption">
+                            <img src="assets/images/app-data.jpg" alt="" loading="lazy"><span>Data analysis</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-service.jpg" data-tag="Service"
+                            data-title="Six procedures, each with its own guide."
+                            data-text="Every tool shows whether it is ready before you begin, then walks through the steps with feedback at each one."
+                            data-points="Service mode|Gimbal IMU calibration|Calibration file generator|Deep gimbal calibration|Firmware flasher|Assistant service">
+                            <img src="assets/images/app-service.jpg" alt="" loading="lazy"><span>Service tools</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-imu.jpg" data-tag="Calibrate"
+                            data-title="Checks first, then prepare, write, save."
+                            data-text="Before the gimbal IMU calibration starts, the app lists the conditions that must hold, then runs in three stages and reminds you to restart the aircraft."
+                            data-points="Powered on with enough battery|Level, stable surface|Aircraft and gimbal kept still|USB and network stay connected|Three-stage progress">
+                            <img src="assets/images/app-imu.jpg" alt="" loading="lazy"><span>IMU calibration</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-calibration.jpg" data-tag="Repair"
+                            data-title="Fix serials in a copy, never the original."
+                            data-text="Choose the camera, fisheye or depth-sensor workflow and load a factory or cali image. The CMT server analyses it and checks every new serial before building the bundle."
+                            data-points="Camera serial repair|Fisheye sensor serial repair|TOF depth-sensor serial repair|14-character serial check|Source files always preserved">
+                            <img src="assets/images/app-calibration.jpg" alt="" loading="lazy"><span>Calibration files</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-firmware.jpg" data-tag="Update"
+                            data-title="Compare, check, then install."
+                            data-text="The flasher sets the aircraft's firmware and rollback level against the package's before anything is written, then runs connect, review, install and confirm."
+                            data-points="Current firmware and serial|Package model, version and payload|Rollback level comparison|Routing per aircraft model|Three guided steps">
+                            <img src="assets/images/app-firmware.jpg" alt="" loading="lazy"><span>Firmware flasher</span></button>
+                        <button type="button" role="tab" aria-selected="false"
+                            data-shot="assets/images/app-settings.jpg" data-tag="Personalise"
+                            data-title="Your language, your layout."
+                            data-text="Nine languages, three text sizes, reduced motion and sidebar spacing, set per workstation, plus a welcome tour you can replay."
+                            data-points="9 display languages|Text size: default, medium, large|Reduce motion|Navigation layout|Replay welcome or restore defaults">
+                            <img src="assets/images/app-settings.jpg" alt="" loading="lazy"><span>Settings</span></button>
+                    </div>
+
+                    <div class="gallery__stage">
+                        <button type="button" class="gallery__view" data-gallery-open aria-label="Open this screen full size">
+                            <img src="assets/images/cmt-service-utility.jpg" alt="Overview screen" width="1440" height="900"
+                                data-gallery-img>
+                            <span class="gallery__zoom"><i class="ri-fullscreen-line" aria-hidden="true"></i> View full
+                                size</span>
+                        </button>
+                        <div class="gallery__info">
+                            <div>
+                                <p class="dsu-label" data-gallery-tag>Identify</p>
+                                <h3 data-gallery-title>Know the aircraft the moment it connects.</h3>
+                                <p data-gallery-text>Plug in a supported drone or controller by USB and the overview fills
+                                    itself in.</p>
+                                <ul class="gallery__points" data-gallery-points></ul>
+                            </div>
+                            <div class="gallery__nav">
+                                <button type="button" data-gallery-prev aria-label="Previous screen"><i
+                                        class="ri-arrow-left-line"></i></button>
+                                <span data-gallery-count>01 / 10</span>
+                                <button type="button" data-gallery-next aria-label="Next screen"><i
+                                        class="ri-arrow-right-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="dsu-fine">These are screenshots of the app, not a live connection. What each tool can do depends
+                    on the aircraft, its firmware and your licence.</p>
+
+                <div class="dsu-feats">
+                    <article class="dsu-feat reveal">
+                        <i class="ri-radar-line" aria-hidden="true"></i>
+                        <p class="dsu-num">01 / Identify</p>
+                        <h3>Read before you touch.</h3>
+                        <p>Identity, firmware and module serials first, so every decision starts from facts.</p>
+                    </article>
+                    <article class="dsu-feat reveal" style="--d: .05s">
+                        <i class="ri-pulse-line" aria-hidden="true"></i>
+                        <p class="dsu-num">02 / Diagnose</p>
+                        <h3>Find the weak link.</h3>
+                        <p>Live telemetry and a twelve-module link test point to the part that is failing.</p>
+                    </article>
+                    <article class="dsu-feat reveal" style="--d: .1s">
+                        <i class="ri-focus-3-line" aria-hidden="true"></i>
+                        <p class="dsu-num">03 / Calibrate</p>
+                        <h3>Guided, not guessed.</h3>
+                        <p>IMU and deep gimbal calibration with checklists, staged progress and clear results.</p>
+                    </article>
+                    <article class="dsu-feat reveal" style="--d: .15s">
+                        <i class="ri-file-shield-2-line" aria-hidden="true"></i>
+                        <p class="dsu-num">04 / Repair data</p>
+                        <h3>Originals stay safe.</h3>
+                        <p>Camera, fisheye and TOF serial repairs are written to a new copy after a server check.</p>
+                    </article>
+                    <article class="dsu-feat reveal" style="--d: .2s">
+                        <i class="ri-cpu-line" aria-hidden="true"></i>
+                        <p class="dsu-num">05 / Firmware</p>
+                        <h3>Matched before it is flashed.</h3>
+                        <p>Model routing and a rollback-level check come before every install.</p>
+                    </article>
+                    <article class="dsu-feat reveal" style="--d: .25s">
+                        <i class="ri-route-line" aria-hidden="true"></i>
+                        <p class="dsu-num">06 / Flight logs</p>
+                        <h3>Follow the flight.</h3>
+                        <p>Flight records turn a customer's story into times, distances, altitudes and serials.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02: how a job runs -->
+        <section class="dsu-sec dsu-sec--line" id="workflow">
+            <div class="wrap">
+                <div class="dsu-head">
+                    <div>
+                        <p class="dsu-num">02 / How a job runs</p>
+                        <h2 class="dsu-h2">Connect. Read. <span>Then act.</span></h2>
+                    </div>
+                    <p>Made for technicians who want to know exactly what is on the bench before they change anything.</p>
+                </div>
+                <ol class="dsu-flow">
+                    <li class="reveal">
+                        <b>01</b>
+                        <h3>Connect the aircraft.</h3>
+                        <p>Open the app on your Windows PC and plug the drone or controller in by USB. It is detected
+                            automatically.</p>
+                        <small>Aircraft <i class="ri-arrow-right-line"></i> Workspace</small>
+                    </li>
+                    <li class="reveal" style="--d: .08s">
+                        <b>02</b>
+                        <h3>Read the situation.</h3>
+                        <p>Check identity, firmware, live sensors and the link test, and open the flight log if there is
+                            one.</p>
+                        <small>Readings <i class="ri-arrow-right-line"></i> Decision</small>
+                    </li>
+                    <li class="reveal" style="--d: .16s">
+                        <b>03</b>
+                        <h3>Run the right procedure.</h3>
+                        <p>Follow the guided tool for the job and confirm the result before the aircraft goes back.</p>
+                        <small>Procedure <i class="ri-arrow-right-line"></i> Result</small>
+                    </li>
+                </ol>
+                <p class="dsu-callout"><i class="ri-shield-check-line" aria-hidden="true"></i><span><strong>A service tool, not
+                            a miracle.</strong> Software cannot fix a broken part. Repair physical damage and confirm
+                        the model is supported before running calibration or write procedures.</span></p>
+            </div>
+        </section>
+
+        <!-- 03: languages -->
+        <section class="dsu-sec dsu-sec--line" id="languages">
+            <div class="wrap">
+                <div class="dsu-head">
+                    <div>
+                        <p class="dsu-num">03 / Made for every bench</p>
+                        <h2 class="dsu-h2">Nine languages. <span>Every message translated.</span></h2>
+                    </div>
+                    <p>Screens, notices and error messages, including those with numbers in them, follow the language you
+                        choose on first launch. Switch at any time in Settings.</p>
+                </div>
+                <ul class="dsu-langs">
+                    <li><b>Hello</b>English</li>
+                    <li><b>Hai</b>Bahasa Melayu</li>
+                    <li><b>你好</b>简体中文</li>
+                    <li><b>こんにちは</b>日本語</li>
+                    <li><b>안녕하세요</b>한국어</li>
+                    <li><b>Bonjour</b>Français</li>
+                    <li><b>Hallo</b>Deutsch</li>
+                    <li><b>Hola</b>Español</li>
+                    <li><b>வணக்கம்</b>தமிழ்</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 04: firmware model profiles -->
+        <section class="dsu-sec dsu-sec--line" id="models">
+            <div class="wrap">
+                <div class="dsu-head">
+                    <div>
+                        <p class="dsu-num">04 / Model-aware</p>
+                        <h2 class="dsu-h2">Find your aircraft.</h2>
+                    </div>
+                    <p>The firmware flasher keeps a profile for each aircraft below and routes it to the engine that
+                        suits it. Other tools vary by model, so send us yours to confirm.</p>
+                </div>
+                <div class="models reveal" data-models>
+                    <div class="models__bar">
+                        <label class="models__search"><i class="ri-search-line" aria-hidden="true"></i><input type="search"
+                                placeholder="Search aircraft name or model code" aria-label="Search aircraft"
+                                data-models-search></label>
+                        <span class="models__count"><b data-models-count>8</b> firmware profiles</span>
+                    </div>
+                    <ul class="models__list">
+                        <li><span><strong>DJI Mavic Mini</strong><code>WM160</code></span><em>Legacy engine</em></li>
+                        <li><span><strong>DJI Mini SE</strong><code>WM1605</code></span><em>Legacy engine</em></li>
+                        <li><span><strong>DJI Mini 2</strong><code>WM161</code></span><em>Legacy engine</em></li>
+                        <li><span><strong>DJI Mini 2 SE</strong><code>WM1615</code></span><em>Legacy engine</em></li>
+                        <li><span><strong>DJI Mini 3</strong><code>WM163</code></span><em class="is-new">Specialized engine</em></li>
+                        <li><span><strong>DJI Mini 3 Pro</strong><code>WM162</code></span><em>Legacy engine</em></li>
+                        <li><span><strong>DJI Mini 4K</strong><code>WA1617</code></span><em class="is-new">Specialized engine</em></li>
+                        <li><span><strong>DJI Mavic Air 2</strong><code>WM231</code></span><em>Legacy engine</em></li>
+                    </ul>
+                    <p class="models__empty" hidden data-models-empty>No firmware profile for that yet. <a
+                            href="https://wa.me/60125949451" target="_blank" rel="noopener">Ask us about your aircraft</a>.</p>
+                </div>
+                <p class="dsu-fine">Aircraft names are used only to say which models the app works with.</p>
+            </div>
+        </section>
+
+        <!-- 05: plans -->
+        <section class="dsu-sec dsu-sec--line" id="plans">
+            <div class="wrap">
+                <div class="dsu-head dsu-head--center">
+                    <div>
+                        <p class="dsu-num">05 / Licence</p>
+                        <h2 class="dsu-h2">One app. <span>Pick how long.</span></h2>
+                    </div>
+                    <p>Every plan opens the whole workspace on one workstation. The only difference is how long it lasts.</p>
+                </div>
+                <div class="dsu-plans">
+                    <article class="dsu-plan reveal">
+                        <p class="dsu-label">Monthly</p>
+                        <h3>30 days</h3>
+                        <p>For short projects and busy seasons.</p>
+                        <ul>
+                            <li>The full workspace</li><li>In-app updates</li><li>All 9 languages</li><li>1 workstation</li>
+                        </ul>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20the%20Monthly%20plan%20for%20CMT%20Drone%20Service%20Utility"
+                            target="_blank" rel="noopener" class="dsu-btn">Ask about Monthly</a>
+                    </article>
+                    <article class="dsu-plan dsu-plan--pick reveal" style="--d: .08s">
+                        <p class="dsu-label">Yearly <span>Recommended</span></p>
+                        <h3>365 days</h3>
+                        <p>For the everyday workshop.</p>
+                        <ul>
+                            <li>The full workspace</li><li>In-app updates</li><li>All 9 languages</li><li>1 workstation</li>
+                        </ul>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20the%20Yearly%20plan%20for%20CMT%20Drone%20Service%20Utility"
+                            target="_blank" rel="noopener" class="dsu-btn dsu-btn--primary">Ask about Yearly</a>
+                    </article>
+                    <article class="dsu-plan reveal" style="--d: .16s">
+                        <p class="dsu-label">Permanent</p>
+                        <h3>No expiry</h3>
+                        <p>Buy once and keep it on the bench.</p>
+                        <ul>
+                            <li>The full workspace</li><li>In-app updates</li><li>All 9 languages</li><li>1 workstation</li>
+                        </ul>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20the%20Permanent%20plan%20for%20CMT%20Drone%20Service%20Utility"
+                            target="_blank" rel="noopener" class="dsu-btn">Ask about Permanent</a>
+                    </article>
+                </div>
+                <ul class="dsu-plan-notes">
+                    <li><i class="ri-whatsapp-line" aria-hidden="true"></i> Bought through our staff on WhatsApp</li>
+                    <li><i class="ri-time-line" aria-hidden="true"></i> Time left counts down live in the sidebar</li>
+                    <li><i class="ri-price-tag-3-line" aria-hidden="true"></i> Prices on request</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Get the app -->
+        <section class="dsu-sec" id="get">
+            <div class="wrap">
+                <div class="dsu-get reveal">
+                    <div class="dsu-get__icon"><img src="assets/images/logo-mark-white.png" alt=""><span>Windows</span></div>
+                    <div>
+                        <p class="dsu-label">CMT Drone Service Utility / Windows desktop</p>
+                        <h2>Bring it to your repair bench.</h2>
+                        <p>Message us for the installer, create your CMT account on first launch, then activate your
+                            workstation with a licence key.</p>
+                        <ul class="dsu-tags">
+                            <li>Windows 10 (2004) or 11, 64-bit</li><li>USB connection</li><li>Internet for sign-in and
+                                updates</li>
+                        </ul>
+                        <div class="dsu-actions">
+                            <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20get%20CMT%20Drone%20Service%20Utility"
+                                target="_blank" rel="noopener" class="dsu-btn dsu-btn--primary"><i
+                                    class="ri-whatsapp-line" aria-hidden="true"></i> Request the installer</a>
+                            <a href="#plans" class="dsu-btn">Compare plans <i class="ri-arrow-right-line"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                        <p class="dsu-fine">Installing the app does not activate a licence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06: questions -->
+        <section class="dsu-sec dsu-sec--line" id="faq">
+            <div class="wrap dsu-faq">
+                <div>
+                    <p class="dsu-num">06 / Before you connect</p>
+                    <h2 class="dsu-h2">Questions, <span>answered plainly.</span></h2>
+                    <p>Have a particular aircraft or error in mind? Ask us before you choose a plan.</p>
+                    <a href="https://wa.me/60125949451" target="_blank" rel="noopener" class="dsu-link">Ask us on WhatsApp <i
+                            class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+                </div>
+                <div class="dsu-qa">
+                    <details>
+                        <summary>What is CMT Drone Service Utility?</summary>
+                        <p>A Windows desktop app for drone technicians. It reads a connected aircraft, shows live
+                            telemetry, edits parameters, tests every module, analyses flight logs and runs guided
+                            calibration and firmware procedures.</p>
+                    </details>
+                    <details>
+                        <summary>Will every tool work on my aircraft?</summary>
+                        <p>Not always. Tools depend on the model and its firmware. The firmware flasher keeps profiles for
+                            the aircraft listed above. Send us your model and firmware version and we will tell you what
+                            applies.</p>
+                    </details>
+                    <details>
+                        <summary>Can software fix physical damage?</summary>
+                        <p>No. A broken gimbal motor, cable or board needs a hardware repair first. The app helps you find
+                            the fault and finish the job once the hardware is sound.</p>
+                    </details>
+                    <details>
+                        <summary>How do the plans differ?</summary>
+                        <p>Only in duration: Monthly runs 30 days, Yearly 365 days, and Permanent does not expire. Each
+                            opens the full workspace on one workstation.</p>
+                    </details>
+                    <details>
+                        <summary>Does it need an internet connection?</summary>
+                        <p>Yes, for sign-in, licence checks, updates and calibration file analysis, which runs on the CMT
+                            server so your original files stay untouched.</p>
+                    </details>
+                    <details>
+                        <summary>Which languages does it support?</summary>
+                        <p>English, Bahasa Melayu, Simplified Chinese, Japanese, Korean, French, German, Spanish and
+                            Tamil.</p>
+                    </details>
+                    <details>
+                        <summary>Is it made or approved by DJI?</summary>
+                        <p>No. It is developed independently by Chua Micro Tech and is not affiliated with, authorised or
+                            endorsed by DJI or any other manufacturer.</p>
+                    </details>
+                    <details>
+                        <summary>Where do I get the installer or help?</summary>
+                        <p>Message us on WhatsApp at +60 12-594 9451 or email chuamicrotech@gmail.com. We reply Monday to
+                            Saturday, 9:00 AM to 10:00 PM.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section class="dsu-sec dsu-sec--tight">
+            <div class="wrap">
+                <div class="dsu-support reveal">
+                    <div>
+                        <p class="dsu-label">Direct support</p>
+                        <h2>Tell us about <span>your next repair.</span></h2>
+                        <p>Send the aircraft model, firmware version and what you are seeing. We help with compatibility,
+                            licensing and getting set up.</p>
+                        <a href="https://wa.me/60125949451" target="_blank" rel="noopener"
+                            class="dsu-btn dsu-btn--primary"><i class="ri-whatsapp-line" aria-hidden="true"></i> Talk to
+                            us</a>
+                        <small>+60 12-594 9451 · chuamicrotech@gmail.com</small>
+                    </div>
+                    <div class="dsu-support__side">
+                        <img src="assets/images/logo-mark-white.png" alt="" aria-hidden="true">
+                        <p class="dsu-label">Need something else?</p>
+                        <h3>Software built around your workflow.</h3>
+                        <a href="services.html#software" class="dsu-link">Custom software development <i
+                                class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- full-size view of a screen -->
+        <dialog class="dsu-lightbox" data-gallery-dialog aria-label="Screen, full size">
+            <img src="" alt="" data-gallery-big>
+            <button type="button" data-gallery-close aria-label="Close"><i class="ri-close-line"></i></button>
+        </dialog>
+
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <!-- name and socials on one line, the four values as one ruled row, then four columns under them -->
+            <div class="footer__top">
+                <a href="index.html" class="footer__brand">
+                    <img src="assets/images/logo-mark-white.png" alt="" width="46" height="46">
+                    CHUA MICRO TECH
+                </a>
+                <div class="icons">
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                    <a href="mailto:chuamicrotech@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+                </div>
+            </div>
+
+            <ul class="footer__values">
+                <li>Precision Diagnostics</li>
+                <li>Component-Level Repairs</li>
+                <li>In-House Software</li>
+                <li>Customer Satisfaction</li>
+            </ul>
+
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <h6>Pages</h6>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html" class="footer-link">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h6>Services</h6>
+                    <ul>
+                        <li><a href="services.html#drone">Drone Repair</a></li>
+                        <li><a href="services.html#computer">System Troubleshooting</a></li>
+                        <li><a href="services.html#setup">New System Setup</a></li>
+                        <li><a href="services.html#software">Software Development</a></li>
+                        <li><a href="cmt-drone-service-utility.html">CMT Drone Service Utility</a></li>
+                        <li><a href="services.html#trade">Trade-in Services</a></li>
+                        <li><a href="services.html#recycle">Recycle Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h6>Reach us</h6>
+                    <ul>
+                        <li><a href="https://wa.me/60125949451" target="_blank" rel="noopener">+60 12-594 9451</a></li>
+                        <li><a href="mailto:chuamicrotech@gmail.com">chuamicrotech@gmail.com</a></li>
+                        <li><a href="contact.html">Open a support ticket</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h6>Visit us</h6>
+                    <ul>
+                        <li><small>859, Lorong Kota Kenari 4/5, Taman Kota Kenari, 09000, Kulim, Kedah.</small></li>
+                        <li><small>Mon - Sat: 9:00 AM - 10:00 PM</small></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.
+                </p>
+                <p class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</p>
+            </div>
+        </div>
+    </footer>
+
+    <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+        <svg class="to-top__ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="19" />
+        </svg>
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+
+    <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+    <script src="assets/js/mark.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/motion.js"></script>
+    <script src="assets/js/perf.js"></script>
+    <script src="assets/js/preloader.js"></script>
+    <script src="assets/js/disableRightClick.js"></script>
+</body>
+
+</html>

@@ -13,7 +13,6 @@
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 - ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 - ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-- ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
 - ![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ---
@@ -30,8 +29,14 @@
 
 ## 🌟 <i>Features</i>
 
-- *Snappy "Pop" Staggered Animations for services and contact details*
-- *Technical Skew-Reveal transitions for high-performance hardware panels*
+- *Loader: a honeycomb of cells streams inward to build the three parts of the brand mark, which lock together before the page appears*
+- *Interactive dot figure in the hero: it morphs from the brand mark through each service, and the dots give way to the pointer*
+- *3D models built in CSS (drone, laptop, PC tower, circuit board) for the services, programmes and service flow, with the in-house CMT Service Utility shown as it runs*
+- *Support ticket form with a live ticket that fills in beside it*
+- *Programme cards on a dot field that reacts to the pointer*
+- *3D tilt cards, an isometric layer stack, stacking service-flow cards and scroll-driven text reveals*
+- *Three-step support ticket form with device-aware service options*
+- *Soft neumorphic interface built on the refreshed navy, white and signal blue identity*
 - *Fully Responsive design for seamless browsing across mobile and desktop devices*
 - *Integrated Verified Client Logs via interactive Google Review UI*
 
@@ -39,7 +44,7 @@
 
 ## 📚 <i>Recent Updates</i>
 
-- <i>🔭 Completed transition to high-performance GSAP ScrollTrigger architecture</i>  
+- <i>🔭 Full redesign around the refreshed brand identity, with a dependency-free motion layer (`assets/js/motion.js`)</i>  
 
 ---
 

@@ -1,0 +1,1262 @@
+/* =====================================================================
+   SCENES
+   Small illustrated stages built from 3D models, icons and chips.
+   They stand in for diagrams on the service rows, the service flow and
+   the programme cards. Everything inside a scene is sized in container
+   units, so a scene scales as one piece wherever it is placed.
+   ===================================================================== */
+.scene {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 7 / 5;
+  border-radius: 24px;
+  background: radial-gradient(110% 80% at 50% 6%, var(--white) 0%, var(--card) 48%, #e8e5de 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* 1em inside a scene tracks its width */
+.scene > * {
+  font-size: clamp(7.5px, 2.7cqw, 15px);
+}
+
+.scene--dark {
+  background: radial-gradient(110% 80% at 50% 0%, #12376e 0%, #06224a 56%, var(--navy) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: var(--on-dark);
+}
+
+/* --- shared pieces --- */
+.scene__obj {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--w, 70%);
+  translate: -50% -50%;
+}
+
+/* dot art (dotart.js gives the canvas the proportions of its figure) */
+.scene__obj > canvas {
+  display: block;
+  width: 100%;
+}
+
+.scene__float {
+  animation: scene-float 5s ease-in-out infinite;
+}
+
+.scene__halo {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: -1;
+  width: 64%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(21, 104, 255, 0.2), rgba(21, 104, 255, 0.05) 52%, transparent 70%);
+  box-shadow: inset 0 0 0 1px rgba(21, 104, 255, 0.14);
+}
+
+.scene__shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  z-index: -1;
+  width: 46%;
+  height: 6%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(1, 25, 55, 0.26), transparent);
+  animation: scene-shadow 5s ease-in-out infinite;
+}
+
+@keyframes scene-float {
+  50% {
+    transform: translateY(-4%);
+  }
+}
+
+@keyframes scene-shadow {
+  50% {
+    transform: scale(0.84);
+    opacity: 0.6;
+  }
+}
+
+@keyframes scene-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* chip label */
+.lbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.55em 0.95em;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 0.7em 1.6em rgba(1, 25, 55, 0.16);
+  font-family: var(--f-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.scene > .lbl {
+  position: absolute;
+}
+
+.lbl > i {
+  font-size: 1.15em;
+  color: var(--blue);
+}
+
+/* status light that switches on in turn */
+.lbl--ok::after {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0.22em rgba(34, 197, 94, 0.2);
+  animation: lbl-on 6s ease infinite;
+  animation-delay: calc(var(--n, 0) * 0.9s);
+}
+
+@keyframes lbl-on {
+  0%,
+  10% {
+    background: #c9cfdb;
+    box-shadow: 0 0 0 0.22em rgba(201, 207, 219, 0.3);
+  }
+  20%,
+  100% {
+    background: #22c55e;
+    box-shadow: 0 0 0 0.22em rgba(34, 197, 94, 0.2);
+  }
+}
+
+/* hotspot pinned to a point on a figure */
+.spot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+}
+
+.spot::before,
+.spot::after {
+  content: "";
+  position: absolute;
+  left: -0.42em;
+  top: -0.42em;
+  width: 0.84em;
+  height: 0.84em;
+  border-radius: 50%;
+}
+
+.spot::before {
+  background: var(--blue);
+  box-shadow: 0 0 0 0.22em var(--white), 0 0.3em 0.8em rgba(1, 25, 55, 0.3);
+}
+
+.spot::after {
+  border: 1px solid var(--blue);
+  animation: spot-ping 2.4s ease-out infinite;
+  animation-delay: calc(var(--n, 0) * 0.6s);
+}
+
+@keyframes spot-ping {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(4.4);
+    opacity: 0;
+  }
+}
+
+.spot .lbl {
+  position: absolute;
+  left: 1.5em;
+  top: 0;
+  translate: 0 -50%;
+}
+
+.spot--l .lbl {
+  left: auto;
+  right: 1.5em;
+}
+
+.spot--t .lbl {
+  left: 0;
+  top: auto;
+  bottom: 1.5em;
+  translate: -50% 0;
+}
+
+.spot--b .lbl {
+  left: 0;
+  top: 1.5em;
+  translate: -50% 0;
+}
+
+/* --- APP: the service utility as it runs --- */
+.appshot {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 11%;
+  border-radius: 1em;
+  background: #060f1f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 1.8em 3.4em rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.appshot img {
+  display: block;
+  width: 100%;
+}
+
+/* --- TRADE: the old unit goes in, the upgrade comes out, a meter fills --- */
+.tcard {
+  position: absolute;
+  top: 9%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: 0.6em;
+  width: 37%;
+  aspect-ratio: 1 / 1.08;
+  margin: 0;
+  padding: 1.1em;
+  border-radius: 1.6em;
+  background: var(--white);
+  box-shadow: 0 1.6em 3em rgba(1, 25, 55, 0.18);
+}
+
+/* a small model stands in the middle of each card */
+.tcard__art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tcard__art .m3d {
+  font-size: 0.4em;
+  --top: 58%;
+}
+
+.tcard__art .m3d--pc {
+  font-size: 0.42em;
+  --top: 74%;
+}
+
+/* the unit being traded in has lost its colour */
+.tcard--old .tcard__art {
+  filter: grayscale(1) opacity(0.78);
+}
+
+.tcard figcaption {
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tcard--old {
+  left: 7%;
+  rotate: -6deg;
+}
+
+.tcard--new {
+  right: 7%;
+  rotate: 5deg;
+  background: linear-gradient(160deg, #123a75, var(--navy));
+}
+
+.tcard--new figcaption {
+  color: var(--blue-on-dark);
+}
+
+.swap {
+  position: absolute;
+  left: 50%;
+  top: 37%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 4.2em;
+  height: 4.2em;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 0.5em rgba(255, 255, 255, 0.92), 0 1em 2em rgba(21, 104, 255, 0.4);
+  color: var(--white);
+}
+
+.swap i {
+  font-size: 1.9em;
+  animation: swap-nudge 2.4s ease-in-out infinite;
+}
+
+@keyframes swap-nudge {
+  50% {
+    transform: translateX(0.18em);
+  }
+}
+
+.meter {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1em;
+  padding: 0.9em 1.3em;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 0.8em 1.8em rgba(1, 25, 55, 0.14);
+}
+
+.meter > span {
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meter > i {
+  position: relative;
+  height: 0.5em;
+  border-radius: 999px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.meter > i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8db6ff, var(--blue));
+  transform-origin: left;
+  animation: meter-fill 4.6s var(--ease) infinite;
+}
+
+@keyframes meter-fill {
+  0% {
+    transform: scaleX(0.08);
+  }
+  60%,
+  100% {
+    transform: scaleX(0.84);
+  }
+}
+
+.meter > b {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--f-display);
+  font-weight: 700;
+  color: var(--blue-ink);
+}
+
+/* --- RECYCLE: three stations on a turning loop around the core --- */
+.orbit,
+.core,
+.node {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  border-radius: 50%;
+}
+
+.orbit {
+  width: 46cqw;
+  aspect-ratio: 1;
+  margin: -23cqw 0 0 -23cqw;
+  border: 0.16em dashed rgba(21, 104, 255, 0.5);
+  animation: scene-turn 40s linear infinite;
+}
+
+.core {
+  display: grid;
+  place-items: center;
+  width: 21cqw;
+  aspect-ratio: 1;
+  margin: -10.5cqw 0 0 -10.5cqw;
+  background: linear-gradient(150deg, #3b83ff, #0b4fd6);
+  box-shadow: 0 0 0 1.1em rgba(21, 104, 255, 0.1), 0 1.6em 3em rgba(21, 104, 255, 0.38);
+  color: var(--white);
+}
+
+.core i {
+  font-size: 4.4em;
+  animation: scene-turn 14s linear infinite reverse;
+}
+
+.node {
+  display: grid;
+  place-items: center;
+  width: 10cqw;
+  aspect-ratio: 1;
+  margin: -5cqw 0 0 -5cqw;
+  background: var(--white);
+  box-shadow: 0 1em 2em rgba(1, 25, 55, 0.18);
+  transform: rotate(var(--a)) translate(23cqw) rotate(calc(var(--a) * -1));
+}
+
+.node > i {
+  font-size: 1.9em;
+  color: var(--blue);
+}
+
+.node .lbl {
+  position: absolute;
+  left: 50%;
+  top: 116%;
+  translate: -50% 0;
+}
+
+/* --- INTAKE: the device gets a case ticket, then the stamp lands --- */
+.casetag {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 28%;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: 1.2em;
+  padding: 1.3em 1.6em;
+  border-radius: 1.5em;
+  background: var(--white);
+  box-shadow: 0 1.8em 3.4em rgba(1, 25, 55, 0.18);
+  rotate: -3deg;
+  color: var(--ink);
+}
+
+.casetag__art {
+  position: relative;
+  aspect-ratio: 1.35;
+}
+
+.casetag__art .m3d {
+  font-size: 0.4em;
+  --top: 56%;
+}
+
+.casetag small {
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casetag b {
+  display: block;
+  margin: 0.15em 0 0.5em;
+  font-family: var(--f-display);
+  font-size: 1.7em;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.barcode {
+  display: block;
+  height: 2.1em;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px,
+      transparent 6px 10px, var(--ink) 10px 13px, transparent 13px 15px);
+}
+
+.stamp {
+  position: absolute;
+  right: 9%;
+  bottom: 10%;
+  padding: 0.45em 0.9em;
+  border: 0.16em solid var(--blue);
+  border-radius: 0.6em;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  rotate: -9deg;
+  animation: stamp-in 4.5s var(--ease) infinite;
+}
+
+@keyframes stamp-in {
+  0%,
+  12% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+  24%,
+  86% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* --- SCOPE: a trace runs across the screen and the fault is pinned --- */
+.scene--scope {
+  background-image: linear-gradient(rgba(141, 182, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(141, 182, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(110% 80% at 50% 0%, #12376e 0%, #06224a 56%, var(--navy) 100%);
+  background-size: 10% 14.2857%, 10% 14.2857%, auto;
+}
+
+.scope {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scope path {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.scope__base {
+  stroke: rgba(110, 165, 255, 0.38);
+  stroke-width: 2;
+}
+
+/* a bright stretch of the same line travels along it; the dash pattern repeats exactly once per
+   length, so the end of one pass is the start of the next */
+.scope__pulse {
+  stroke: #9cc0ff;
+  stroke-width: 3;
+  stroke-dasharray: 16 84;
+  stroke-dashoffset: 100;
+  filter: drop-shadow(0 0 5px rgba(110, 165, 255, 0.9));
+  animation: scope-run 3.2s linear infinite;
+}
+
+@keyframes scope-run {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.readout {
+  position: absolute;
+  bottom: 8%;
+  font-family: var(--f-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-on-dark);
+}
+
+.readout--l {
+  left: 6%;
+}
+
+.readout--r {
+  right: 6%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.readout--r::before {
+  content: "";
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: live-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes live-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* --- QUOTE: a sheet, a free-quote seal, and the approval switch flips on --- */
+.paper {
+  position: absolute;
+  left: 15%;
+  top: 10%;
+  width: 44%;
+  padding: 1.4em 1.5em 1.6em;
+  border-radius: 1em;
+  background: var(--white);
+  box-shadow: 0 1.8em 3.4em rgba(1, 25, 55, 0.18);
+  rotate: -4deg;
+  color: var(--ink);
+}
+
+.paper small {
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.paper u {
+  display: block;
+  height: 0.55em;
+  margin-top: 0.85em;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+
+.paper u:nth-of-type(2) {
+  width: 78%;
+}
+
+.paper u:nth-of-type(3) {
+  width: 90%;
+}
+
+.paper u:nth-of-type(4) {
+  width: 56%;
+}
+
+.paper__sum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: 1.2em;
+  padding-top: 1em;
+  border-top: 1px dashed rgba(1, 25, 55, 0.2);
+}
+
+.paper__sum u {
+  flex: 1;
+  margin: 0;
+}
+
+.paper__sum b {
+  font-family: var(--f-display);
+  font-size: 1.3em;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--blue);
+}
+
+.seal {
+  position: absolute;
+  right: 12%;
+  top: 12%;
+  display: grid;
+  place-content: center;
+  width: 18cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--navy);
+  box-shadow: 0 0 0 0.45em var(--white), 0 1.4em 2.6em rgba(1, 25, 55, 0.3);
+  outline: 1px dashed rgba(255, 255, 255, 0.5);
+  outline-offset: -0.7em;
+  text-align: center;
+  color: var(--white);
+  rotate: 10deg;
+}
+
+.seal b {
+  font-family: var(--f-display);
+  font-size: 2em;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.seal small {
+  margin-top: 0.3em;
+  font-family: var(--f-mono);
+  font-size: 0.74em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8db6ff;
+}
+
+.knob {
+  position: relative;
+  width: 2.5em;
+  height: 1.4em;
+  border-radius: 999px;
+  background: #c9cfdb;
+  animation: knob-bg 4.5s ease infinite;
+}
+
+.knob::after {
+  content: "";
+  position: absolute;
+  left: 0.2em;
+  top: 0.2em;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 0.1em 0.3em rgba(1, 25, 55, 0.3);
+  animation: knob-move 4.5s ease infinite;
+}
+
+@keyframes knob-bg {
+  0%,
+  30% {
+    background: #c9cfdb;
+  }
+  42%,
+  86% {
+    background: #22c55e;
+  }
+  100% {
+    background: #c9cfdb;
+  }
+}
+
+@keyframes knob-move {
+  0%,
+  30% {
+    transform: none;
+  }
+  42%,
+  86% {
+    transform: translateX(1.1em);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* --- RETURN: verified on the bench, then the van runs from the lab to the door --- */
+.stop {
+  position: absolute;
+  top: 56%;
+  display: grid;
+  place-items: center;
+  width: 16cqw;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  color: var(--white);
+}
+
+.stop > i {
+  font-size: 2.7em;
+}
+
+.stop small {
+  position: absolute;
+  top: 114%;
+  font-family: var(--f-mono);
+  font-size: 0.8em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--on-dark-muted);
+}
+
+.stop--a {
+  left: 9%;
+}
+
+.stop--b {
+  right: 9%;
+  background: var(--blue);
+  box-shadow: 0 0 0 0.8em rgba(21, 104, 255, 0.18), 0 1.4em 2.6em rgba(21, 104, 255, 0.4);
+}
+
+.road {
+  position: absolute;
+  left: 28%;
+  right: 28%;
+  top: 56%;
+  border-top: 0.18em dashed rgba(141, 182, 255, 0.55);
+}
+
+.road i {
+  position: absolute;
+  left: 0;
+  bottom: 0.25em;
+  font-size: 2.5em;
+  line-height: 1;
+  color: var(--white);
+  /* steady pace, and straight back to the lab: no pause at the door */
+  animation: road-run 3.6s linear infinite;
+}
+
+@keyframes road-run {
+  0% {
+    left: -6%;
+    opacity: 0;
+  }
+  8%,
+  94% {
+    opacity: 1;
+  }
+  100% {
+    left: 84%;
+    opacity: 0;
+  }
+}
+
+/* =====================================================================
+   3D MODELS
+   A drone, a laptop and a PC tower, built from plain elements on one
+   tilted plane (no camera: a clean isometric view). Rounded solids are
+   stacks of slices (.stack, components.css); the tower is a real box.
+   Sizes are in em, so a model scales with the font-size of its plane.
+   ===================================================================== */
+.m3d {
+  position: absolute;
+  left: var(--left, 50%);
+  top: var(--top, 56%);
+  width: 0;
+  height: 0;
+  transform: rotateX(56deg) rotateZ(-38deg);
+}
+
+.m3d,
+.m3d * {
+  transform-style: preserve-3d;
+}
+
+.m3d * {
+  position: absolute;
+}
+
+/* soft shadow lying on the plane */
+.m3d__shadow {
+  left: -10em;
+  top: -8em;
+  width: 20em;
+  height: 16em;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(1, 25, 55, 0.3), transparent);
+}
+
+/* ---------- drone ---------- */
+.dr {
+  left: 0;
+  top: 0;
+  translate: 0 0 3em;
+  animation: m3d-hover 4.6s ease-in-out infinite;
+}
+
+@keyframes m3d-hover {
+  50% {
+    translate: 0 0 4.6em;
+  }
+}
+
+.m3d--drone .m3d__shadow {
+  animation: m3d-shadow 4.6s ease-in-out infinite;
+}
+
+@keyframes m3d-shadow {
+  50% {
+    transform: scale(0.84);
+    opacity: 0.7;
+  }
+}
+
+.dr-arm {
+  left: -10.5em;
+  top: -0.6em;
+  width: 21em;
+  height: 1.2em;
+  --step: 0.22em;
+}
+
+.dr-arm--a {
+  transform: rotateZ(40deg);
+}
+
+.dr-arm--b {
+  transform: rotateZ(-40deg);
+}
+
+.dr-arm > * {
+  border-radius: 0.6em;
+  background: #2f3848;
+}
+
+.dr-arm > :last-child {
+  background: linear-gradient(90deg, #5d6b84, #8a96ab 50%, #5d6b84);
+}
+
+.dr-motor {
+  left: calc(var(--x) - 1.4em);
+  top: calc(var(--y) - 1.4em);
+  width: 2.8em;
+  height: 2.8em;
+  --step: 0.3em;
+  translate: 0 0 0.3em;
+}
+
+.dr-motor > * {
+  border-radius: 50%;
+  background: #141b29;
+}
+
+.dr-motor > :last-child {
+  background: radial-gradient(circle, #c3cde0 0 26%, #2a3447 30%);
+}
+
+/* a faint disc where the blade sweeps, and the blade itself */
+.dr-disc {
+  left: calc(var(--x) - 4.7em);
+  top: calc(var(--y) - 4.7em);
+  width: 9.4em;
+  height: 9.4em;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(1, 25, 55, 0.02) 30%, rgba(1, 25, 55, 0.1) 68%, transparent 70%);
+  transform: translateZ(1.9em);
+}
+
+.dr-prop {
+  left: calc(var(--x) - 4.6em);
+  top: calc(var(--y) - 0.5em);
+  width: 9.2em;
+  height: 1em;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #1568ff 0 7%, #0b1220 7% 93%, #1568ff 93%);
+  animation: dr-spin 0.5s linear infinite;
+}
+
+@keyframes dr-spin {
+  from {
+    transform: translateZ(2em) rotateZ(0deg);
+  }
+  to {
+    transform: translateZ(2em) rotateZ(360deg);
+  }
+}
+
+.dr-body {
+  left: -3.3em;
+  top: -5.4em;
+  width: 6.6em;
+  height: 10.8em;
+  --step: 0.36em;
+  translate: 0 0 0.2em;
+}
+
+.dr-body > * {
+  border-radius: 3em 3em 2.4em 2.4em;
+  background: #262f3f;
+}
+
+.dr-body > :last-child {
+  background: linear-gradient(160deg, #a7b2c6, #6c7890 50%, #4a5468);
+  box-shadow: inset 0 0 0 0.12em rgba(255, 255, 255, 0.3);
+}
+
+/* status light on the back of the body */
+.dr-body b {
+  left: 2.3em;
+  top: 1.6em;
+  width: 2em;
+  height: 0.5em;
+  border-radius: 0.3em;
+  background: #22c55e;
+  box-shadow: 0 0 0.8em #22c55e;
+}
+
+.dr-cam {
+  left: -1.6em;
+  top: 4.4em;
+  width: 3.2em;
+  height: 3.2em;
+  --step: 0.3em;
+}
+
+.dr-cam > * {
+  border-radius: 50%;
+  background: #0b1220;
+}
+
+.dr-cam > :last-child {
+  background: radial-gradient(circle at 42% 40%, #cfe0ff 0 12%, #1568ff 16% 40%, #0b1220 44%);
+}
+
+/* ---------- laptop ---------- */
+/* the lid leans up and to the left, so the plane sits right of centre and low */
+.m3d--laptop {
+  --left: 57%;
+  --top: 72%;
+  /* sized from the scene's width, like every other piece, so it fits a small panel too */
+  font-size: clamp(6.5px, 2.6cqw, 14px);
+}
+
+.lp-base {
+  left: -10em;
+  top: -5em;
+  width: 20em;
+  height: 13em;
+  --step: 0.26em;
+}
+
+.lp-base > * {
+  border-radius: 1em;
+  background: #7f8ca4;
+}
+
+.lp-base > :last-child {
+  background: linear-gradient(160deg, #f1f4f9, #cdd5e2);
+}
+
+.lp-keys {
+  left: 1.2em;
+  right: 1.2em;
+  top: 1em;
+  height: 6.3em;
+  border-radius: 0.4em;
+  background: repeating-linear-gradient(90deg, transparent 0 1.14em, #d5dce8 1.14em 1.36em),
+    repeating-linear-gradient(0deg, transparent 0 1.08em, #d5dce8 1.08em 1.3em), #1b2538;
+}
+
+.lp-pad {
+  left: 7em;
+  right: 7em;
+  top: 8.3em;
+  bottom: 0.9em;
+  border-radius: 0.5em;
+  background: rgba(1, 25, 55, 0.12);
+}
+
+/* the lid stands on the back edge of the base, leaning a little past upright */
+.lp-screen {
+  left: -10em;
+  top: -17.6em;
+  width: 20em;
+  height: 12.6em;
+  --step: 0.16em;
+  transform-origin: 50% 100%;
+  transform: translateZ(0.8em) rotateX(-76deg);
+}
+
+.lp-screen > * {
+  border-radius: 0.9em;
+  background: #7f8ca4;
+}
+
+.lp-screen > :last-child {
+  background: #0b1220;
+  box-shadow: inset 0 0 0 0.1em rgba(255, 255, 255, 0.2);
+}
+
+.lp-screen > :last-child::before {
+  content: "";
+  position: absolute;
+  inset: 0.7em;
+  border-radius: 0.4em;
+  background: linear-gradient(150deg, #0d2b57, #1568ff);
+}
+
+.lp-icon {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 5.6em;
+  font-weight: 400;
+  color: var(--white);
+}
+
+/* a line of light sweeps the display */
+.lp-screen em {
+  left: 0.7em;
+  right: 0.7em;
+  top: 0.7em;
+  height: 1.4em;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: lp-scan 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes lp-scan {
+  to {
+    top: calc(100% - 2.1em);
+  }
+}
+
+/* ---------- PC tower ---------- */
+.m3d--pc {
+  --left: 53%;
+  --top: 80%;
+  font-size: clamp(6px, 2.35cqw, 12.6px);
+}
+
+.m3d--pc .m3d__shadow {
+  background: radial-gradient(closest-side, rgba(21, 104, 255, 0.4), transparent);
+}
+
+/* a box: top, the side facing forward-right and the side facing forward-left */
+.box3d {
+  width: var(--w);
+  height: var(--d);
+}
+
+.box3d > .f-top {
+  inset: 0;
+  transform: translateZ(var(--h));
+}
+
+.box3d > .f-south {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--h);
+  transform-origin: 50% 100%;
+  transform: rotateX(-90deg);
+}
+
+.box3d > .f-west {
+  left: 0;
+  top: 0;
+  width: var(--h);
+  height: 100%;
+  transform-origin: 0 50%;
+  transform: rotateY(-90deg);
+}
+
+.pc {
+  --w: 8.6em;
+  --d: 15em;
+  --h: 16em;
+  left: -4.3em;
+  top: -7.5em;
+}
+
+.pc > * {
+  border-radius: 0.5em;
+  background: #0a1326;
+  box-shadow: inset 0 0 0 0.16em #24324f;
+}
+
+.pc > .f-top {
+  background: repeating-linear-gradient(90deg, #1c2946 0 0.3em, #0c1730 0.3em 0.86em);
+}
+
+/* glass side: the lit interior shows through */
+.pc > .f-west {
+  background: linear-gradient(200deg, rgba(141, 182, 255, 0.2), transparent 45%), #081022;
+}
+
+.fan {
+  width: 5.2em;
+  height: 5.2em;
+  border-radius: 50%;
+  background: conic-gradient(#1568ff, #8db6ff, #22d3ee, #1568ff, #8db6ff, #22d3ee, #1568ff);
+  -webkit-mask: radial-gradient(circle, #000 0 15%, transparent 17% 30%, #000 32% 68%, transparent 70%);
+  mask: radial-gradient(circle, #000 0 15%, transparent 17% 30%, #000 32% 68%, transparent 70%);
+  animation: fan-spin 2.4s linear infinite;
+}
+
+@keyframes fan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pc > .f-south .fan {
+  left: 1.7em;
+}
+
+.pc > .f-south .fan:nth-child(1) {
+  top: 1.6em;
+}
+
+.pc > .f-south .fan:nth-child(2) {
+  top: 7.6em;
+}
+
+/* power light */
+.pc > .f-south b {
+  left: 3.3em;
+  bottom: 1em;
+  width: 2em;
+  height: 0.4em;
+  border-radius: 0.2em;
+  background: #22d3ee;
+  box-shadow: 0 0 0.8em #22d3ee;
+}
+
+/* on the side face, left runs up the tower and top runs along its depth */
+.pc > .f-west .fan {
+  left: 9.6em;
+}
+
+.pc > .f-west .fan:nth-child(1) {
+  top: 1.6em;
+}
+
+.pc > .f-west .fan:nth-child(2) {
+  top: 8.2em;
+}
+
+.pc-gpu {
+  left: 5.4em;
+  top: 1.4em;
+  width: 2.2em;
+  height: 12em;
+  border-radius: 0.3em;
+  background: linear-gradient(90deg, #1b2740, #2c3a59);
+  box-shadow: inset 0.3em 0 0 #1568ff, 0 0 1em rgba(21, 104, 255, 0.5);
+}
+
+.pc-ram {
+  left: 1.6em;
+  top: 3em;
+  width: 2.4em;
+  height: 9em;
+  border-radius: 0.3em;
+  background: repeating-linear-gradient(0deg, #8db6ff 0 0.4em, #123a75 0.4em 1.2em);
+  opacity: 0.85;
+}
+
+/* --- where scenes sit --- */
+/* service rows: the scene is the raised, tilting panel */
+.svc-row__visual .scene {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), 0 40px 70px rgba(1, 25, 55, 0.2);
+}
+
+/* programme cards: a raised panel beside the copy */
+.xp__visual .scene {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), var(--shadow-soft);
+}
+
+/* service flow: the scene fills the pressed well */
+.pcard__visual:has(.scene) {
+  padding: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene *,
+  .scene *::before,
+  .scene *::after {
+    animation: none !important;
+  }
+
+  .scope__pulse {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "darkemperium-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5520", "--directory", "C:/Users/junde/Downloads/darkemperium.github.io"],
+      "port": 5520
+    }
+  ]
+}

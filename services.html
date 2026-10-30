@@ -4,13 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@700;800&family=Intel+One+Mono&display=swap" rel="stylesheet">
+    <title>Services | Chua Micro Tech</title>
+    <meta name="description"
+        content="Drone repair, PC troubleshooting, custom PC builds, software development, hardware trade-in and e-waste recycling by Chua Micro Tech, Kulim.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script>
+        // Repeat page loads in a session play the short version of the loader
+        try { if (sessionStorage.getItem("cmt-loaded")) document.documentElement.classList.add("is-return"); } catch (e) { }
+    </script>
     <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/scenes.css">
     <link rel="stylesheet" href="assets/css/navigator.css">
     <link rel="stylesheet" href="assets/css/preloader.css">
     <link rel="stylesheet" href="assets/css/services.css">
@@ -18,326 +29,591 @@
 
 <body>
 
-    <!--Website Preloader-->
+    <!--Website Preloader: honeycomb cells slide in to build the brand mark, then the view zooms into it (assets/js/preloader.js)-->
     <div id="preloader">
-        <div class="preloader-content">
-            <img src="assets/images/logo.png" alt="Chua Micro Tech">
-            <div class="loading-status">
-                <h3>Loading Page</h3>
-                <div class="progress-container">
-                    <div class="progress-fill"></div>
-                </div>
-            </div>
+        <canvas class="ld-canvas" aria-hidden="true"></canvas>
+        <div class="ld-ui" role="status">
+            <span class="ld-num">000</span>
+            <span class="ld-msg">Powering up the bench</span>
+            <span class="ld-line"><i></i></span>
         </div>
     </div>
+    <noscript>
+        <style>#preloader { display: none; }</style>
+    </noscript>
 
-    <section class="header">
+    <header class="header">
+        <nav class="nav" aria-label="Main">
 
-        <!-- Website Logo -->
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Technovation House Rental System">
-            <h3>CHUA MICRO TECH</h3>
-        </div>
+            <!-- Website Logo -->
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-mark.png" alt="" width="38" height="38">
+                <span class="logo__text">CHUA <span>MICRO TECH</span></span>
+            </a>
 
-        <div class="nav__menu" id="nav-menu">
+            <div class="nav__menu" id="nav-menu">
 
-            <div class="nav__close" id="nav-close">
-                <i class='bx bx-x'></i>
+                <button class="nav__close" id="nav-close" aria-label="Close menu">
+                    <i class='bx bx-x'></i>
+                </button>
+
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About Us</a></li>
+                    <li class="nav__item"><a href="services.html" class="nav__link active">Services</a></li>
+                    <li class="nav__item nav__item--drop">
+                        <button type="button" class="nav__link nav__drop-btn" aria-expanded="false"
+                            aria-controls="nav-software">Software <i class="ri-arrow-down-s-line"
+                                aria-hidden="true"></i></button>
+                        <!-- one row per published app; add new apps here -->
+                        <div class="nav__drop" id="nav-software">
+                            <span class="nav__drop-label">Our apps</span>
+                            <a href="cmt-drone-service-utility.html" class="nav__app">
+                                <span class="nav__app-ico"><img src="assets/images/logo-mark-white.png" alt=""></span>
+                                <span><strong>CMT Drone Service Utility</strong><small>Drone diagnostics, calibration and
+                                        firmware tools for Windows</small></span>
+                            </a>
+                            <span class="nav__app nav__app--soon">
+                                <span class="nav__app-ico"><i class="ri-add-line" aria-hidden="true"></i></span>
+                                <span><strong>More apps on the way</strong><small>New releases will be listed
+                                        here</small></span>
+                            </span>
+                            <a href="services.html#software" class="nav__drop-foot">Custom software development <i
+                                    class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+
+                <div class="nav__social">
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        class="nav__social-link" aria-label="Instagram">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" class="nav__social-link" aria-label="Facebook">
+                        <i class="ri-facebook-box-line"></i>
+                    </a>
+                </div>
             </div>
 
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="index.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+                <span class="hamburger">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
 
-                <li class="nav__item">
-                    <a href="about.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>About Us</span>
-                    </a>
-                </li>
+        </nav>
+    </header>
 
-                <li class="nav__item">
-                    <a href="services.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Services</span>
-                    </a>
-                </li>
+    <main>
 
-                <li class="nav__item">
-                    <a href="contact.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Contact</span>
+        <section class="page-hero">
+            <svg class="orb orb--a" viewBox="0 0 512 512" aria-hidden="true"><defs><filter id="orb-line-a" x="-4%" y="-4%" width="108%" height="108%"><feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="grown" /><feComposite in="grown" in2="SourceAlpha" operator="out" result="ring" /><feFlood flood-color="#011937" flood-opacity="0.16" /><feComposite in2="ring" operator="in" /></filter></defs><image href="assets/images/logo-mark.png" width="512" height="512" filter="url(#orb-line-a)" /></svg>
+            <svg class="orb orb--b" viewBox="0 0 512 512" aria-hidden="true"><defs><filter id="orb-line-b" x="-4%" y="-4%" width="108%" height="108%"><feMorphology in="SourceAlpha" operator="dilate" radius="7" result="grown" /><feComposite in="grown" in2="SourceAlpha" operator="out" result="ring" /><feFlood flood-color="#1568ff" flood-opacity="0.5" /><feComposite in2="ring" operator="in" /></filter></defs><image href="assets/images/logo-mark.png" width="512" height="512" filter="url(#orb-line-b)" /></svg>
+            <div class="wrap">
+                <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span>Services</span></nav>
+                <div class="page-hero__row">
+                    <h1 class="display" data-split style="--d: .08s">Six services, one <span
+                            class="accent">bench.</span></h1>
+                    <p class="lede reveal" style="--d: .3s">Precision hardware solutions for high-performance
+                        computing and aerial technology, and the software built around them.</p>
+                </div>
+                <div class="jump reveal" style="--d: .4s">
+                    <a href="#drone"><b>01</b> Drone Repair</a>
+                    <a href="#computer"><b>02</b> System Troubleshooting</a>
+                    <a href="#setup"><b>03</b> New System Setup</a>
+                    <a href="#software"><b>04</b> Software Development</a>
+                    <a href="#trade"><b>05</b> Trade-in Services</a>
+                    <a href="#recycle"><b>06</b> Recycle Services</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section--tight services-viewport">
+            <div class="wrap">
+
+                <!-- 01 Drone -->
+                <article class="svc-row service-panel" id="drone" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">01 / 06 <span class="tag">Aerospace division</span></span>
+                        <h2 class="h-section accent" data-split>Drone Repair &amp; Engineering</h2>
+                        <p class="svc-row__sub reveal">Precision restoration and component-level repair for
+                            industrial, commercial, and FPV aerial platforms</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Structural &amp; ESC Repair</strong>Replacement of broken drone arms and
+                                frame components. Diagnostics and micro-soldering for persistent ESC Status errors
+                            </li>
+                            <li><strong>Gimbal &amp; Sensor Calibration</strong>Resolving Gimbal Stuck alerts through
+                                mechanical overhaul and IMU or Compass sensor error correction</li>
+                            <li><strong>Signal &amp; Transmission Loss</strong>Troubleshooting bad signal range,
+                                video interference, and telemetry disconnection issues</li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Industrial</span><span>Commercial</span><span>FPV</span><span>DJI</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20schedule%20a%20Drone%20Repair%20service"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Schedule repair
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <div class="scene scene--drone">
+                                <span class="scene__halo"></span>
+                                <div class="m3d m3d--drone">
+                                    <span class="m3d__shadow"></span>
+                                    <div class="dr">
+                                        <span class="stack dr-arm dr-arm--a"><i></i><i></i></span><span class="stack dr-arm dr-arm--b"><i></i><i></i></span>
+                                        <span class="stack dr-motor" style="--x: -8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: -6.7em"></span><span class="dr-prop" style="--x: -8em; --y: -6.7em"></span>
+                                        <span class="stack dr-motor" style="--x: 8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: -6.7em"></span><span class="dr-prop" style="--x: 8em; --y: -6.7em"></span>
+                                        <span class="stack dr-motor" style="--x: -8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: 6.7em"></span><span class="dr-prop" style="--x: -8em; --y: 6.7em"></span>
+                                        <span class="stack dr-motor" style="--x: 8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: 6.7em"></span><span class="dr-prop" style="--x: 8em; --y: 6.7em"></span>
+                                        <span class="stack dr-body"><i></i><i></i><i></i><i></i><i></i><i><b></b></i></span>
+                                        <span class="stack dr-cam"><i></i><i></i><i></i><i></i></span>
+                                    </div>
+                                </div>
+                                <span class="lbl lbl--ok" style="left: 5%; top: 9%; --n: 0"><i class="bx bx-cog"></i> Motors &amp; ESC</span>
+                                <span class="lbl lbl--ok" style="right: 4%; top: 9%; --n: 1"><i class="bx bx-broadcast"></i> Signal link</span>
+                                <span class="lbl lbl--ok" style="left: 50%; bottom: 7%; translate: -50% 0; --n: 2"><i class="bx bx-target-lock"></i> Gimbal &amp; sensors</span>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bxs-navigation'></i> Flight-ready</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 02 Troubleshooting -->
+                <article class="svc-row svc-row--flip service-panel" id="computer" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">02 / 06 <span class="tag">Diagnostics &amp;
+                                stability</span></span>
+                        <h2 class="h-section accent" data-split>System Troubleshooting &amp; Repair</h2>
+                        <p class="svc-row__sub reveal">Professional hardware failure analysis and system recovery for
+                            workstations and gaming PC</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Component Failure Analysis</strong>Isolation and testing of GPU instability,
+                                CPU thermal throttling, and PSU power delivery failures to identify malfunctioning
+                                hardware</li>
+                            <li><strong>Stability &amp; Stress Testing</strong>Comprehensive benchmarking and
+                                hardware validation to ensure all components maintain integrity under heavy
+                                professional or gaming workloads</li>
+                            <li><strong>OS Recovery &amp; Security</strong>Resolving system crashes and driver
+                                conflicts while performing deep virus sanitization to eliminate malware and security
+                                threats</li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Workstations</span><span>Gaming PC</span><span>Laptops</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20need%20help%20with%20Computer%20Troubleshooting%20and%20Diagnostics"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Request analysis
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <div class="scene scene--inspect">
+                                <span class="scene__halo"></span>
+                                <div class="m3d m3d--laptop">
+                                    <span class="m3d__shadow"></span>
+                                    <span class="stack lp-base"><i></i><i></i><i></i><i><b class="lp-keys"></b><b class="lp-pad"></b></i></span>
+                                    <span class="stack lp-screen"><i></i><i></i><i><b class="lp-icon ri-tools-fill"></b><em></em></i></span>
+                                </div>
+                                <span class="lbl lbl--ok" style="left: 5%; top: 9%; --n: 0"><i class="bx bx-chip"></i> GPU stability</span>
+                                <span class="lbl lbl--ok" style="right: 4%; top: 9%; --n: 1"><i class="bx bx-tachometer"></i> CPU thermals</span>
+                                <span class="lbl lbl--ok" style="left: 50%; bottom: 7%; translate: -50% 0; --n: 2"><i class="bx bx-wind"></i> Airflow</span>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bx-shield-quarter'></i> Malware cleared</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 03 Setup -->
+                <article class="svc-row service-panel" id="setup" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">03 / 06 <span class="tag">Deployment &amp;
+                                assembly</span></span>
+                        <h2 class="h-section accent" data-split>New System Setup</h2>
+                        <p class="svc-row__sub reveal">Professional assembly and configuration services for
+                            custom-built workstations and gaming PC</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Precision Assembly</strong>Expert installation of all hardware components
+                                including clean cable management and optimal fan positioning for maximum airflow</li>
+                            <li><strong>OS &amp; Driver Deployment</strong>Full installation of Windows or Linux
+                                environments with the latest stable drivers and essential security updates configured
+                            </li>
+                            <li><strong>Initial System Validation</strong>Verification of BIOS settings, memory
+                                speeds, and hardware temperatures to ensure the system is ready for immediate use</li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Custom builds</span><span>Liquid cooled</span><span>Windows</span><span>Linux</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20am%20interested%20in%20a%20New%20System%20Setup%20/%20Custom%20PC%20Build"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Build my system
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <div class="scene scene--build">
+                                <span class="scene__halo"></span>
+                                <div class="m3d m3d--pc">
+                                    <span class="m3d__shadow"></span>
+                                    <div class="box3d pc">
+                                        <span class="f-top"></span>
+                                        <span class="f-south"><i class="fan"></i><i class="fan"></i><b></b></span>
+                                        <span class="f-west"><i class="fan"></i><i class="fan"></i><b class="pc-gpu"></b><b class="pc-ram"></b></span>
+                                    </div>
+                                </div>
+                                <span class="lbl lbl--ok" style="left: 5%; top: 14%; --n: 0"><i class="ri-tools-line"></i> Assembled</span>
+                                <span class="lbl lbl--ok" style="right: 4%; top: 44%; --n: 1"><i class="ri-windows-line"></i> OS &amp; drivers</span>
+                                <span class="lbl lbl--ok" style="left: 6%; bottom: 12%; --n: 2"><i class="ri-shield-check-line"></i> Validated</span>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bxs-microchip'></i> Ready for use</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 04 Software -->
+                <article class="svc-row svc-row--flip service-panel" id="software" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">04 / 06 <span class="tag">Software division</span></span>
+                        <h2 class="h-section accent" data-split>Software Development</h2>
+                        <p class="svc-row__sub reveal">Desktop applications and website deployment, built in-house
+                            around how the work is actually done</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Desktop Applications</strong>Purpose-built Windows tools with guided screens,
+                                clear device status and multi-language interfaces</li>
+                            <li><strong>Website Deployment</strong>Business websites designed, built and put live on
+                                your own domain, with hosting set up and updates looked after</li>
+                            <li><strong>CMT Drone Service Utility</strong>Our own drone service workspace for
+                                diagnostics, calibration and guided procedures. <a class="inline-link"
+                                    href="cmt-drone-service-utility.html">See the app</a></li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Desktop apps</span><span>Websites</span><span>Service tools</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20discuss%20a%20Software%20Development%20project"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Start a project
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <!-- CMT Drone Service Utility as it runs, with a deployed site in front of it -->
+                            <div class="showcase showcase--software">
+                                <div class="appwin">
+                                    <img class="appwin__shot" src="assets/images/cmt-service-utility.jpg"
+                                        alt="" width="1440" height="900" loading="lazy">
+                                </div>
+
+                                <div class="webwin tilt__lift" style="--lift: 60">
+                                    <div class="webwin__bar"><i></i><i></i><i></i><span>chuamicrotech.site</span>
+                                    </div>
+                                    <div class="webwin__page">
+                                        <b></b><u></u><u></u>
+                                    </div>
+                                    <div class="webwin__steps">
+                                        <span style="--n: 0">Build</span>
+                                        <span style="--n: 1">Deploy</span>
+                                        <span style="--n: 2">Live</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bx-code-alt'></i> Built in-house</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 05 Trade-in -->
+                <article class="svc-row service-panel" id="trade" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">05 / 06 <span class="tag">Asset recovery</span></span>
+                        <h2 class="h-section accent" data-split>Hardware Trade-In</h2>
+                        <p class="svc-row__sub reveal">Offset the cost of your next upgrade by trading in your
+                            malfunctioning or decommissioned hardware</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Defective Unit Valuation</strong>We provide competitive trade-in value for
+                                broken drones and non-functional PCs based on the salvageable components and circuit
+                                integrity</li>
+                            <li><strong>Direct Upgrade Credit</strong>Apply the value of your damaged hardware
+                                immediately toward the purchase of new systems, replacement parts, or professional
+                                repair services</li>
+                            <li><strong>Transparent Assessment</strong>Every unit undergoes a technical teardown to
+                                ensure you receive a fair market offer for all functional internal modules and parts
+                            </li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Broken drones</span><span>Non-functional PCs</span><span>Decommissioned
+                                hardware</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20have%20malfunctioning%20hardware%20I%20would%20like%20to%20Trade-In"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Get a valuation
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <div class="scene scene--trade">
+                                <figure class="tcard tcard--old"><span class="tcard__art"><div class="m3d m3d--drone">
+                                        <span class="m3d__shadow"></span>
+                                        <div class="dr">
+                                            <span class="stack dr-arm dr-arm--a"><i></i><i></i></span><span class="stack dr-arm dr-arm--b"><i></i><i></i></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: -6.7em"></span><span class="dr-prop" style="--x: -8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: -6.7em"></span><span class="dr-prop" style="--x: 8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: 6.7em"></span><span class="dr-prop" style="--x: -8em; --y: 6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: 6.7em"></span><span class="dr-prop" style="--x: 8em; --y: 6.7em"></span>
+                                            <span class="stack dr-body"><i></i><i></i><i></i><i></i><i></i><i><b></b></i></span>
+                                            <span class="stack dr-cam"><i></i><i></i><i></i><i></i></span>
+                                        </div>
+                                    </div></span>
+                                    <figcaption>Old unit</figcaption>
+                                </figure>
+                                <span class="swap"><i class="ri-arrow-left-right-line"></i></span>
+                                <figure class="tcard tcard--new"><span class="tcard__art"><div class="m3d m3d--pc">
+                                        <span class="m3d__shadow"></span>
+                                        <div class="box3d pc">
+                                            <span class="f-top"></span>
+                                            <span class="f-south"><i class="fan"></i><i class="fan"></i><b></b></span>
+                                            <span class="f-west"><i class="fan"></i><i class="fan"></i><b class="pc-gpu"></b><b class="pc-ram"></b></span>
+                                        </div>
+                                    </div></span>
+                                    <figcaption>Next upgrade</figcaption>
+                                </figure>
+                                <div class="meter"><span>Trade-in value</span><i></i><b><i class="ri-coupon-3-line"></i> Upgrade credit</b></div>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bx-transfer-alt'></i> Upgrade credit</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 06 Recycle -->
+                <article class="svc-row svc-row--flip service-panel" id="recycle" data-inview>
+                    <div class="svc-row__copy">
+                        <span class="svc-row__idx reveal">06 / 06 <span class="tag">E-waste management</span></span>
+                        <h2 class="h-section accent" data-split>Recycle Services</h2>
+                        <p class="svc-row__sub reveal">Responsible decommissioning of obsolete hardware with a focus
+                            on data privacy and environmental safety</p>
+                        <ul class="ticks reveal">
+                            <li><strong>Secure Sanitization</strong>Permanent software-level wiping or physical
+                                destruction of storage media to ensure all sensitive data is completely unrecoverable
+                            </li>
+                            <li><strong>Hazardous Material Management</strong>Specialized disposal of degraded Li-Po
+                                batteries and power cells to prevent chemical combustion and environmental
+                                contamination</li>
+                            <li><strong>Electronic Waste Recovery</strong>Systematic breakdown of non-functional PCs
+                                and drones to recover raw materials and divert toxic heavy metals from landfills</li>
+                        </ul>
+                        <div class="fits reveal">
+                            <span>Storage media</span><span>Li-Po batteries</span><span>Obsolete hardware</span>
+                        </div>
+                        <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20drop%20off%20electronics%20for%20Recycling"
+                            target="_blank" rel="noopener" class="btn btn--soft reveal">
+                            Drop off tech
+                            <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                        </a>
+                    </div>
+                    <div class="svc-row__visual reveal" aria-hidden="true">
+                        <div class="tilt" data-tilt>
+                            <div class="scene scene--recycle">
+                                <span class="orbit"></span>
+                                <span class="core"><i class="ri-recycle-line"></i></span>
+                                <span class="node" style="--a: -90deg"><i class="ri-hard-drive-2-line"></i><span class="lbl">Data wiped</span></span>
+                                <span class="node" style="--a: 30deg"><i class="ri-battery-2-charge-line"></i><span class="lbl">Li-Po made safe</span></span>
+                                <span class="node" style="--a: 150deg"><i class="ri-cpu-line"></i><span class="lbl">Materials recovered</span></span>
+                            </div>
+                            <span class="chip svc-row__float tilt__lift" style="--lift: 70"><i
+                                    class='bx bx-recycle'></i> Out of landfill</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- How a job runs -->
+        <section class="band-dark section">
+            <div class="wrap">
+                <div class="sec-head">
+                    <span class="eyebrow reveal">The protocol</span>
+                    <h2 class="h-section" data-split>Every service runs the same four steps.</h2>
+                    <p class="lede reveal" style="--d: .16s">A streamlined process ensuring transparency and precision
+                        from intake to delivery.</p>
+                </div>
+
+                <div class="why-grid" data-inview>
+                    <div class="service-item reveal">
+                        <div class="icon-box" style="--n: 0">01</div>
+                        <div class="service-info">
+                            <strong>Device Intake</strong>
+                            <span>A formal case ID is logged on arrival</span>
+                        </div>
+                    </div>
+                    <div class="service-item reveal" style="--d: .1s">
+                        <div class="icon-box" style="--n: 1">02</div>
+                        <div class="service-info">
+                            <strong>Diagnostic Check</strong>
+                            <span>Health and failure points assessed</span>
+                        </div>
+                    </div>
+                    <div class="service-item reveal" style="--d: .2s">
+                        <div class="icon-box" style="--n: 2">03</div>
+                        <div class="service-info">
+                            <strong>Free Quotation</strong>
+                            <span>Work begins only after approval</span>
+                        </div>
+                    </div>
+                    <div class="service-item reveal" style="--d: .3s">
+                        <div class="icon-box" style="--n: 3">04</div>
+                        <div class="service-info">
+                            <strong>Repair &amp; Return</strong>
+                            <span>Verified, then securely shipped back</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-row reveal">
+                    <a href="about.html#flow" class="btn btn--light">
+                        See the full service flow
+                        <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
                     </a>
-                </li>
+                </div>
+            </div>
+        </section>
+
+        <section class="section--tight cta">
+            <div class="wrap">
+                <div class="cta__panel reveal">
+                    <div>
+                        <span class="eyebrow">Get in touch</span>
+                        <h2 class="h-section">Not sure which service fits?</h2>
+                        <p class="lede">Describe the fault and we will point you to the right one. Technical support
+                            and hardware inquiries available Monday — Saturday.</p>
+                        <div class="cta__actions">
+                            <a href="contact.html" class="btn btn--blue">
+                                Open a ticket
+                                <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                            </a>
+                            <a href="https://wa.me/60125949451" target="_blank" rel="noopener"
+                                class="btn btn--light">
+                                WhatsApp now
+                                <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cta__meta">
+                        <a href="https://wa.me/60125949451" target="_blank" rel="noopener"><i
+                                class="ri-whatsapp-line"></i> +60 12-594 9451</a>
+                        <a href="mailto:chuamicrotech@gmail.com"><i class="ri-mail-send-line"></i>
+                            chuamicrotech@gmail.com</a>
+                        <a href="terms.html"><i class="ri-file-list-3-line"></i> Terms, warranty &amp; shipping</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <!-- name and socials on one line, the four values as one ruled row, then four columns under them -->
+            <div class="footer__top">
+                <a href="index.html" class="footer__brand">
+                    <img src="assets/images/logo-mark-white.png" alt="" width="46" height="46">
+                    CHUA MICRO TECH
+                </a>
+                <div class="icons">
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                    <a href="mailto:chuamicrotech@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+                </div>
+            </div>
+
+            <ul class="footer__values">
+                <li>Precision Diagnostics</li>
+                <li>Component-Level Repairs</li>
+                <li>In-House Software</li>
+                <li>Customer Satisfaction</li>
             </ul>
 
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <h6>Pages</h6>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html" class="footer-link">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer__col">
+                    <h6>Services</h6>
+                    <ul>
+                        <li><a href="services.html#drone">Drone Repair</a></li>
+                        <li><a href="services.html#computer">System Troubleshooting</a></li>
+                        <li><a href="services.html#setup">New System Setup</a></li>
+                        <li><a href="services.html#software">Software Development</a></li>
+                        <li><a href="cmt-drone-service-utility.html">CMT Drone Service Utility</a></li>
+                        <li><a href="services.html#trade">Trade-in Services</a></li>
+                        <li><a href="services.html#recycle">Recycle Services</a></li>
+                    </ul>
+                </div>
 
-            <div class="nav__social">
-                <a href="https://www.instagram.com/chuamicrotech/" target="_blank" class="nav__social-link">
-                    <i class="ri-instagram-line"></i>
-                </a>
+                <div class="footer__col">
+                    <h6>Reach us</h6>
+                    <ul>
+                        <li><a href="https://wa.me/60125949451" target="_blank" rel="noopener">+60 12-594 9451</a></li>
+                        <li><a href="mailto:chuamicrotech@gmail.com">chuamicrotech@gmail.com</a></li>
+                        <li><a href="contact.html">Open a support ticket</a></li>
+                    </ul>
+                </div>
 
-                <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
-                    class="nav__social-link">
-                    <i class="ri-facebook-box-line"></i>
-                </a>
+                <div class="footer__col">
+                    <h6>Visit us</h6>
+                    <ul>
+                        <li><small>859, Lorong Kota Kenari 4/5, Taman Kota Kenari, 09000, Kulim, Kedah.</small></li>
+                        <li><small>Mon - Sat: 9:00 AM - 10:00 PM</small></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.
+                </p>
+                <p class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</p>
             </div>
         </div>
+    </footer>
 
-        <div class="nav__toggle" id="nav-toggle">
-            <div class="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
+    <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+        <svg class="to-top__ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="19" />
+        </svg>
+        <i class="ri-arrow-up-line"></i>
+    </button>
 
-    </section>
 
-    <section class="services-viewport">
+    <div class="curtain" id="curtain" aria-hidden="true"></div>
 
-        <aside class="services-sidebar">
-            <div class="sidebar-top">
-                <span class="tech-tag">// SYSTEM SOLUTIONS</span>
-                <h2>SERVICES OFFERED</h2>
-            </div>
-            <nav class="sidebar-nav">
-                <div class="nav-item active" onclick="showTab(event, 'drone')">
-                    <i class='bx bxs-navigation'></i>
-                    <div class="nav-text">
-                        <strong>Drone Repair</strong>
-                        <span>UAV Restoration</span>
-                    </div>
-                </div>
-
-                <div class="nav-item" onclick="showTab(event, 'computer')">
-                    <i class='bx bx-pulse'></i>
-                    <div class="nav-text">
-                        <strong>System Troubleshooting</strong>
-                        <span>PC Diagnostics & Repair</span>
-                    </div>
-                </div>
-
-                <div class="nav-item" onclick="showTab(event, 'setup')">
-                    <i class='bx bxs-microchip'></i>
-                    <div class="nav-text">
-                        <strong>New System Setup</strong>
-                        <span>Custom PC Assembly</span>
-                    </div>
-                </div>
-
-                <div class="nav-item" onclick="showTab(event, 'trade')">
-                    <i class='bx bx-transfer-alt'></i>
-                    <div class="nav-text">
-                        <strong>Trade-in Services</strong>
-                        <span>Upgrade Your Tech</span>
-                    </div>
-                </div>
-
-                <div class="nav-item" onclick="showTab(event, 'recycle')">
-                    <i class='bx bxs-trash-alt'></i>
-                    <div class="nav-text">
-                        <strong>Recycle Services</strong>
-                        <span>Eco-Friendly Disposal</span>
-                    </div>
-                </div>
-            </nav>
-        </aside>
-
-        <main class="services-content-area">
-
-            <div id="drone" class="service-panel active">
-                <div class="panel-header">
-                    <span class="tech-tag">// AEROSPACE DIVISION</span>
-                    <h1>Drone Repair & Engineering</h1>
-                    <div class="title-accent"></div>
-                </div>
-                <div class="panel-body">
-                    <p class="summary">Precision restoration and component-level repair for industrial, commercial, and
-                        FPV aerial platforms</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <i class='bx bxs-wrench'></i>
-                            <h5>Structural & ESC Repair</h5>
-                            <p>Replacement of broken drone arms and frame components. Diagnostics and micro-soldering
-                                for persistent ESC Status errors</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <i class='bx bx-target-lock'></i>
-                            <h5>Gimbal & Sensor Calibration</h5>
-                            <p>Resolving Gimbal Stuck alerts through mechanical overhaul and IMU or Compass sensor error
-                                correction</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <i class='bx bx-broadcast'></i>
-                            <h5>Signal & Transmission Loss</h5>
-                            <p>Troubleshooting bad signal range, video interference, and telemetry disconnection issues
-                            </p>
-                        </div>
-                    </div>
-
-                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20schedule%20a%20Drone%20Repair%20service" target="_blank" class="btn-tech">SCHEDULE REPAIR</a>
-                </div>
-            </div>
-
-            <div id="computer" class="service-panel">
-                <div class="panel-header">
-                    <span class="tech-tag">// DIAGNOSTICS & STABILITY</span>
-                    <h1>System Troubleshooting & Repair</h1>
-                    <div class="title-accent"></div>
-                </div>
-                <div class="panel-body">
-                    <p class="summary">Professional hardware failure analysis and system recovery for workstations and
-                        gaming PC</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <i class='bx bx-chip'></i>
-                            <h5>Component Failure Analysis</h5>
-                            <p>Isolation and testing of GPU instability, CPU thermal throttling, and PSU power delivery
-                                failures to identify malfunctioning hardware</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <i class='bx bx-tachometer'></i>
-                            <h5>Stability & Stress Testing</h5>
-                            <p>Comprehensive benchmarking and hardware validation to ensure all components maintain
-                                integrity under heavy professional or gaming workloads</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <i class='bx bx-shield-quarter'></i>
-                            <h5>OS Recovery & Security</h5>
-                            <p>Resolving system crashes and driver conflicts while performing deep virus sanitization to
-                                eliminate malware and security threats</p>
-                        </div>
-                    </div>
-
-                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20need%20help%20with%20Computer%20Troubleshooting%20and%20Diagnostics" target="_blank" class="blank btn-tech">REQUEST ANALYSIS</a>
-                </div>
-            </div>
-
-            <div id="setup" class="service-panel">
-                <div class="panel-header">
-                    <span class="tech-tag">// DEPLOYMENT & ASSEMBLY</span>
-                    <h1>New System Setup</h1>
-                    <div class="title-accent"></div>
-                </div>
-                <div class="panel-body">
-                    <p class="summary">Professional assembly and configuration services for custom-built workstations and gaming PC</p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <i class='bx bxs-component'></i>
-                            <h5>Precision Assembly</h5>
-                            <p>Expert installation of all hardware components including clean cable management and optimal fan positioning for maximum airflow</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bx-desktop'></i>
-                            <h5>OS & Driver Deployment</h5>
-                            <p>Full installation of Windows or Linux environments with the latest stable drivers and essential security updates configured</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bx-list-check'></i>
-                            <h5>Initial System Validation</h5>
-                            <p>Verification of BIOS settings, memory speeds, and hardware temperatures to ensure the system is ready for immediate use</p>
-                        </div>
-                    </div>
-            
-                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20am%20interested%20in%20a%20New%20System%20Setup%20/%20Custom%20PC%20Build" target="_blank" class="btn-tech">BUILD MY SYSTEM</a>
-                </div>
-            </div>
-
-            <div id="trade" class="service-panel">
-                <div class="panel-header">
-                    <span class="tech-tag">// ASSET RECOVERY</span>
-                    <h1>Hardware Trade-In</h1>
-                    <div class="title-accent"></div>
-                </div>
-                <div class="panel-body">
-                    <p class="summary">Offset the cost of your next upgrade by trading in your malfunctioning or decommissioned hardware</p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <i class='bx bx- some-re-check'></i> <i class='bx bx-analyse'></i>
-                            <h5>Defective Unit Valuation</h5>
-                            <p>We provide competitive trade-in value for broken drones and non-functional PCs based on the salvageable components and circuit integrity</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bx-trending-up'></i>
-                            <h5>Direct Upgrade Credit</h5>
-                            <p>Apply the value of your damaged hardware immediately toward the purchase of new systems, replacement parts, or professional repair services</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bx-receipt'></i>
-                            <h5>Transparent Assessment</h5>
-                            <p>Every unit undergoes a technical teardown to ensure you receive a fair market offer for all functional internal modules and parts</p>
-                        </div>
-                    </div>
-            
-                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20have%20malfunctioning%20hardware%20I%20would%20like%20to%20Trade-In" target="_blank" class="btn-tech">GET A VALUATION</a>
-                </div>
-            </div>
-
-            <div id="recycle" class="service-panel">
-                <div class="panel-header">
-                    <span class="tech-tag">// E-WASTE MANAGEMENT</span>
-                    <h1>Recycle Services</h1>
-                    <div class="title-accent"></div>
-                </div>
-                <div class="panel-body">
-                    <p class="summary">Responsible decommissioning of obsolete hardware with a focus on data privacy and environmental safety</p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <i class='bx bx-shield-x'></i>
-                            <h5>Secure Sanitization</h5>
-                            <p>Permanent software-level wiping or physical destruction of storage media to ensure all sensitive data is completely unrecoverable</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bxs-bolt-circle'></i>
-                            <h5>Hazardous Material Management</h5>
-                            <p>Specialized disposal of degraded Li-Po batteries and power cells to prevent chemical combustion and environmental contamination</p>
-                        </div>
-            
-                        <div class="feature-card">
-                            <i class='bx bx-recycle'></i>
-                            <h5>Electronic Waste Recovery</h5>
-                            <p>Systematic breakdown of non-functional PCs and drones to recover raw materials and divert toxic heavy metals from landfills</p>
-                        </div>
-                    </div>
-            
-                    <a href="https://wa.me/60125949451?text=Hello%20Chua%20Micro%20Tech,%20I%20would%20like%20to%20drop%20off%20electronics%20for%20Recycling" target="_blank" class="btn-tech">DROP OFF TECH</a>
-                </div>
-            </div>
-
-            <section class="footer contact-footer">
-                <div class="footer-divider contact-footer-divider"></div>
-                <div class="footer-info">
-                    <h6 style="margin-bottom: 8px;">
-                        <a href="terms.html" class="footer-link">TERMS & CONDITIONS</a>
-                    </h6>
-                    <h6>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.</h6>
-                    <h6>Precision Diagnostics • Component-Level Repairs • Quality Assurance • Customer Satisfaction</h6>
-                    <h6 class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</h6>
-                </div>
-            </section>
-
-        </main>
-    </section>
-
+    <script src="assets/js/mark.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/motion.js"></script>
+    <script src="assets/js/perf.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/disableRightClick.js"></script>
 </body>

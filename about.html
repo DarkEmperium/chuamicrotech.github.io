@@ -4,14 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Outfit:wght@700;800&family=Intel+One+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <title>About Us | Chua Micro Tech</title>
+    <meta name="description"
+        content="Chua Micro Tech is a specialist center in Kulim, Kedah for component-level PC and drone repair, and the software built around them.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script>
+        // Repeat page loads in a session play the short version of the loader
+        try { if (sessionStorage.getItem("cmt-loaded")) document.documentElement.classList.add("is-return"); } catch (e) { }
+    </script>
     <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/scenes.css">
     <link rel="stylesheet" href="assets/css/preloader.css">
     <link rel="stylesheet" href="assets/css/navigator.css">
     <link rel="stylesheet" href="assets/css/about.css">
@@ -19,218 +29,484 @@
 
 <body>
 
-    <!--Website Preloader-->
+    <!--Website Preloader: honeycomb cells slide in to build the brand mark, then the view zooms into it (assets/js/preloader.js)-->
     <div id="preloader">
-        <div class="preloader-content">
-            <img src="assets/images/logo.png" alt="Chua Micro Tech">
-            <div class="loading-status">
-                <h3>Loading Page</h3>
-                <div class="progress-container">
-                    <div class="progress-fill"></div>
+        <canvas class="ld-canvas" aria-hidden="true"></canvas>
+        <div class="ld-ui" role="status">
+            <span class="ld-num">000</span>
+            <span class="ld-msg">Powering up the bench</span>
+            <span class="ld-line"><i></i></span>
+        </div>
+    </div>
+    <noscript>
+        <style>#preloader { display: none; }</style>
+    </noscript>
+
+    <header class="header">
+        <nav class="nav" aria-label="Main">
+
+            <!-- Website Logo -->
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-mark.png" alt="" width="38" height="38">
+                <span class="logo__text">CHUA <span>MICRO TECH</span></span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+
+                <button class="nav__close" id="nav-close" aria-label="Close menu">
+                    <i class='bx bx-x'></i>
+                </button>
+
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link active">About Us</a></li>
+                    <li class="nav__item"><a href="services.html" class="nav__link">Services</a></li>
+                    <li class="nav__item nav__item--drop">
+                        <button type="button" class="nav__link nav__drop-btn" aria-expanded="false"
+                            aria-controls="nav-software">Software <i class="ri-arrow-down-s-line"
+                                aria-hidden="true"></i></button>
+                        <!-- one row per published app; add new apps here -->
+                        <div class="nav__drop" id="nav-software">
+                            <span class="nav__drop-label">Our apps</span>
+                            <a href="cmt-drone-service-utility.html" class="nav__app">
+                                <span class="nav__app-ico"><img src="assets/images/logo-mark-white.png" alt=""></span>
+                                <span><strong>CMT Drone Service Utility</strong><small>Drone diagnostics, calibration and
+                                        firmware tools for Windows</small></span>
+                            </a>
+                            <span class="nav__app nav__app--soon">
+                                <span class="nav__app-ico"><i class="ri-add-line" aria-hidden="true"></i></span>
+                                <span><strong>More apps on the way</strong><small>New releases will be listed
+                                        here</small></span>
+                            </span>
+                            <a href="services.html#software" class="nav__drop-foot">Custom software development <i
+                                    class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+
+                <div class="nav__social">
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        class="nav__social-link" aria-label="Instagram">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" class="nav__social-link" aria-label="Facebook">
+                        <i class="ri-facebook-box-line"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <section class="header">
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+                <span class="hamburger">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
 
-        <!-- Website Logo -->
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Technovation House Rental System">
-            <h3>CHUA MICRO TECH</h3>
-        </div>
+        </nav>
+    </header>
 
-        <div class="nav__menu" id="nav-menu">
+    <main>
 
-            <div class="nav__close" id="nav-close">
-                <i class='bx bx-x'></i>
+        <!-- Hero: a circuit board in 3D with a spanner on its left and a screwdriver on its right -->
+        <section class="page-hero ab-hero about-hero">
+            <svg class="orb orb--a" viewBox="0 0 512 512" aria-hidden="true"><defs><filter id="orb-line-a" x="-4%" y="-4%" width="108%" height="108%"><feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="grown" /><feComposite in="grown" in2="SourceAlpha" operator="out" result="ring" /><feFlood flood-color="#011937" flood-opacity="0.16" /><feComposite in2="ring" operator="in" /></filter></defs><image href="assets/images/logo-mark.png" width="512" height="512" filter="url(#orb-line-a)" /></svg>
+            <div class="wrap ab-hero__grid">
+                <div>
+                    <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span>About</span></nav>
+                    <h1 class="display hero-title" data-split style="--d: .08s">Engineering PC &amp; drone repair,
+                        and the <span class="accent">software.</span></h1>
+                    <p class="lede reveal" style="--d: .3s">Established 2012. Based in Kulim, Kedah, Chua Micro Tech is
+                        a specialist center for precision hardware repair, with an in-house team that builds desktop
+                        apps and websites.</p>
+                </div>
+
+                <div class="iso reveal" data-tilt data-inview style="--d: .2s" aria-hidden="true">
+                    <div class="iso__scene">
+                        <!-- shared pieces for the two tools -->
+                        <svg class="pcb3d__defs" width="0" height="0" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="tool-steel" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#ffffff" />
+                                    <stop offset="1" stop-color="#b3c1d9" />
+                                </linearGradient>
+                                <mask id="tool-jaws" maskUnits="userSpaceOnUse" x="-10" y="-10" width="220" height="80">
+                                    <rect x="-10" y="-10" width="220" height="80" fill="#fff" />
+                                    <rect x="-10" y="19" width="38" height="22" transform="rotate(-28 28 30)" />
+                                    <rect x="172" y="19" width="38" height="22" transform="rotate(-28 172 30)" />
+                                </mask>
+                            </defs>
+                        </svg>
+
+                        <!-- Everything stands on one tilted plane. Each solid is a stack of thin slices,
+                             so the board, its parts and both tools have real thickness from any angle. -->
+                        <div class="pcb3d">
+                            <span class="pcb3d__shadow"></span>
+                            <div class="stack pcb3d__board"><i></i><i></i><i></i><i></i><i></i><i><svg class="pcb__art" viewBox="0 0 350 246" fill="none">
+                                    <g stroke="#3f7dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M40 60H96L118 82H144M40 92H84L104 112H144" />
+                                        <path d="M206 82H222M206 112H228L246 130H262" />
+                                        <path d="M160 128V186L140 206H70M190 128V196H250M175 58V34H222" />
+                                    </g>
+                                    <g fill="#8db6ff">
+                                        <circle cx="40" cy="60" r="5" /><circle cx="40" cy="92" r="5" />
+                                        <circle cx="70" cy="206" r="5" /><circle cx="250" cy="196" r="5" />
+                                    </g>
+                                    <g fill="#e2c9a0">
+                                        <rect x="118" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="131" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="144" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="157" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="170" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="183" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="196" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="209" y="226" width="7" height="14" rx="1.5" />
+                                        <rect x="222" y="226" width="7" height="14" rx="1.5" />
+                                    </g>
+                                    <g stroke="#8db6ff" stroke-opacity=".7" stroke-width="2">
+                                        <circle cx="20" cy="20" r="6" /><circle cx="330" cy="20" r="6" />
+                                        <circle cx="20" cy="226" r="6" /><circle cx="330" cy="226" r="6" />
+                                    </g>
+                                </svg></i></div>
+                            <span class="stack part part--chip"><i></i><i></i><i></i><i></i><i></i><i><img src="assets/images/logo-mark-white.png" alt=""></i></span>
+                            <span class="stack part part--cap" style="--x: 15%; --y: 58%"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack part part--cap" style="--x: 25%; --y: 58%"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack part part--cap part--cap-s" style="--x: 15%; --y: 74%"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack part part--slot" style="--x: 66%"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack part part--slot" style="--x: 73%"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack part part--port"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            <span class="stack tool tool--spanner"><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg><svg viewBox="0 0 200 60"><g mask="url(#tool-jaws)"><rect x="40" y="21" width="120" height="18" rx="5" /><circle cx="28" cy="30" r="24" /><circle cx="172" cy="30" r="24" /></g></svg></span>
+                            <span class="stack tool tool--driver"><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg><svg viewBox="0 0 200 44"><path class="steel" d="M18 17L2 20V24L18 27Z" /><rect class="steel" x="16" y="18" width="82" height="8" rx="2" /><rect class="grip" x="92" y="13" width="14" height="18" rx="3" /><rect class="grip" x="104" y="4" width="92" height="36" rx="16" /><path class="ridge" d="M122 13H180M122 22H180M122 31H180" /></svg></span>
+                        </div>
+                    </div>
+                    <div class="iso__steps">
+                        <span class="numchip"><b>01</b> Device intake</span>
+                        <span class="numchip"><b>02</b> Circuit-level diagnosis</span>
+                        <span class="numchip"><b>03</b> Factory spec</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numbers -->
+        <section class="section--tight stats-bar" id="stats">
+            <div class="wrap stats">
+                <article class="card stat stat-item reveal">
+                    <div class="stat__n"><span class="counter" data-target="400">0</span><sup>+</sup></div>
+                    <h3>Devices restored</h3>
+                    <p>Drones, laptops and desktops brought back to factory specifications.</p>
+                </article>
+                <article class="card stat stat-item reveal" style="--d: .1s">
+                    <div class="stat__n"><span class="counter" data-target="100">0</span><sup>%</sup></div>
+                    <h3>Precision calibrated</h3>
+                    <p>Every device is verified on the bench before it is returned.</p>
+                </article>
+                <article class="card stat stat-item reveal" style="--d: .2s">
+                    <div class="stat__n"><span class="counter" data-target="24">0</span><sup>H</sup></div>
+                    <h3>Avg. diagnostic time</h3>
+                    <p>From intake to a clear picture of what failed and why.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- What drives us -->
+        <section class="band-dark section">
+            <div class="wrap">
+                <span class="eyebrow reveal">What drives us</span>
+                <p class="statement statement--dark" data-scrub>
+                    Founded on the principle of <em>technical excellence</em>, Chua Micro Tech began as a specialized
+                    laboratory for the hardware challenges standard repair shops <em>couldn't handle</em>, and now
+                    writes the <em>software</em> its own bench runs on.
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission and vision -->
+        <section class="section mission-vision">
+            <div class="wrap vm">
+                <article class="vm__hex mission-box reveal">
+                    <svg class="vm__shape" viewBox="0 0 200 224" aria-hidden="true">
+                        <path class="vm__plate" d="M100 12L188 62V162L100 212L12 162V62Z" />
+                        <path class="vm__rim" d="M100 28L174 70V154L100 196L26 154V70Z" />
+                    </svg>
+                    <span class="vm__dot"></span>
+                    <div>
+                        <h3>Mission</h3>
+                        <p>To provide the highest standard of micro-engineering, component-level repair and
+                            purpose-built software, extending the lifecycle of premium technology through precision
+                            science.</p>
+                    </div>
+                </article>
+                <article class="vm__hex vm__hex--low mission-box reveal" style="--d: .12s">
+                    <svg class="vm__shape" viewBox="0 0 200 224" aria-hidden="true">
+                        <path class="vm__plate" d="M100 12L188 62V162L100 212L12 162V62Z" />
+                        <path class="vm__rim" d="M100 28L174 70V154L100 196L26 154V70Z" />
+                    </svg>
+                    <span class="vm__dot vm__dot--navy"></span>
+                    <div>
+                        <h3>Vision</h3>
+                        <p>To become Malaysia's leading independent authority in drones hardware repair,
+                            high-performance computer maintenance and the software that supports them.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Our story -->
+        <section class="section--tight experiences">
+            <div class="wrap story">
+                <div class="story__visual reveal">
+                    <img src="assets/images/dji-support.jpg" alt="Laboratory" loading="lazy">
+                    <span class="chip story__tag"><i class='bx bxs-chip'></i> Component-level lab</span>
+                </div>
+                <div class="experiences-info-container">
+                    <span class="eyebrow reveal">Our story</span>
+                    <h2 class="h-section" data-split>Redefining component-level precision in Kulim.</h2>
+                    <p class="lede reveal" style="--d: .16s">We don't just swap parts; we diagnose at the circuit
+                        level. From rescuing liquid-damaged motherboards to recalibrating high-performance drone
+                        flight controllers, our bench is equipped with industry-leading diagnostic tools to ensure
+                        every device returns to factory specifications. Where the right tool did not exist, we wrote
+                        it: CMT Drone Service Utility started on this bench.</p>
+                    <ul class="story__list reveal" style="--d: .24s">
+                        <li><b>01</b> Circuit-level diagnosis, not part swapping</li>
+                        <li><b>02</b> Liquid-damaged motherboards rescued</li>
+                        <li><b>03</b> Drone flight controllers recalibrated</li>
+                        <li><b>04</b> Our own service software, built in-house</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service flow: cards stack over each other while scrolling -->
+        <section class="section workflow-section" id="flow">
+            <div class="wrap">
+                <div class="sec-head services-title">
+                    <span class="eyebrow reveal">The protocol</span>
+                    <h2 class="h-section" data-split>Our service <span class="accent">flow.</span></h2>
+                    <p class="lede reveal" style="--d: .16s">A streamlined process ensuring transparency and precision
+                        from intake to delivery.</p>
+                </div>
+
+                <div class="pstack workflow-container">
+                    <article class="pcard step" style="--i: 0" data-inview>
+                        <div class="pcard__copy">
+                            <span class="step-num">01 / 04</span>
+                            <h3>Device Intake</h3>
+                            <p>Customers send in their hardware; upon arrival, we immediately log a formal case ID for
+                                the device.</p>
+                            <span class="tag">Logged on arrival</span>
+                        </div>
+                        <div class="pcard__visual" aria-hidden="true">
+                            <div class="scene scene--intake">
+                                <span class="lbl" style="left: 7%; top: 9%"><i class="ri-inbox-archive-line"></i> Parcel received</span>
+                                <div class="casetag">
+                                    <span class="casetag__art"><div class="m3d m3d--drone">
+                                        <span class="m3d__shadow"></span>
+                                        <div class="dr">
+                                            <span class="stack dr-arm dr-arm--a"><i></i><i></i></span><span class="stack dr-arm dr-arm--b"><i></i><i></i></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: -6.7em"></span><span class="dr-prop" style="--x: -8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: -6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: -6.7em"></span><span class="dr-prop" style="--x: 8em; --y: -6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: -8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: -8em; --y: 6.7em"></span><span class="dr-prop" style="--x: -8em; --y: 6.7em"></span>
+                                            <span class="stack dr-motor" style="--x: 8em; --y: 6.7em"><i></i><i></i><i></i><i></i><i></i></span><span class="dr-disc" style="--x: 8em; --y: 6.7em"></span><span class="dr-prop" style="--x: 8em; --y: 6.7em"></span>
+                                            <span class="stack dr-body"><i></i><i></i><i></i><i></i><i></i><i><b></b></i></span>
+                                            <span class="stack dr-cam"><i></i><i></i><i></i><i></i></span>
+                                        </div>
+                                    </div></span>
+                                    <div><small>Case ID</small><b>CMT · 0428</b><span class="barcode"></span></div>
+                                </div>
+                                <span class="stamp">Logged</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pcard pcard--dark step" style="--i: 1" data-inview>
+                        <div class="pcard__copy">
+                            <span class="step-num">02 / 04</span>
+                            <h3>Diagnostic Check</h3>
+                            <p>Our engineers perform a basic technical check to assess the health and failure points
+                                of the system.</p>
+                            <span class="tag">Failure points mapped</span>
+                        </div>
+                        <div class="pcard__visual" aria-hidden="true">
+                            <div class="scene scene--dark scene--scope">
+                                <svg class="scope" viewBox="0 0 280 200" preserveAspectRatio="none">
+                                    <!-- the trace is always there; a bright pulse runs along it without a break -->
+                                    <path class="scope__base" pathLength="100" d="M0 120H52L64 96L76 132L88 112H128L140 58L152 150L164 104L176 120H214L224 108L234 126L244 120H280" />
+                                    <path class="scope__pulse" pathLength="100" d="M0 120H52L64 96L76 132L88 112H128L140 58L152 150L164 104L176 120H214L224 108L234 126L244 120H280" />
+                                </svg>
+                                <span class="spot spot--t" style="--x: 50%; --y: 29%"><span class="lbl"><i class="ri-search-eye-line"></i> Fault located</span></span>
+                                <span class="readout readout--l">CH1 · Power rail</span>
+                                <span class="readout readout--r">Live</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pcard step" style="--i: 2" data-inview>
+                        <div class="pcard__copy">
+                            <span class="step-num">03 / 04</span>
+                            <h3>Free Quotation</h3>
+                            <p>We provide a detailed repair quote at no cost. Work only begins once the client
+                                approves the estimate.</p>
+                            <span class="tag">Nothing starts without approval</span>
+                        </div>
+                        <div class="pcard__visual" aria-hidden="true">
+                            <div class="scene scene--quote">
+                                <div class="paper">
+                                    <small>Repair quote</small>
+                                    <u></u><u></u><u></u><u></u>
+                                    <div class="paper__sum"><u></u><b>No cost</b></div>
+                                </div>
+                                <span class="seal"><b>FREE</b><small>Quote</small></span>
+                                <span class="lbl" style="right: 7%; bottom: 11%"><span class="knob"></span> Client approval</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pcard pcard--dark step" style="--i: 3" data-inview>
+                        <div class="pcard__copy">
+                            <span class="step-num">04 / 04</span>
+                            <h3>Repair &amp; Return</h3>
+                            <p>Precision repair is executed at the component level. Once verified, the device is
+                                securely shipped back.</p>
+                            <span class="tag">Verified, then shipped</span>
+                        </div>
+                        <div class="pcard__visual" aria-hidden="true">
+                            <div class="scene scene--dark scene--return">
+                                <span class="lbl lbl--ok" style="left: 50%; top: 11%; translate: -50% 0"><i class="ri-shield-check-fill"></i> Verified on the bench</span>
+                                <span class="stop stop--a"><i class="ri-tools-fill"></i><small>CMT Lab</small></span>
+                                <span class="road"><i class="ri-truck-fill"></i></span>
+                                <span class="stop stop--b"><i class="ri-home-4-fill"></i><small>Your door</small></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section--tight cta">
+            <div class="wrap">
+                <div class="cta__panel reveal">
+                    <div>
+                        <span class="eyebrow">Get in touch</span>
+                        <h2 class="h-section">A device to fix, or something to build?</h2>
+                        <p class="lede">Repairs, custom builds and software projects. We answer Monday to Saturday.</p>
+                        <div class="cta__actions">
+                            <a href="contact.html" class="btn btn--blue">
+                                Open a ticket
+                                <span class="btn__arrow"><i class="ri-arrow-right-up-line"></i></span>
+                            </a>
+                            <a href="https://wa.me/60125949451" target="_blank" rel="noopener"
+                                class="btn btn--light">
+                                WhatsApp now
+                                <span class="btn__arrow"><i class="ri-whatsapp-line"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cta__meta">
+                        <a href="https://wa.me/60125949451" target="_blank" rel="noopener"><i
+                                class="ri-whatsapp-line"></i> +60 12-594 9451</a>
+                        <a href="mailto:chuamicrotech@gmail.com"><i class="ri-mail-send-line"></i>
+                            chuamicrotech@gmail.com</a>
+                        <a href="contact.html"><i class="ri-map-pin-2-fill"></i> 859, Lorong Kota Kenari 4/5, Kulim,
+                            Kedah</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <!-- name and socials on one line, the four values as one ruled row, then four columns under them -->
+            <div class="footer__top">
+                <a href="index.html" class="footer__brand">
+                    <img src="assets/images/logo-mark-white.png" alt="" width="46" height="46">
+                    CHUA MICRO TECH
+                </a>
+                <div class="icons">
+                    <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
+                        rel="noopener" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="https://www.instagram.com/chuamicrotech/" target="_blank" rel="noopener"
+                        aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                    <a href="mailto:chuamicrotech@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+                </div>
             </div>
 
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="index.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="about.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>About Us</span>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="services.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Services</span>
-                    </a>
-                </li>
-
-                <li class="nav__item">
-                    <a href="contact.html" class="nav__link">
-                        <i class="ri-arrow-right-up-line"></i>
-                        <span>Contact</span>
-                    </a>
-                </li>
+            <ul class="footer__values">
+                <li>Precision Diagnostics</li>
+                <li>Component-Level Repairs</li>
+                <li>In-House Software</li>
+                <li>Customer Satisfaction</li>
             </ul>
 
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <h6>Pages</h6>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html" class="footer-link">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer__col">
+                    <h6>Services</h6>
+                    <ul>
+                        <li><a href="services.html#drone">Drone Repair</a></li>
+                        <li><a href="services.html#computer">System Troubleshooting</a></li>
+                        <li><a href="services.html#setup">New System Setup</a></li>
+                        <li><a href="services.html#software">Software Development</a></li>
+                        <li><a href="cmt-drone-service-utility.html">CMT Drone Service Utility</a></li>
+                        <li><a href="services.html#trade">Trade-in Services</a></li>
+                        <li><a href="services.html#recycle">Recycle Services</a></li>
+                    </ul>
+                </div>
 
-            <div class="nav__social">
-                <a href="https://www.instagram.com/chuamicrotech/" target="_blank" class="nav__social-link">
-                    <i class="ri-instagram-line"></i>
-                </a>
+                <div class="footer__col">
+                    <h6>Reach us</h6>
+                    <ul>
+                        <li><a href="https://wa.me/60125949451" target="_blank" rel="noopener">+60 12-594 9451</a></li>
+                        <li><a href="mailto:chuamicrotech@gmail.com">chuamicrotech@gmail.com</a></li>
+                        <li><a href="contact.html">Open a support ticket</a></li>
+                    </ul>
+                </div>
 
-                <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"
-                    class="nav__social-link">
-                    <i class="ri-facebook-box-line"></i>
-                </a>
+                <div class="footer__col">
+                    <h6>Visit us</h6>
+                    <ul>
+                        <li><small>859, Lorong Kota Kenari 4/5, Taman Kota Kenari, 09000, Kulim, Kedah.</small></li>
+                        <li><small>Mon - Sat: 9:00 AM - 10:00 PM</small></li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <div class="nav__toggle" id="nav-toggle">
-            <div class="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="about-hero">
-        <div class="hero-content">
-            <span class="tech-tag">// ESTABLISHED 2012</span>
-
-            <h1 class="hero-title">
-                ENGINEERING THE FUTURE<br>OF<br>PC & DRONE REPAIR
-            </h1>
-
-            <div class="title-underline"></div>
-        </div>
-    </section>
-
-    <section class="experiences" style="background: #f8fafc;">
-        <div class="experiences-info-container">
-            <span class="tech-tag">// OUR STORY</span>
-            <h1>REDEFINING COMPONENT-LEVEL <br>PRECISION IN KULIM</h1>
-            <p>Founded on the principle of technical excellence, Chua Micro Tech began as a specialized laboratory
-                dedicated to solving the hardware challenges that standard repair shops couldn't handle.</p>
-            <p>We don't just swap parts; we diagnose at the circuit level. From rescuing liquid-damaged motherboards to
-                recalibrating high-performance drones flight controllers, our bench is equipped with industry-leading
-                diagnostic tools to ensure every device returns to factory specifications.</p>
-        </div>
-        <div class="about-image">
-            <div class="image-main">
-                <img src="assets/images/dji-support.jpg" alt="Laboratory">
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-bar" id="stats">
-        <div class="stats-wrapper">
-            <div class="stat-item">
-                <h2 class="counter" data-target="400">0</h2>
-                <span class="plus">+</span>
-                <p>DEVICES RESTORED</p>
-                <div class="stat-line"></div>
-            </div>
-            <div class="stat-item">
-                <h2 class="counter" data-target="100">0</h2>
-                <span class="plus">%</span>
-                <p>PRECISION CALIBRATED</p>
-                <div class="stat-line"></div>
-            </div>
-            <div class="stat-item">
-                <h2 class="counter" data-target="24">0</h2>
-                <span class="plus">H</span>
-                <p>AVG. DIAGNOSTIC TIME</p>
-                <div class="stat-line"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="mission-vision">
-        <div class="mission-box">
-            <h3 style="font-family: 'Outfit'; margin-bottom: 15px; color: #0f172a;">OUR MISSION</h3>
-            <p style="color: #64748b; line-height: 1.6; font-style: italic;">To provide the highest standard of
-                micro-engineering and component-level repair, extending the lifecycle of premium technology through
-                precision science.</p>
-        </div>
-        <div class="mission-box">
-            <h3 style="font-family: 'Outfit'; margin-bottom: 15px; color: #0f172a;">OUR VISION</h3>
-            <p style="color: #64748b; line-height: 1.6; font-style: italic;">To become Malaysia's leading independent
-                authority in drones hardware repair and high-performance computer maintenance.</p>
-        </div>
-    </section>
-
-    <div class="section-divider">
-        <div class="divider-line"></div>
-        <div class="divider-status">
-            <span class="pulse"></span>
-            <span class="status-text">SYSTEM PROTOCOL ACTIVATED</span>
-        </div>
-        <div class="divider-line"></div>
-    </div>
-
-    <section class="workflow-section">
-        <div class="services-title">
-            <span class="tech-tag">// THE PROTOCOL</span>
-            <h2>Our Service Flow</h2>
-            <div class="title-accent"></div>
-            <p>A streamlined process ensuring transparency and precision from intake to delivery.</p>
-        </div>
-
-        <div class="workflow-container">
-            <div class="step">
-                <div class="step-num">01</div>
-                <h4>Device Intake</h4>
-                <p>Customers send in their hardware; upon arrival, we immediately log a formal case ID for the device.
+            <div class="footer-info">
+                <p>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.
                 </p>
-            </div>
-
-            <div class="step">
-                <div class="step-num">02</div>
-                <h4>Diagnostic Check</h4>
-                <p>Our engineers perform a basic technical check to assess the health and failure points of the system.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-num">03</div>
-                <h4>Free Quotation</h4>
-                <p>We provide a detailed repair quote at no cost. Work only begins once the client approves the
-                    estimate.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-num">04</div>
-                <h4>Repair & Return</h4>
-                <p>Precision repair is executed at the component level. Once verified, the device is securely shipped
-                    back.</p>
+                <p class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</p>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <section class="footer">
-        <div class="footer-divider"></div>
-        <div class="icons">
-            <a href="https://www.facebook.com/people/Chua-Micro-Tech/100064804307691/" target="_blank"><i
-                    class="fa fa-facebook-official"></i></a>
-            <a href="https://www.instagram.com/chuamicrotech/" target="_blank"><i class="fa fa-instagram"></i></a>
-            <a href="mailto:chuamicrotech@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <div class="footer-info">
-            <h6 style="margin-bottom: 8px;">
-                <a href="terms.html" class="footer-link">TERMS & CONDITIONS</a>
-            </h6>
-            <h6>© <span id="currentYear"></span> CHUA MICRO TECH 202603162794 (003862581-P). ALL RIGHTS RESERVED.</h6>
-            <h6>Precision Diagnostics • Component-Level Repairs • Quality Assurance • Customer Satisfaction</h6>
-            <h6 class="developer-tag">SYSTEM ARCHITECTURE BY DARK EMPERIUM</h6>
-        </div>
-    </section>
+    <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+        <svg class="to-top__ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="19" />
+        </svg>
+        <i class="ri-arrow-up-line"></i>
+    </button>
 
+
+    <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+    <script src="assets/js/mark.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/motion.js"></script>
+    <script src="assets/js/perf.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/disableRightClick.js"></script>
 </body>
